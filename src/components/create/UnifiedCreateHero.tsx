@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useResponsiveBreakpoints } from '@/hooks/useResponsiveBreakpoints';
 import { ResponsiveCreate3DLayout } from './ResponsiveCreate3DLayout';
@@ -9,6 +9,20 @@ import { ScrollIndicator } from './ScrollIndicator';
 export const UnifiedCreateHero: React.FC = () => {
   const { isShortScreen, isMobile, isTablet } = useResponsiveBreakpoints();
   const [isPaused, setIsPaused] = useState(false);
+  const [showScrollIndicator, setShowScrollIndicator] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const scrollThreshold = windowHeight * 0.3; // Hide after scrolling 30% of viewport
+      
+      setShowScrollIndicator(scrollY < scrollThreshold);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleTogglePause = () => {
     setIsPaused(!isPaused);
@@ -125,7 +139,7 @@ export const UnifiedCreateHero: React.FC = () => {
           </div>
 
           {/* Scroll Indicator for short screens */}
-          <ScrollIndicator isVisible={true} />
+          <ScrollIndicator isVisible={showScrollIndicator} />
         </div>
       ) : (
         // Normal tall screen layout - Updated with new button variants
@@ -184,7 +198,7 @@ export const UnifiedCreateHero: React.FC = () => {
           </div>
 
           {/* Scroll Indicator for normal screens */}
-          <ScrollIndicator isVisible={true} />
+          <ScrollIndicator isVisible={showScrollIndicator} />
         </div>
       )}
     </>
