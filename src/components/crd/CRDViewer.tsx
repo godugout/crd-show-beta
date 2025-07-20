@@ -821,6 +821,8 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
         onShowTutorial={onShowTutorial}
         onMaterialReveal={onMaterialReveal}
         cardRotation={cardRotationForCompass}
+        isPaused={isPaused}
+        onTogglePause={handleTogglePause}
         enableGlassCase={currentEnableGlassCase}
         onToggleGlassCase={() => setCurrentEnableGlassCase(!currentEnableGlassCase)}
         spaceEnvironment={spaceEnvironment}
