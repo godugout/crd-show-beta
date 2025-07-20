@@ -83,7 +83,7 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
     <>
       {isShortScreen ? (
         // Short screen layout - Compact design for limited vertical space
-        <div id="animation-section" className="relative w-full h-screen overflow-hidden">
+        <div id="animation-section" className="relative w-full h-screen">
           {/* Full Screen 3D Background Layer */}
           <ResponsiveCreate3DLayout
             isPaused={isPaused}
