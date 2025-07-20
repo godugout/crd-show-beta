@@ -56,10 +56,19 @@ export const MonolithAlignment: React.FC<MonolithAlignmentProps> = ({
       if (progress < 1) {
         requestAnimationFrame(animateSequence);
       } else {
-        // Show navbar again when animation completes
-        setFlightActive(false);
-        // Complete after animation
-        setTimeout(() => onAlignmentComplete?.(), 1000);
+        // Float in place briefly, then zoom out to final position
+        setTimeout(() => {
+          // Trigger final positioning: zoom out and angle at 163 degrees
+          if (onCardRotationTrigger) {
+            onCardRotationTrigger({ x: -17, y: 175 }); // 163 degrees = 180 - 17
+          }
+          
+          // Show navbar again after positioning
+          setFlightActive(false);
+          
+          // Complete after final positioning
+          setTimeout(() => onAlignmentComplete?.(), 1500);
+        }, 500); // Float for 0.5 seconds
       }
     };
 
