@@ -56,8 +56,8 @@ export const ResponsiveCreate3DLayout: React.FC<ResponsiveCreate3DLayoutProps> =
         </StarsBackground>
       </div>
 
-      {/* Control Buttons - Centered vertically aligned */}
-      <div className="fixed bottom-6 right-1/2 transform translate-x-1/2 z-[100]">
+      {/* Control Buttons - Right side vertically aligned */}
+      <div className="fixed bottom-6 right-6 z-[100]">
         <div className="flex flex-col items-center gap-3">
           <StudioPauseButton 
             isPaused={isPaused} 
