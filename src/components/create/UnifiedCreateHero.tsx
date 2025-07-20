@@ -136,10 +136,7 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
               {/* Animated Tagline */}
               <div className="text-center mt-6 px-6 pb-8">
                 <p className="text-sm text-gray-400 animate-pulse">
-                  ✨ Where imagination meets technology.
-                </p>
-                <p className="font-caveat text-base text-crd-orange mt-2">
-                  What will you make?
+                  ✨ Where imagination meets technology. <span className="font-caveat text-base text-crd-orange">What will you make?</span>
                 </p>
               </div>
             </div>
@@ -198,10 +195,7 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
               {/* Animated Tagline */}
               <div className="mt-12 pb-16">
                 <p className="text-lg text-gray-400 animate-pulse">
-                  ✨ Where imagination meets technology.
-                </p>
-                <p className="font-caveat text-xl text-crd-orange mt-2">
-                  What will you make?
+                  ✨ Where imagination meets technology. <span className="font-caveat text-xl text-crd-orange">What will you make?</span>
                 </p>
               </div>
             </div>
