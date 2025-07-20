@@ -254,18 +254,34 @@
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Start moving text off screen at the same time buttons move to bottom (700px) */
-@media (max-height: 700px) {
+/* Start moving text off screen earlier when 3D case approaches CTA buttons (800px) */
+@media (max-height: 800px) {
   .hero-text-responsive {
-    transform: translateY(-60px);
-    opacity: 0.3;
+    transform: translateY(-30px);
+    opacity: 0.7;
   }
 }
 
-/* Continue sliding text up for smaller screens */
-@media (max-height: 600px) {
+/* Continue separation as case gets closer to buttons (750px) */
+@media (max-height: 750px) {
   .hero-text-responsive {
-    transform: translateY(-100px);
+    transform: translateY(-50px);
+    opacity: 0.4;
+  }
+}
+
+/* Further separation when case overlaps buttons (700px) */
+@media (max-height: 700px) {
+  .hero-text-responsive {
+    transform: translateY(-80px);
+    opacity: 0.1;
+  }
+}
+
+/* Complete separation for smaller screens */
+@media (max-height: 650px) {
+  .hero-text-responsive {
+    transform: translateY(-120px);
     opacity: 0;
     pointer-events: none;
   }
@@ -274,7 +290,7 @@
 /* For extremely short screens, completely hide the hero text */
 @media (max-height: 500px) {
   .hero-text-responsive {
-    transform: translateY(-120px);
+    transform: translateY(-150px);
     opacity: 0;
     pointer-events: none;
     height: 0;
