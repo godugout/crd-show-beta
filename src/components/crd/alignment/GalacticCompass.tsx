@@ -119,27 +119,13 @@ export const GalacticCompass: React.FC<GalacticCompassProps> = ({
             </button>
           )}
 
-           {/* Space Environment Button - moved to first position */}
+           {/* Space Environment Button - replaces refresh button */}
            {onSpaceEnvironmentChange && (
              <EnvironmentSwitcher
                currentEnvironment={spaceEnvironment}
                onEnvironmentChange={onSpaceEnvironmentChange}
              />
            )}
-
-           {/* Refresh Button - moved to second position */}
-           <button
-             onClick={() => window.location.reload()}
-             className="group text-white p-2 rounded-full shadow-lg transition-all duration-300 hover:scale-105 flex items-center justify-center border"
-             style={{
-               background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.12) 100%)',
-               borderColor: 'rgba(255, 255, 255, 0.15)',
-               backdropFilter: 'blur(12px) saturate(180%)'
-             }}
-             title="Refresh Page"
-           >
-             <RefreshCw className="w-4 h-4 transition-transform group-hover:scale-110" />
-           </button>
         </div>
       </div>
 
