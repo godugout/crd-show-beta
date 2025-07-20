@@ -792,6 +792,8 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
         cardRotation={cardRotationForCompass}
         enableGlassCase={currentEnableGlassCase}
         onToggleGlassCase={() => setCurrentEnableGlassCase(!currentEnableGlassCase)}
+        spaceEnvironment={spaceEnvironment}
+        onSpaceEnvironmentChange={onSpaceEnvironmentChange}
       />
     </div>
   );

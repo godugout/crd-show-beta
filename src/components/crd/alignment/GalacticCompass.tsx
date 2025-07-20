@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { RotateCcw, HelpCircle, Play, Pause, RefreshCw, Package, PackageOpen } from 'lucide-react';
+import { RotateCcw, HelpCircle, Play, Pause, RefreshCw, Package, PackageOpen, Globe } from 'lucide-react';
+import { EnvironmentSwitcher, type SpaceEnvironment } from '../../studio/EnvironmentSwitcher';
 
 interface GalacticCompassProps {
   onReset: () => void;
@@ -10,6 +11,8 @@ interface GalacticCompassProps {
   onTogglePause?: () => void;
   enableGlassCase?: boolean;
   onToggleGlassCase?: () => void;
+  spaceEnvironment?: SpaceEnvironment;
+  onSpaceEnvironmentChange?: (environment: SpaceEnvironment) => void;
 }
 
 export const GalacticCompass: React.FC<GalacticCompassProps> = ({
@@ -20,7 +23,9 @@ export const GalacticCompass: React.FC<GalacticCompassProps> = ({
   isPaused = false,
   onTogglePause,
   enableGlassCase = true,
-  onToggleGlassCase
+  onToggleGlassCase,
+  spaceEnvironment = 'starfield',
+  onSpaceEnvironmentChange
 }) => {
   const [compassAngle, setCompassAngle] = useState(0); // 0 = pointing up
   const [isTracking, setIsTracking] = useState(true);
@@ -114,19 +119,27 @@ export const GalacticCompass: React.FC<GalacticCompassProps> = ({
             </button>
           )}
 
-          {/* Refresh Button */}
-          <button
-            onClick={() => window.location.reload()}
-            className="group text-white p-2 rounded-full shadow-lg transition-all duration-300 hover:scale-105 flex items-center justify-center border"
-            style={{
-              background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.12) 100%)',
-              borderColor: 'rgba(255, 255, 255, 0.15)',
-              backdropFilter: 'blur(12px) saturate(180%)'
-            }}
-            title="Refresh Page"
-          >
-            <RefreshCw className="w-4 h-4 transition-transform group-hover:scale-110" />
-          </button>
+           {/* Space Environment Button - moved to first position */}
+           {onSpaceEnvironmentChange && (
+             <EnvironmentSwitcher
+               currentEnvironment={spaceEnvironment}
+               onEnvironmentChange={onSpaceEnvironmentChange}
+             />
+           )}
+
+           {/* Refresh Button - moved to second position */}
+           <button
+             onClick={() => window.location.reload()}
+             className="group text-white p-2 rounded-full shadow-lg transition-all duration-300 hover:scale-105 flex items-center justify-center border"
+             style={{
+               background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.12) 100%)',
+               borderColor: 'rgba(255, 255, 255, 0.15)',
+               backdropFilter: 'blur(12px) saturate(180%)'
+             }}
+             title="Refresh Page"
+           >
+             <RefreshCw className="w-4 h-4 transition-transform group-hover:scale-110" />
+           </button>
         </div>
       </div>
 
