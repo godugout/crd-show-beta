@@ -58,9 +58,9 @@ export const MonolithAlignment: React.FC<MonolithAlignmentProps> = ({
       } else {
         // Original animation complete - now do final positioning
         setTimeout(() => {
-          // Trigger smooth rotation to show bottom edge (x: -10, y: 162) 
+          // Trigger smooth rotation to show bottom edge (x: -10, y: 160) 
           if (onCardRotationTrigger) {
-            onCardRotationTrigger({ x: -10, y: 162 });
+            onCardRotationTrigger({ x: -10, y: 160 });
           }
           
           // End flight mode and complete after rotation settles
