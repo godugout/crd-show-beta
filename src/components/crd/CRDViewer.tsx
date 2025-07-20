@@ -79,6 +79,7 @@ interface CRDViewerProps {
   onModeChange?: (mode: AnimationMode) => void;
   onIntensityChange?: (intensity: number) => void;
   onShowTutorial?: () => void;
+  onMaterialReveal?: () => void;
   
   // Space environment
   spaceEnvironment?: SpaceEnvironment;
@@ -126,6 +127,7 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
   onModeChange,
   onIntensityChange,
   onShowTutorial,
+  onMaterialReveal,
   
   // Space environment
   spaceEnvironment = 'starfield',
@@ -817,6 +819,7 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
         onReset={resetCardPosition}
         isResetting={isResettingCard}
         onShowTutorial={onShowTutorial}
+        onMaterialReveal={onMaterialReveal}
         cardRotation={cardRotationForCompass}
         enableGlassCase={currentEnableGlassCase}
         onToggleGlassCase={() => setCurrentEnableGlassCase(!currentEnableGlassCase)}
