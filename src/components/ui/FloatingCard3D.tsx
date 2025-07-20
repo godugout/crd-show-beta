@@ -12,6 +12,7 @@ interface FloatingCard3DProps {
   onShowTutorial?: () => void;
   spaceEnvironment?: SpaceEnvironment;
   onSpaceEnvironmentChange?: (environment: SpaceEnvironment) => void;
+  onAnimationComplete?: () => void;
 }
 
 export const FloatingCard3D: React.FC<FloatingCard3DProps> = ({ 
@@ -21,7 +22,8 @@ export const FloatingCard3D: React.FC<FloatingCard3DProps> = ({
   showPauseButton = false,
   onShowTutorial,
   spaceEnvironment = 'starfield',
-  onSpaceEnvironmentChange
+  onSpaceEnvironmentChange,
+  onAnimationComplete
 }) => {
   const { deviceType, isShortScreen } = useResponsiveBreakpoints();
 
@@ -61,6 +63,12 @@ export const FloatingCard3D: React.FC<FloatingCard3DProps> = ({
         onShowTutorial={onShowTutorial}
         spaceEnvironment={spaceEnvironment}
         onSpaceEnvironmentChange={onSpaceEnvironmentChange}
+        onAlignmentStateChange={(state) => {
+          // Trigger completion when animation reaches the end and stops playing
+          if (state.animationProgress >= 1 && !state.isPlaying && onAnimationComplete) {
+            onAnimationComplete();
+          }
+        }}
       />
     </div>
   );

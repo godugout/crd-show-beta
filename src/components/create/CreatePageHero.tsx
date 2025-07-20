@@ -2,6 +2,10 @@
 import React from 'react';
 import { ResponsiveCreatePageHero } from './ResponsiveCreatePageHero';
 
-export const CreatePageHero: React.FC = () => {
-  return <ResponsiveCreatePageHero />;
+interface CreatePageHeroProps {
+  onAnimationComplete?: () => void;
+}
+
+export const CreatePageHero: React.FC<CreatePageHeroProps> = ({ onAnimationComplete }) => {
+  return <ResponsiveCreatePageHero onAnimationComplete={onAnimationComplete} />;
 };

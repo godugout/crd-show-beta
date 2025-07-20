@@ -6,7 +6,11 @@ import { CRDButton } from '@/components/ui/design-system';
 import { PixelDigital } from '@/components/ui/PixelDigital';
 import { ScrollIndicator } from './ScrollIndicator';
 
-export const UnifiedCreateHero: React.FC = () => {
+interface UnifiedCreateHeroProps {
+  onAnimationComplete?: () => void;
+}
+
+export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimationComplete }) => {
   const { isShortScreen, isMobile, isTablet } = useResponsiveBreakpoints();
   const [isPaused, setIsPaused] = useState(false);
   const [showScrollIndicator, setShowScrollIndicator] = useState(true);
@@ -85,6 +89,7 @@ export const UnifiedCreateHero: React.FC = () => {
             isPaused={isPaused}
             onTogglePause={handleTogglePause}
             className="fixed inset-0 z-0"
+            onAnimationComplete={onAnimationComplete}
           />
 
           {/* Overlay Content Layer - Positioned for short screens */}
@@ -148,6 +153,7 @@ export const UnifiedCreateHero: React.FC = () => {
             isPaused={isPaused}
             onTogglePause={handleTogglePause}
             className="fixed inset-0 z-0"
+            onAnimationComplete={onAnimationComplete}
           />
 
           {/* Overlay Content Layer - Positioned higher for normal screens */}

@@ -2,6 +2,10 @@
 import React from 'react';
 import { UnifiedCreateHero } from './UnifiedCreateHero';
 
-export const ResponsiveCreatePageHero: React.FC = () => {
-  return <UnifiedCreateHero />;
+interface ResponsiveCreatePageHeroProps {
+  onAnimationComplete?: () => void;
+}
+
+export const ResponsiveCreatePageHero: React.FC<ResponsiveCreatePageHeroProps> = ({ onAnimationComplete }) => {
+  return <UnifiedCreateHero onAnimationComplete={onAnimationComplete} />;
 };

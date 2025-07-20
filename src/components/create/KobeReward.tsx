@@ -3,21 +3,20 @@ import { ArrowRight } from 'lucide-react';
 
 interface KobeRewardProps {
   onAnimationComplete: () => void;
+  animationFinished: boolean;
 }
 
-export const KobeReward: React.FC<KobeRewardProps> = ({ onAnimationComplete }) => {
+export const KobeReward: React.FC<KobeRewardProps> = ({ onAnimationComplete, animationFinished }) => {
   const [showReward, setShowReward] = useState(false);
   const [hasBeenTriggered, setHasBeenTriggered] = useState(false);
 
   useEffect(() => {
-    // Show reward after 3 seconds (when animation typically completes)
-    const timer = setTimeout(() => {
+    // Only show reward when animation actually finishes
+    if (animationFinished && !showReward) {
       setShowReward(true);
       onAnimationComplete();
-    }, 3000);
-
-    return () => clearTimeout(timer);
-  }, [onAnimationComplete]);
+    }
+  }, [animationFinished, showReward, onAnimationComplete]);
 
   const handleUnlockReward = () => {
     setHasBeenTriggered(true);

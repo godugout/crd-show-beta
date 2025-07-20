@@ -11,12 +11,14 @@ interface ResponsiveCreate3DLayoutProps {
   isPaused: boolean;
   onTogglePause: () => void;
   className?: string;
+  onAnimationComplete?: () => void;
 }
 
 export const ResponsiveCreate3DLayout: React.FC<ResponsiveCreate3DLayoutProps> = ({
   isPaused,
   onTogglePause,
-  className = ''
+  className = '',
+  onAnimationComplete
 }) => {
   const [showTutorial, setShowTutorial] = useState(false);
   const [spaceEnvironment, setSpaceEnvironment] = useState<SpaceEnvironment>('starfield');
@@ -50,6 +52,7 @@ export const ResponsiveCreate3DLayout: React.FC<ResponsiveCreate3DLayoutProps> =
             onShowTutorial={() => setShowTutorial(true)}
             spaceEnvironment={spaceEnvironment}
             onSpaceEnvironmentChange={setSpaceEnvironment}
+            onAnimationComplete={onAnimationComplete}
           />
         </StarsBackground>
       </div>
