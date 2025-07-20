@@ -81,25 +81,6 @@ export const GalacticCompass: React.FC<GalacticCompassProps> = ({
               </button>
             )}
 
-            {/* Pause Button */}
-            {onTogglePause && (
-              <button
-                onClick={onTogglePause}
-                className="group text-white p-2 rounded-full shadow-lg transition-all duration-300 hover:scale-105 flex items-center justify-center border"
-                style={{
-                  background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.12) 100%)',
-                  borderColor: 'rgba(255, 255, 255, 0.15)',
-                  backdropFilter: 'blur(12px) saturate(180%)'
-                }}
-                title={isPaused ? "Resume" : "Pause"}
-              >
-                {isPaused ? (
-                  <Play className="w-4 h-4 transition-transform group-hover:scale-110" />
-                ) : (
-                  <Pause className="w-4 h-4 transition-transform group-hover:scale-110" />
-                )}
-              </button>
-            )}
 
             {/* Glass Case Toggle Button */}
             {onToggleGlassCase && (
@@ -131,9 +112,46 @@ export const GalacticCompass: React.FC<GalacticCompassProps> = ({
       </div>
 
       {/* Right Side - Playing Controls Bar */}
-      <div className="fixed bottom-32 right-6 z-50">
+      <div className="fixed bottom-16 right-6 z-50">
         <div className="flex flex-col items-end gap-3">
-          {/* Compass and data */}
+          {/* Control Buttons - Pause/Play and Refresh above compass */}
+          <div className="flex flex-col items-end gap-3">
+            {/* Pause/Play Button */}
+            {onTogglePause && (
+              <button
+                onClick={onTogglePause}
+                className="group text-white p-2 rounded-full shadow-lg transition-all duration-300 hover:scale-105 flex items-center justify-center border"
+                style={{
+                  background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.12) 100%)',
+                  borderColor: 'rgba(255, 255, 255, 0.15)',
+                  backdropFilter: 'blur(12px) saturate(180%)'
+                }}
+                title={isPaused ? "Resume" : "Pause"}
+              >
+                {isPaused ? (
+                  <Play className="w-4 h-4 transition-transform group-hover:scale-110" />
+                ) : (
+                  <Pause className="w-4 h-4 transition-transform group-hover:scale-110" />
+                )}
+              </button>
+            )}
+            
+            {/* Refresh Button */}
+            <button
+              onClick={() => window.location.reload()}
+              className="group text-white p-2 rounded-full shadow-lg transition-all duration-300 hover:scale-105 flex items-center justify-center border"
+              style={{
+                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.12) 100%)',
+                borderColor: 'rgba(255, 255, 255, 0.15)',
+                backdropFilter: 'blur(12px) saturate(180%)'
+              }}
+              title="Refresh Page"
+            >
+              <RefreshCw className="w-4 h-4 transition-transform group-hover:scale-110" />
+            </button>
+          </div>
+          
+          {/* Compass and data below buttons */}
           <div className="flex flex-col items-end gap-3">
             {/* Compass housing - smaller design */}
             <div 
