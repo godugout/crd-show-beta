@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { ArrowRight } from 'lucide-react';
+
+import React from 'react';
 
 interface KobeRewardProps {
   onAnimationComplete: () => void;
@@ -7,109 +7,94 @@ interface KobeRewardProps {
 }
 
 export const KobeReward: React.FC<KobeRewardProps> = ({ onAnimationComplete, animationFinished }) => {
-  const [showReward, setShowReward] = useState(false);
-  const [hasBeenTriggered, setHasBeenTriggered] = useState(false);
-
-  useEffect(() => {
-    // Only show reward when animation actually finishes
-    if (animationFinished && !showReward) {
-      setShowReward(true);
+  // Show reward immediately when animation finishes
+  React.useEffect(() => {
+    if (animationFinished) {
+      console.log('🎯 Animation finished, showing Kobe reward');
       onAnimationComplete();
     }
-  }, [animationFinished, showReward, onAnimationComplete]);
+  }, [animationFinished, onAnimationComplete]);
 
-  const handleUnlockReward = () => {
-    setHasBeenTriggered(true);
-  };
+  if (!animationFinished) {
+    console.log('🔄 Animation not finished yet, hiding reward');
+    return null;
+  }
 
-  if (!showReward) return null;
+  console.log('🏆 Showing Kobe reward with chalk text and arrow');
 
   return (
-    <div className="fixed left-4 top-1/2 transform -translate-y-1/2 z-50">
-      {!hasBeenTriggered ? (
-        // Unlock button
-        <div className="bg-gradient-to-r from-crd-orange/20 to-crd-gold/20 backdrop-blur-sm rounded-lg p-4 border border-crd-orange/30 animate-pulse">
-          <div className="text-center">
-            <div className="text-2xl mb-2">🏆</div>
-            <p className="text-white text-sm mb-3 font-semibold">Animation Complete!</p>
-            <p className="text-white/70 text-xs mb-4">You've unlocked a practice card</p>
-            <button
-              onClick={handleUnlockReward}
-              className="bg-crd-orange hover:bg-crd-orange/80 text-white px-4 py-2 rounded-lg text-sm font-semibold transition-colors flex items-center gap-2 mx-auto"
-            >
-              Claim Reward <ArrowRight size={14} />
-            </button>
+    <div className="fixed top-1/3 right-8 z-50 pointer-events-none">
+      {/* Chalk-style text and arrow pointing to dropzone */}
+      <div className="relative">
+        {/* Curved arrow pointing down-left to dropzone */}
+        <div className="absolute -left-24 top-12 flex items-center">
+          <div className="font-caveat text-white/90 text-lg mr-3 transform -rotate-6 whitespace-nowrap">
+            Drag to editor below!
           </div>
+          <svg
+            width="80"
+            height="60"
+            viewBox="0 0 80 60"
+            className="text-crd-orange"
+          >
+            <defs>
+              <marker
+                id="chalk-arrowhead"
+                markerWidth="12"
+                markerHeight="9"
+                refX="10"
+                refY="4.5"
+                orient="auto"
+                markerUnits="strokeWidth"
+              >
+                <polygon
+                  points="0 0, 12 4.5, 0 9"
+                  fill="currentColor"
+                />
+              </marker>
+            </defs>
+            <path
+              d="M 10 20 Q 40 5 70 45"
+              stroke="currentColor"
+              strokeWidth="3"
+              fill="none"
+              markerEnd="url(#chalk-arrowhead)"
+              className="animate-pulse"
+              strokeDasharray="2,2"
+            />
+          </svg>
         </div>
-      ) : (
-        // Draggable Kobe card with arrow
-        <div className="relative">
-          {/* Arrow pointing to dropzone */}
-          <div className="absolute -right-32 top-1/2 transform -translate-y-1/2 flex items-center">
-            <div className="text-white/70 text-sm mr-2 whitespace-nowrap">
-              Drag to CRD editor →
-            </div>
-            <svg
-              width="60"
-              height="30"
-              viewBox="0 0 60 30"
-              className="text-crd-orange"
-            >
-              <defs>
-                <marker
-                  id="arrowhead"
-                  markerWidth="10"
-                  markerHeight="7"
-                  refX="9"
-                  refY="3.5"
-                  orient="auto"
-                >
-                  <polygon
-                    points="0 0, 10 3.5, 0 7"
-                    fill="currentColor"
-                  />
-                </marker>
-              </defs>
-              <path
-                d="M 5 15 Q 30 5 55 15"
-                stroke="currentColor"
-                strokeWidth="2"
-                fill="none"
-                markerEnd="url(#arrowhead)"
-                className="animate-pulse"
-              />
-            </svg>
-          </div>
 
-          {/* Draggable Kobe card */}
-          <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-crd-orange/50 shadow-lg">
-            <p className="text-white/70 text-xs mb-2 text-center">Practice Card Unlocked!</p>
-            <div
-              className="w-20 h-28 rounded border-2 border-dashed border-crd-orange/50 overflow-hidden cursor-grab hover:border-crd-orange transition-colors bg-cover bg-center relative group"
-              style={{ backgroundImage: `url(/lovable-uploads/7a70c708-b669-4cb2-b5db-df422389b32b.png)` }}
-              draggable
-              onDragStart={(e) => {
-                // Set drag data for the CRD editor to recognize
-                e.dataTransfer.setData('application/json', JSON.stringify({
-                  type: 'example-card',
-                  imageUrl: '/lovable-uploads/7a70c708-b669-4cb2-b5db-df422389b32b.png',
-                  name: 'kobe-card-example.png'
-                }));
-              }}
-              title="Drag this onto the CRD editor to use Kobe Bryant example"
-            >
-              <div className="w-full h-full bg-gradient-to-t from-black/60 to-transparent flex items-end justify-center">
-                <span className="text-white text-xs font-bold mb-1 group-hover:text-crd-orange transition-colors">
-                  Kobe
-                </span>
-              </div>
-              
-              {/* Shine effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+        {/* Draggable Kobe card */}
+        <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 border border-crd-orange/50 shadow-lg pointer-events-auto">
+          <p className="font-caveat text-white/90 text-sm mb-2 text-center transform -rotate-1">
+            Practice Card Unlocked!
+          </p>
+          <div
+            className="w-20 h-28 rounded border-2 border-dashed border-crd-orange/50 overflow-hidden cursor-grab hover:border-crd-orange transition-colors bg-cover bg-center relative group"
+            style={{ backgroundImage: `url(/lovable-uploads/7a70c708-b669-4cb2-b5db-df422389b32b.png)` }}
+            draggable
+            onDragStart={(e) => {
+              console.log('🏀 Starting Kobe card drag');
+              e.dataTransfer.setData('application/json', JSON.stringify({
+                type: 'example-card',
+                imageUrl: '/lovable-uploads/7a70c708-b669-4cb2-b5db-df422389b32b.png',
+                name: 'kobe-card-example.png'
+              }));
+            }}
+            title="Drag this onto the CRD editor to use Kobe Bryant example"
+          >
+            <div className="w-full h-full bg-gradient-to-t from-black/60 to-transparent flex items-end justify-center">
+              <span className="text-white text-xs font-bold mb-1 group-hover:text-crd-orange transition-colors font-caveat">
+                Kobe
+              </span>
             </div>
+            
+            {/* Shine effect */}
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent transform -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
           </div>
         </div>
-      )}
+      </div>
     </div>
   );
 };

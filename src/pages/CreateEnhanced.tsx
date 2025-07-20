@@ -10,11 +10,21 @@ const CreateEnhanced: React.FC = () => {
   const [animationComplete, setAnimationComplete] = useState(false);
   const [animationFinished, setAnimationFinished] = useState(false);
 
+  const handleAnimationFinished = () => {
+    console.log('🎬 CreateEnhanced: Animation finished callback triggered');
+    setAnimationFinished(true);
+  };
+
+  const handleAnimationComplete = () => {
+    console.log('🏆 CreateEnhanced: Animation complete callback triggered');
+    setAnimationComplete(true);
+  };
+
   return (
     <div className="min-h-screen bg-space-odyssey overflow-x-hidden">
       <div className="h-full w-full">
         {/* Unified Responsive Hero Section */}
-        <CreatePageHero onAnimationComplete={() => setAnimationFinished(true)} />
+        <CreatePageHero onAnimationComplete={handleAnimationFinished} />
         
         {/* Creation Options Section - Only show on desktop with sufficient height */}
         {!isMobile && !isShortScreen && (
@@ -25,7 +35,7 @@ const CreateEnhanced: React.FC = () => {
         
         {/* Kobe Reward System */}
         <KobeReward 
-          onAnimationComplete={() => setAnimationComplete(true)} 
+          onAnimationComplete={handleAnimationComplete} 
           animationFinished={animationFinished}
         />
       </div>

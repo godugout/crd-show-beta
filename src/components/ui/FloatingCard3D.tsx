@@ -64,8 +64,14 @@ export const FloatingCard3D: React.FC<FloatingCard3DProps> = ({
         spaceEnvironment={spaceEnvironment}
         onSpaceEnvironmentChange={onSpaceEnvironmentChange}
         onAlignmentStateChange={(state) => {
+          console.log('🔄 FloatingCard3D: Animation state change', {
+            progress: state.animationProgress,
+            isPlaying: state.isPlaying
+          });
+          
           // Trigger completion when animation reaches the end and stops playing
           if (state.animationProgress >= 1 && !state.isPlaying && onAnimationComplete) {
+            console.log('🎯 FloatingCard3D: Animation completed, triggering callback');
             onAnimationComplete();
           }
         }}

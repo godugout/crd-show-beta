@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { FloatingCard3D } from '@/components/ui/FloatingCard3D';
 import { StarsBackground } from '@/components/ui/stars';
@@ -23,7 +22,13 @@ export const ResponsiveCreate3DLayout: React.FC<ResponsiveCreate3DLayoutProps> =
   const [showTutorial, setShowTutorial] = useState(false);
   const [spaceEnvironment, setSpaceEnvironment] = useState<SpaceEnvironment>('starfield');
 
-  // Removed auto-play tutorial functionality - tutorial only shows when button is clicked
+  const handleAnimationComplete = () => {
+    console.log('🚀 ResponsiveCreate3DLayout: Animation complete, forwarding to parent');
+    if (onAnimationComplete) {
+      onAnimationComplete();
+    }
+  };
+
   return (
     <div 
       className={`fixed inset-0 z-0 ${className}`}
@@ -52,7 +57,7 @@ export const ResponsiveCreate3DLayout: React.FC<ResponsiveCreate3DLayoutProps> =
             onShowTutorial={() => setShowTutorial(true)}
             spaceEnvironment={spaceEnvironment}
             onSpaceEnvironmentChange={setSpaceEnvironment}
-            onAnimationComplete={onAnimationComplete}
+            onAnimationComplete={handleAnimationComplete}
           />
         </StarsBackground>
       </div>
