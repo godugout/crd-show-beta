@@ -10,7 +10,7 @@ export const CreateOptionsSection: React.FC = () => {
         <div className="text-center mb-16">
           <div className="mb-4">
             <p className="font-caveat text-5xl md:text-6xl text-crd-orange font-bold transform -rotate-2 text-center">
-              No glue needed!<sup className="text-crd-lightGray text-2xl ml-1">TM</sup>
+              No glue needed!<sup className="text-crd-lightGray text-xs ml-1">TM</sup>
             </p>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-crd-white mb-6">
