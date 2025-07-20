@@ -289,6 +289,33 @@ export const CRDCanvas: React.FC<CRDCanvasProps> = ({
               onDrop={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
+                
+                try {
+                  // Check for reward card data first
+                  const rewardData = e.dataTransfer.getData('application/json');
+                  if (rewardData) {
+                    const parsedData = JSON.parse(rewardData);
+                    if (parsedData.type === 'example-card' && parsedData.imageUrl) {
+                      // Create a virtual file for the example card
+                      fetch(parsedData.imageUrl)
+                        .then(res => res.blob())
+                        .then(blob => {
+                          const file = new File([blob], parsedData.name, { type: 'image/png' });
+                          if (onImageUpload) {
+                            onImageUpload([file]);
+                          }
+                        })
+                        .catch(() => {
+                          console.log('Using example card:', parsedData.imageUrl);
+                        });
+                      return;
+                    }
+                  }
+                } catch (error) {
+                  console.error('Error parsing reward data:', error);
+                }
+                
+                // Handle regular file drops
                 const files = Array.from(e.dataTransfer.files);
                 if (files.length > 0 && onImageUpload) {
                   onImageUpload(files);

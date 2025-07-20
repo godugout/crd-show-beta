@@ -186,25 +186,8 @@ export const UnifiedCreateHero: React.FC = () => {
                 </Link>
               </div>
               
-              {/* Practice Card Thumbnail */}
-              <div className="mt-12 flex justify-center">
-                <div className="bg-white/10 backdrop-blur-sm rounded-lg p-4 border border-white/20">
-                  <p className="text-white/70 text-sm mb-3 text-center">Try with this example:</p>
-                  <div 
-                    className="w-24 h-32 mx-auto rounded border-2 border-dashed border-white/30 overflow-hidden cursor-grab hover:border-white/50 transition-colors bg-cover bg-center"
-                    style={{ backgroundImage: `url(/lovable-uploads/7a70c708-b669-4cb2-b5db-df422389b32b.png)` }}
-                    draggable
-                    title="Drag this onto the CRD editor to use as example"
-                  >
-                    <div className="w-full h-full bg-gradient-to-t from-black/50 to-transparent flex items-end justify-center">
-                      <span className="text-white text-xs font-bold mb-1">Drag me!</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              
               {/* Animated Tagline */}
-              <div className="mt-8 pb-16">
+              <div className="mt-12 pb-16">
                 <p className="text-lg text-gray-400 animate-pulse">
                   ✨ Where imagination meets technology
                 </p>

@@ -1,11 +1,13 @@
 
-import React from 'react';
+import React, { useState } from 'react';
 import { CreatePageHero } from '@/components/create/CreatePageHero';
 import { CreateOptionsSection } from '@/components/create/CreateOptionsSection';
+import { KobeReward } from '@/components/create/KobeReward';
 import { useResponsiveBreakpoints } from '@/hooks/useResponsiveBreakpoints';
 
 const CreateEnhanced: React.FC = () => {
   const { isMobile, isShortScreen } = useResponsiveBreakpoints();
+  const [animationComplete, setAnimationComplete] = useState(false);
 
   return (
     <div className="min-h-screen bg-space-odyssey overflow-x-hidden">
@@ -19,6 +21,9 @@ const CreateEnhanced: React.FC = () => {
             <CreateOptionsSection />
           </div>
         )}
+        
+        {/* Kobe Reward System */}
+        <KobeReward onAnimationComplete={() => setAnimationComplete(true)} />
       </div>
     </div>
   );
