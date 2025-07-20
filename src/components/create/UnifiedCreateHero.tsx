@@ -92,7 +92,7 @@ export const UnifiedCreateHero: React.FC = () => {
             <div className="flex-shrink-0 pb-8 pointer-events-auto">
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center px-6">
                 {/* Primary CTA - Updated to use create variant */}
-                <Link to="/create/editor" className="w-full sm:w-auto">
+                <Link to="/create/crd" className="w-full sm:w-auto">
                   <CRDButton 
                     variant="create" 
                     size="lg"
@@ -148,7 +148,7 @@ export const UnifiedCreateHero: React.FC = () => {
               {/* Action Buttons */}
               <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pointer-events-auto">
                 {/* Primary CTA - Updated to use create variant */}
-                <Link to="/create/editor">
+                <Link to="/create/crd">
                   <CRDButton 
                     variant="create" 
                     size="xl"
