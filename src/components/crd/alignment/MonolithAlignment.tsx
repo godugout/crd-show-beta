@@ -9,7 +9,7 @@ interface MonolithAlignmentProps {
   children?: React.ReactNode;
 }
 
-type AnimationPhase = 'hyperspace' | 'hyperspeed' | 'positioning' | 'complete';
+type AnimationPhase = 'hyperspace' | 'hyperspeed' | 'positioning' | 'complete' | 'floating' | 'final-zoom';
 
 export const MonolithAlignment: React.FC<MonolithAlignmentProps> = ({
   onAlignmentComplete,
@@ -34,21 +34,35 @@ export const MonolithAlignment: React.FC<MonolithAlignmentProps> = ({
     }
     
     let startTime = Date.now();
-    const totalDuration = 4000; // 4 seconds total
+    const totalDuration = 6500; // Extended to 6.5 seconds for smooth transition
     
     const animateSequence = () => {
       const elapsed = Date.now() - startTime;
       const progress = Math.min(elapsed / totalDuration, 1);
       
-      // Phase transitions
-      if (progress < 0.3) {
+      // Extended phase transitions for seamless animation
+      if (progress < 0.23) {
         setAnimationPhase('hyperspace');
-      } else if (progress < 0.6) {
+      } else if (progress < 0.46) {
         setAnimationPhase('hyperspeed');
-      } else if (progress < 0.9) {
+      } else if (progress < 0.69) {
         setAnimationPhase('positioning');
-      } else {
+      } else if (progress < 0.77) {
         setAnimationPhase('complete');
+      } else if (progress < 0.85) {
+        setAnimationPhase('floating');
+        // Start floating - no card rotation change yet
+      } else if (progress < 1.0) {
+        setAnimationPhase('final-zoom');
+        // Smooth transition to final position
+        const finalProgress = (progress - 0.85) / 0.15; // 0 to 1 over the final 15%
+        if (onCardRotationTrigger && finalProgress > 0) {
+          // Smooth interpolation from current position to final position
+          const currentX = 15;
+          const targetX = -17; // 163 degrees = 180 - 17
+          const interpolatedX = currentX + (targetX - currentX) * finalProgress;
+          onCardRotationTrigger({ x: interpolatedX, y: 175 });
+        }
       }
       
       setAnimationProgress(progress);
@@ -56,19 +70,9 @@ export const MonolithAlignment: React.FC<MonolithAlignmentProps> = ({
       if (progress < 1) {
         requestAnimationFrame(animateSequence);
       } else {
-        // Float in place briefly, then zoom out to final position
-        setTimeout(() => {
-          // Trigger final positioning: zoom out and angle at 163 degrees
-          if (onCardRotationTrigger) {
-            onCardRotationTrigger({ x: -17, y: 175 }); // 163 degrees = 180 - 17
-          }
-          
-          // Show navbar again after positioning
-          setFlightActive(false);
-          
-          // Complete after final positioning
-          setTimeout(() => onAlignmentComplete?.(), 1500);
-        }, 500); // Float for 0.5 seconds
+        // Animation fully complete
+        setFlightActive(false);
+        setTimeout(() => onAlignmentComplete?.(), 300);
       }
     };
 
@@ -91,6 +95,10 @@ export const MonolithAlignment: React.FC<MonolithAlignmentProps> = ({
         return 'Positioning monolith... final alignment...';
       case 'complete':
         return 'MONOLITH ALIGNED - Where imagination meets tech';
+      case 'floating':
+        return 'Floating in cosmic equilibrium...';
+      case 'final-zoom':
+        return 'Zooming to optimal viewing angle...';
       default:
         return 'Initializing sequence...';
     }
