@@ -248,3 +248,28 @@
   0%, 100% { opacity: 0.8; }
   50% { opacity: 1; }
 }
+
+/* Height-based responsive hero text behavior */
+.hero-text-responsive {
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* When screen height is very limited, slide hero text up and fade it out */
+@media (max-height: 600px) {
+  .hero-text-responsive {
+    transform: translateY(-80px);
+    opacity: 0;
+    pointer-events: none;
+  }
+}
+
+/* For extremely short screens, completely hide the hero text */
+@media (max-height: 500px) {
+  .hero-text-responsive {
+    transform: translateY(-120px);
+    opacity: 0;
+    pointer-events: none;
+    height: 0;
+    overflow: hidden;
+  }
+}
