@@ -49,6 +49,10 @@
     color: hsl(var(--theme-accent));
   }
   
+  .text-themed-active-subdued {
+    color: hsl(var(--theme-accent) / 0.75);
+  }
+  
   /* Interactive theming */
   .hover-themed {
     @apply transition-all duration-200 hover:bg-crd-mediumGray/20 hover:text-white;

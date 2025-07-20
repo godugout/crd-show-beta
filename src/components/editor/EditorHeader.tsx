@@ -146,7 +146,7 @@ export const EditorHeader = ({ cardEditor }: EditorHeaderProps) => {
           <span className={`inline-block w-2 h-2 ml-2 rounded-full ${getStatusIcon()}`}></span>
         </div>
         
-        <Button variant="ghost" size="sm" onClick={handleSave} disabled={isSaving}>
+        <Button variant="ghost" size="sm" onClick={handleSave} disabled={isSaving} className="text-themed-active-subdued hover:text-themed-active">
           <Save className="w-5 h-5 mr-2" />
           {isSaving ? 'Saving...' : 'Save Card'}
         </Button>
@@ -156,7 +156,7 @@ export const EditorHeader = ({ cardEditor }: EditorHeaderProps) => {
           Share
         </Button>
         
-        <Button variant="ghost" size="sm" onClick={handleExport}>
+        <Button variant="ghost" size="sm" onClick={handleExport} className="text-themed-active-subdued hover:text-themed-active">
           <Download className="w-5 h-5 mr-2" />
           Export
         </Button>
