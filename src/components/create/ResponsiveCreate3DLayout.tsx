@@ -61,13 +61,13 @@ export const ResponsiveCreate3DLayout: React.FC<ResponsiveCreate3DLayoutProps> =
 
       {/* Control Buttons */}
       <div className="absolute bottom-6 right-6 z-[100] flex gap-3">
-        <EnvironmentSwitcher
-          currentEnvironment={spaceEnvironment}
-          onEnvironmentChange={setSpaceEnvironment}
-        />
         <StudioPauseButton 
           isPaused={isPaused} 
           onTogglePause={onTogglePause} 
+        />
+        <EnvironmentSwitcher
+          currentEnvironment={spaceEnvironment}
+          onEnvironmentChange={setSpaceEnvironment}
         />
       </div>
 
