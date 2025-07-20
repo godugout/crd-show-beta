@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { FloatingCard3D } from '@/components/ui/FloatingCard3D';
 import { StarsBackground } from '@/components/ui/stars';
 import { StudioPauseButton } from '@/components/studio/StudioPauseButton';
-import { EnvironmentSwitcher, type SpaceEnvironment } from '@/components/studio/EnvironmentSwitcher';
+import { RefreshCw } from 'lucide-react';
 import { AlignmentTutorial } from './AlignmentTutorial';
 
 interface ResponsiveCreate3DLayoutProps {
@@ -18,7 +18,6 @@ export const ResponsiveCreate3DLayout: React.FC<ResponsiveCreate3DLayoutProps> =
   className = ''
 }) => {
   const [showTutorial, setShowTutorial] = useState(false);
-  const [spaceEnvironment, setSpaceEnvironment] = useState<SpaceEnvironment>('starfield');
 
   // Show tutorial automatically on first visit (optional)
   React.useEffect(() => {
@@ -53,8 +52,6 @@ export const ResponsiveCreate3DLayout: React.FC<ResponsiveCreate3DLayoutProps> =
             onTogglePause={onTogglePause}
             showPauseButton={false}
             onShowTutorial={() => setShowTutorial(true)}
-            spaceEnvironment={spaceEnvironment}
-            onSpaceEnvironmentChange={setSpaceEnvironment}
           />
         </StarsBackground>
       </div>
@@ -65,10 +62,18 @@ export const ResponsiveCreate3DLayout: React.FC<ResponsiveCreate3DLayoutProps> =
           isPaused={isPaused} 
           onTogglePause={onTogglePause} 
         />
-        <EnvironmentSwitcher
-          currentEnvironment={spaceEnvironment}
-          onEnvironmentChange={setSpaceEnvironment}
-        />
+        <button
+          onClick={() => window.location.reload()}
+          className="group text-white p-2 rounded-full shadow-lg transition-all duration-300 hover:scale-105 flex items-center justify-center border"
+          style={{
+            background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.12) 100%)',
+            borderColor: 'rgba(255, 255, 255, 0.15)',
+            backdropFilter: 'blur(12px) saturate(180%)'
+          }}
+          title="Refresh Page"
+        >
+          <RefreshCw className="w-4 h-4 transition-transform group-hover:scale-110" />
+        </button>
       </div>
 
       {/* Alignment Tutorial Overlay */}
