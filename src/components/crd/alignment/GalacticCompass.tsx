@@ -225,7 +225,10 @@ export const GalacticCompass: React.FC<GalacticCompassProps> = ({
             {/* Status and coordinates only */}
             <div className="flex flex-col items-end gap-1">
               {/* Status indicator */}
-              <div className="flex items-center gap-1 text-xs text-blue-400/70 font-mono">
+              <div className="flex items-center justify-end gap-1 text-xs text-blue-400/70 font-mono text-right">
+                <span>
+                  {isResetting ? 'RESET' : cardRotation ? 'TRACK' : 'OFF'}
+                </span>
                 <div 
                   className={`w-1 h-1 rounded-full ${
                     cardRotation && !isResetting ? 'bg-green-400' : 'bg-red-400'
@@ -234,26 +237,23 @@ export const GalacticCompass: React.FC<GalacticCompassProps> = ({
                     animation: cardRotation && !isResetting ? 'pulse 2s ease-in-out infinite' : 'none' 
                   }}
                 />
-                <span>
-                  {isResetting ? 'RESET' : cardRotation ? 'TRACK' : 'OFF'}
-                </span>
               </div>
 
               {/* Multi-axis coordinates display */}
-              <div className="text-xs text-blue-300/50 font-mono space-y-0.5">
-                <div className="flex items-center gap-1">
-                  <div className="w-2 h-0.5 bg-gradient-to-r from-blue-600 to-blue-300"></div>
+              <div className="text-xs text-blue-300/50 font-mono space-y-0.5 text-right">
+                <div className="flex items-center justify-end gap-1">
                   <span>Y: {compassAngle.toFixed(1)}°</span>
+                  <div className="w-2 h-0.5 bg-gradient-to-r from-blue-600 to-blue-300"></div>
                 </div>
                 {cardRotation && (
                   <>
-                    <div className="flex items-center gap-1">
-                      <div className="w-2 h-0.5 bg-gradient-to-r from-orange-600 to-orange-300"></div>
+                    <div className="flex items-center justify-end gap-1">
                       <span>X: {cardRotation.x.toFixed(1)}°</span>
+                      <div className="w-2 h-0.5 bg-gradient-to-r from-orange-600 to-orange-300"></div>
                     </div>
-                    <div className="flex items-center gap-1">
-                      <div className="w-2 h-0.5 bg-gradient-to-r from-green-600 to-green-300"></div>
+                    <div className="flex items-center justify-end gap-1">
                       <span>Z: {cardRotation.z.toFixed(1)}°</span>
+                      <div className="w-2 h-0.5 bg-gradient-to-r from-green-600 to-green-300"></div>
                     </div>
                   </>
                 )}
