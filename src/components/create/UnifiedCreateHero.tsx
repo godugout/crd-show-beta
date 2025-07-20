@@ -45,13 +45,13 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
         <div className="text-xl md:text-2xl lg:text-3xl text-gray-400 mb-2 whitespace-nowrap">
           From <span className="paper-scraps">paper scraps</span> and <span className="cardboard-text">cardboard</span> to
         </div>
-        <div className="text-3xl md:text-5xl lg:text-6xl font-bold">
-          <span className="text-white">CRD</span>
-          <span className="mx-2">
-            <span className="text-white">art</span>
-          </span>
-          <span className="animate-gradient-flow bg-clip-text text-transparent"> that comes alive!</span>
-        </div>
+         <div className="text-3xl md:text-5xl lg:text-6xl font-bold">
+           <span className="text-white">CRD</span>
+           <span className="mx-2">
+             <span className="text-white">art</span>
+           </span>
+           <span className="animate-gradient-flow bg-clip-text text-transparent">that comes alive!</span>
+         </div>
       </h1>
     </div>
   );
@@ -68,13 +68,13 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
         <div className="text-xl md:text-2xl lg:text-3xl text-gray-400 mb-2 whitespace-nowrap">
           From <span className="paper-scraps">paper scraps</span> and <span className="cardboard-text">cardboard</span> to
         </div>
-        <div className="text-3xl md:text-5xl lg:text-6xl font-bold">
-          <span className="text-white">CRD</span>
-          <span className="mx-2">
-            <span className="text-white">art</span>
-          </span>
-          <span className="animate-gradient-flow bg-clip-text text-transparent"> that comes alive!</span>
-        </div>
+         <div className="text-3xl md:text-5xl lg:text-6xl font-bold">
+           <span className="text-white">CRD</span>
+           <span className="mx-2">
+             <span className="text-white">art</span>
+           </span>
+           <span className="animate-gradient-flow bg-clip-text text-transparent">that comes alive!</span>
+         </div>
       </h1>
     </div>
   );
