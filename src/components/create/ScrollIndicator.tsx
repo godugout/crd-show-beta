@@ -15,8 +15,8 @@ export const ScrollIndicator: React.FC<ScrollIndicatorProps> = ({
   return (
     <div className={`fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50 pointer-events-none ${className}`}>
       <div className="flex flex-col items-center space-y-2 animate-bounce">
-        {/* Scroll indicator dots */}
-        <div className="flex flex-col space-y-1">
+        {/* Scroll indicator dots forming arrow */}
+        <div className="flex flex-col items-center space-y-0.5">
           <div className="w-1 h-1 bg-gray-400 rounded-full animate-pulse" style={{ animationDelay: '0s' }} />
           <div className="w-1 h-1 bg-gray-400 rounded-full animate-pulse" style={{ animationDelay: '0.2s' }} />
           <div className="w-1 h-1 bg-gray-400 rounded-full animate-pulse" style={{ animationDelay: '0.4s' }} />
