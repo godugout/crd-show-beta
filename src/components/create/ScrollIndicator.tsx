@@ -13,7 +13,7 @@ export const ScrollIndicator: React.FC<ScrollIndicatorProps> = ({
   if (!isVisible) return null;
 
   return (
-    <div className={`fixed bottom-8 left-1/2 transform -translate-x-1/2 z-20 pointer-events-none ${className}`}>
+    <div className={`fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50 pointer-events-none ${className}`}>
       <div className="flex flex-col items-center space-y-2 animate-bounce">
         {/* Scroll text */}
         <span className="text-sm text-gray-400 font-medium tracking-wide uppercase">
