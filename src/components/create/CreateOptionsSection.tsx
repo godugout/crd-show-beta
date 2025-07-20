@@ -8,6 +8,9 @@ export const CreateOptionsSection: React.FC = () => {
       <div className="max-w-7xl mx-auto">
         {/* Section Header */}
         <div className="text-center mb-16">
+          <p className="text-4xl md:text-5xl font-bold text-crd-white mb-4 text-center">
+            No glue needed!
+          </p>
           <h2 className="text-4xl md:text-5xl font-bold text-crd-white mb-6">
             What do you feel like creating today?
           </h2>
