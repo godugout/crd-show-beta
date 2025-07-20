@@ -96,9 +96,8 @@ export const UnifiedCreateHero: React.FC = () => {
                 {isTablet ? renderTabletHeroText() : renderStandardHeroText()}
                 
                 {/* Subtitle */}
-                <p className="text-lg md:text-xl text-gray-300 mb-6 max-w-2xl mx-auto leading-relaxed">
-                  Transform your creative vision into stunning digital trading cards<br />
-                  with our advanced design tools.
+                <p className="text-lg md:text-xl text-gray-300 mb-6 max-w-2xl mx-auto leading-relaxed lg:whitespace-nowrap">
+                  Transform your ideas into interactive 3D collectibles that collectors will treasure.
                 </p>
               </div>
             </div>
@@ -158,9 +157,8 @@ export const UnifiedCreateHero: React.FC = () => {
               {isTablet ? renderTabletHeroText() : renderStandardHeroText()}
               
               {/* Subtitle */}
-              <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
-                Transform your creative vision into stunning digital trading cards<br />
-                with our advanced design tools.
+              <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed lg:whitespace-nowrap">
+                Transform your ideas into interactive 3D collectibles that collectors will treasure.
               </p>
 
               {/* Action Buttons */}
