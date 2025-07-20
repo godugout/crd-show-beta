@@ -59,7 +59,7 @@ export const useMonolithViewingDetector = ({
     setViewingConditions(newConditions);
 
     // Show indicator when user starts getting close
-    const shouldShowIndicator = newConditions.overallProgress > 0.2;
+    const shouldShowIndicator = newConditions.overallProgress > 0.44;
     setShowIndicator(shouldShowIndicator);
 
     // Check if we should trigger the sequence
