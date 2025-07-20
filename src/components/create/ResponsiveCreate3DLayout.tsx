@@ -54,10 +54,10 @@ export const ResponsiveCreate3DLayout: React.FC<ResponsiveCreate3DLayoutProps> =
         </StarsBackground>
       </div>
 
-      {/* Scroll Priority Zone - Bottom area that allows page scrolling */}
+      {/* Scroll Priority Zone - Bottom area that disables 3D controls and allows page scrolling */}
       <div 
         id="scroll-priority-zone"
-        className="absolute bottom-0 left-0 right-0 h-32 z-10 pointer-events-auto"
+        className="absolute bottom-0 left-0 right-0 h-32 z-50 pointer-events-auto"
         style={{ 
           background: 'transparent',
           cursor: 'default'
@@ -68,11 +68,28 @@ export const ResponsiveCreate3DLayout: React.FC<ResponsiveCreate3DLayoutProps> =
           window.scrollBy(0, e.deltaY);
         }}
         onMouseDown={(e) => {
-          // Prevent 3D controls from activating in this zone
+          // Completely prevent 3D controls from activating in this zone
           e.stopPropagation();
+          e.preventDefault();
         }}
         onMouseMove={(e) => {
           // Prevent 3D controls from activating in this zone
+          e.stopPropagation();
+        }}
+        onMouseUp={(e) => {
+          // Prevent 3D controls from activating in this zone
+          e.stopPropagation();
+        }}
+        onDragStart={(e) => {
+          // Disable drag functionality completely in this zone
+          e.preventDefault();
+        }}
+        onTouchStart={(e) => {
+          // Prevent touch controls on mobile
+          e.stopPropagation();
+        }}
+        onTouchMove={(e) => {
+          // Allow touch scrolling on mobile
           e.stopPropagation();
         }}
       />
