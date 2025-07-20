@@ -15,3 +15,8 @@ export const supabase = createClient<Database>(SUPABASE_URL, SUPABASE_PUBLISHABL
     autoRefreshToken: true,
   }
 });
+
+// Helper function to get app ID from project
+export const getAppId = async (): Promise<string> => {
+  return "kwxsnkckyjkmpdzrsyxi";
+};
