@@ -578,7 +578,6 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
         {/* 3D Scene - Responsive sizing */}
         <Canvas
           className="relative z-20 w-full h-full"
-          style={{ pointerEvents: 'none' }}
           camera={{ position: [0, 0, 15], fov: 60 }}
           gl={{ 
             antialias: true, 
