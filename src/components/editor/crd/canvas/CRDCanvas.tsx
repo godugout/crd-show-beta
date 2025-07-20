@@ -304,55 +304,6 @@ export const CRDCanvas: React.FC<CRDCanvasProps> = ({
                 <h3 className="text-lg font-semibold text-crd-white mb-2">Add Player Image</h3>
                 <p className="text-sm text-crd-lightGray mb-1">Click to upload or drag & drop</p>
                 <p className="text-xs text-crd-lightGray/70">PNG, JPG up to 10MB</p>
-                
-                {/* Practice Example Thumbnail */}
-                <div className="mt-4 pt-4 border-t border-crd-lightGray/20">
-                  <p className="text-xs text-crd-lightGray/70 mb-2">Try with this example:</p>
-                  <div 
-                    className="w-20 h-28 mx-auto rounded border border-crd-blue/30 overflow-hidden cursor-pointer hover:border-crd-blue transition-colors bg-cover bg-center"
-                    style={{ backgroundImage: `url(/lovable-uploads/7a70c708-b669-4cb2-b5db-df422389b32b.png)` }}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      // Create a virtual file for the Kobe card example
-                      fetch('/lovable-uploads/7a70c708-b669-4cb2-b5db-df422389b32b.png')
-                        .then(res => res.blob())
-                        .then(blob => {
-                          const file = new File([blob], 'kobe-card-example.png', { type: 'image/png' });
-                          if (onImageUpload) {
-                            onImageUpload([file]);
-                          }
-                        })
-                        .catch(() => {
-                          // Fallback: just set the image URL directly
-                          if (onImageUpload) {
-                            // Use a mock file approach for the example
-                            const mockEvent = {
-                              target: { files: [{ name: 'kobe-card-example.png' }] }
-                            };
-                            // Directly set the player image for demonstration
-                            const imageUrl = '/lovable-uploads/7a70c708-b669-4cb2-b5db-df422389b32b.png';
-                            if (typeof onImageUpload === 'function') {
-                              // Create a virtual file-like object
-                              const virtualFile = new File([''], 'kobe-card-example.png', { type: 'image/png' });
-                              onImageUpload([virtualFile]);
-                              // Also manually set the image since we can't actually create the file
-                              setTimeout(() => {
-                                const imgElement = document.querySelector('[alt="Player"]') as HTMLImageElement;
-                                if (imgElement) {
-                                  imgElement.src = imageUrl;
-                                }
-                              }, 100);
-                            }
-                          }
-                        });
-                    }}
-                    title="Click to use Kobe Bryant example"
-                  >
-                    <div className="w-full h-full bg-gradient-to-t from-black/50 to-transparent flex items-end justify-center">
-                      <span className="text-white text-xs font-bold mb-1">Example</span>
-                    </div>
-                  </div>
-                </div>
               </div>
               
               {/* Card dimensions indicator */}

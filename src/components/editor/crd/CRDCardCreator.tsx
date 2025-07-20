@@ -357,15 +357,7 @@ export const CRDCardCreator: React.FC<CRDCardCreatorProps> = ({
                 onImageUpload={(files) => {
                   if (files.length > 0) {
                     const file = files[0];
-                    let imageUrl: string;
-                    
-                    // Check if this is the Kobe example
-                    if (file.name === 'kobe-card-example.png') {
-                      imageUrl = '/lovable-uploads/7a70c708-b669-4cb2-b5db-df422389b32b.png';
-                    } else {
-                      imageUrl = URL.createObjectURL(file);
-                    }
-                    
+                    const imageUrl = URL.createObjectURL(file);
                     setPlayerImage(imageUrl);
                     setFrameContent(prev => ({ ...prev, mainImage: imageUrl }));
                   }
