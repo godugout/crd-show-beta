@@ -9,8 +9,8 @@ export const CreateOptionsSection: React.FC = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <div className="mb-4">
-            <p className="font-caveat text-5xl md:text-6xl text-crd-orange font-bold transform -rotate-2 text-center">
-              <span className="text-crd-lightGray text-4xl md:text-5xl">"</span> No glue needed! <span className="text-crd-lightGray text-4xl md:text-5xl">"</span><sup className="text-crd-lightGray text-xs ml-1">TM</sup>
+            <p className="font-caveat text-5xl md:text-6xl text-crd-orange font-bold transform -rotate-2 text-center" style={{ textShadow: '3px 3px 0px rgba(0,0,0,0.5), 6px 6px 0px rgba(0,0,0,0.3)' }}>
+              No glue needed!<sup className="text-crd-lightGray text-xs ml-1">TM</sup>
             </p>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-crd-white mb-6">
