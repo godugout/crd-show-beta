@@ -2,14 +2,10 @@
 import React from 'react';
 import { CreatePageHero } from '@/components/create/CreatePageHero';
 import { CreateOptionsSection } from '@/components/create/CreateOptionsSection';
-import { useScrollResistance } from '@/hooks/useScrollResistance';
+// Removed useScrollResistance completely - no interference
 
 const CreateChoice: React.FC = () => {
-  // Disable scroll resistance - let the scroll priority zone handle everything
-  // useScrollResistance({
-  //   resistanceThreshold: 150,
-  //   resistanceMultiplier: 2.5
-  // });
+  // No scroll resistance - let native scrolling work
 
   return (
     <div className="min-h-screen bg-crd-darkest overflow-x-hidden">

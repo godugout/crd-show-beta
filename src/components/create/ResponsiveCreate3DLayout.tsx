@@ -71,76 +71,33 @@ export const ResponsiveCreate3DLayout: React.FC<ResponsiveCreate3DLayoutProps> =
           document.body.style.cursor = '';
         }}
         onWheel={(e) => {
-          // Allow normal page scrolling - completely bypass 3D controls
+          // Simply allow native scrolling - no interference at all
           e.stopPropagation();
-          e.preventDefault();
-          
-          // Force smooth scroll behavior
-          const scrollAmount = e.deltaY;
-          window.scrollTo({
-            top: window.scrollY + scrollAmount,
-            behavior: 'smooth'
-          });
+          // Don't preventDefault - let browser handle scroll naturally
         }}
         onMouseDown={(e) => {
-          // Block all mouse down events
+          // Block 3D controls but don't prevent default scroll behavior
           e.stopPropagation();
-          e.preventDefault();
-          return false;
         }}
         onMouseMove={(e) => {
-          // Block all mouse move events
+          // Block 3D controls but don't prevent scroll
           e.stopPropagation();
-          e.preventDefault();
-          return false;
         }}
         onMouseUp={(e) => {
-          // Block all mouse up events
+          // Block 3D controls
           e.stopPropagation();
-          e.preventDefault();
-          return false;
         }}
         onClick={(e) => {
-          // Block all click events
+          // Block clicks to 3D
           e.stopPropagation();
-          e.preventDefault();
-          return false;
-        }}
-        onDoubleClick={(e) => {
-          // Block double click events
-          e.stopPropagation();
-          e.preventDefault();
-          return false;
-        }}
-        onDrag={(e) => {
-          // Block all drag events
-          e.stopPropagation();
-          e.preventDefault();
-          return false;
-        }}
-        onDragStart={(e) => {
-          // Block drag start
-          e.stopPropagation();
-          e.preventDefault();
-          return false;
         }}
         onTouchStart={(e) => {
-          // Block touch start for 3D controls
+          // Block touch controls for 3D
           e.stopPropagation();
         }}
         onTouchMove={(e) => {
-          // Allow touch scrolling only
+          // Allow touch scrolling
           e.stopPropagation();
-        }}
-        onTouchEnd={(e) => {
-          // Block touch end for 3D controls
-          e.stopPropagation();
-        }}
-        onContextMenu={(e) => {
-          // Block right-click menu
-          e.stopPropagation();
-          e.preventDefault();
-          return false;
         }}
       />
 
