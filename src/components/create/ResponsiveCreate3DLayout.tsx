@@ -65,9 +65,10 @@ export const ResponsiveCreate3DLayout: React.FC<ResponsiveCreate3DLayoutProps> =
       {/* SCROLL PRIORITY ZONE - Complete bottom area for page scrolling only */}
       <div 
         id="scroll-priority-zone"
-        className="absolute left-0 right-0 w-full z-50 pointer-events-auto"
+        className="absolute right-0 w-full z-50 pointer-events-auto"
         style={{ 
           bottom: 0,
+          left: '200px', // Leave space for buttons on the left
           height: '180px', // Cover from scroll indicator to bottom
           background: 'transparent',
           cursor: 'default'
