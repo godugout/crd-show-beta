@@ -36,13 +36,6 @@ export const UnifiedCreateHero: React.FC = () => {
        <div className="mb-6 gradient-text-green-blue-purple font-bold tracking-wider text-sm uppercase animate-fade-in">
          CUT, CRAFT & CREATE DIGITALLY
        </div>
-       
-       {/* Handwritten "No glue needed!" */}
-       <div className="mb-4">
-         <p className="font-caveat text-3xl md:text-4xl text-crd-orange font-bold transform -rotate-2">
-           No glue needed!
-         </p>
-       </div>
       
       <h1 className="leading-tight mb-8 font-light">
         <div className="text-xl md:text-2xl lg:text-3xl text-gray-400 mb-2 whitespace-nowrap">
@@ -65,13 +58,6 @@ export const UnifiedCreateHero: React.FC = () => {
       {/* Intro Label */}
        <div className="mb-6 gradient-text-green-blue-purple font-bold tracking-wider text-sm uppercase animate-fade-in">
          CUT, CRAFT & CREATE DIGITALLY
-       </div>
-       
-       {/* Handwritten "No glue needed!" */}
-       <div className="mb-4">
-         <p className="font-caveat text-3xl md:text-4xl text-crd-orange font-bold transform -rotate-2">
-           No glue needed!
-         </p>
        </div>
       
       <h1 className="leading-tight mb-8 font-light">
