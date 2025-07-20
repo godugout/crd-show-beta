@@ -339,15 +339,11 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
     const controls = controlsRef.current;
     const startAzimuthal = controls.getAzimuthalAngle();
     const startPolar = controls.getPolarAngle();
-    const startDistance = controls.getDistance();
     
     // Convert target rotation to spherical coordinates
     // X rotation controls vertical tilt (polar angle), Y rotation controls horizontal rotation (azimuthal)
     const targetAzimuthal = (targetRotation.x * Math.PI) / 180; // X controls left/right
     const targetPolar = (targetRotation.y * Math.PI) / 180; // Y controls up/down tilt
-    
-    // Zoom out to show entire bottom edge when tilted forward
-    const targetDistance = startDistance + 2; // Zoom out by 2 units
     
     let startTime = Date.now();
     const duration = 2000; // 2 seconds smooth animation
@@ -361,15 +357,13 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
         ? 2 * progress * progress 
         : 1 - Math.pow(-2 * progress + 2, 3) / 2;
       
-      // Interpolate angles and distance
+      // Interpolate angles
       const currentAzimuthal = startAzimuthal + (targetAzimuthal - startAzimuthal) * easedProgress;
       const currentPolar = startPolar + (targetPolar - startPolar) * easedProgress;
-      const currentDistance = startDistance + (targetDistance - startDistance) * easedProgress;
       
-      // Apply rotation and zoom
+      // Apply rotation
       controls.setAzimuthalAngle(currentAzimuthal);
       controls.setPolarAngle(currentPolar);
-      controls.dollyTo(currentDistance, false);
       controls.update();
       
       if (progress < 1) {
