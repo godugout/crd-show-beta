@@ -32,6 +32,7 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
     setIsPaused(!isPaused);
   };
 
+
   // Render tablet-specific hero text with line breaks
   const renderTabletHeroText = () => (
     <div className="text-center max-w-4xl mx-auto">
@@ -82,7 +83,7 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
     <>
       {isShortScreen ? (
         // Short screen layout - Compact design for limited vertical space
-        <div id="animation-section" className="relative w-full h-screen">
+        <div id="animation-section" className="relative w-full h-screen overflow-hidden">
           {/* Full Screen 3D Background Layer */}
           <ResponsiveCreate3DLayout
             isPaused={isPaused}
@@ -94,7 +95,7 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
           {/* Overlay Content Layer - Positioned for short screens */}
           <div className="relative z-10 h-full flex flex-col pointer-events-none">
             {/* Top Section - Hero Content - Slide up and fade out on very short screens */}
-            <div className="flex-1 flex items-start justify-center px-6 pt-32 hero-text-responsive transition-all duration-500">
+            <div className="flex-1 flex items-start justify-center px-6 pt-32 hero-text-responsive transition-all duration-500">{/* Add custom CSS class for height-based responsive behavior */}
               <div className="text-center space-y-4 max-w-4xl mx-auto">
                 {/* Hero Text */}
                 {isTablet ? renderTabletHeroText() : renderStandardHeroText()}
@@ -130,6 +131,13 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
                     Browse Templates
                   </CRDButton>
                 </Link>
+              </div>
+              
+              {/* Animated Tagline */}
+              <div className="text-center mt-6 px-6 pb-8">
+                <p className="text-xs text-gray-400 animate-pulse">
+                  ✨ Where imagination meets technology. <span className="font-caveat text-base text-crd-orange">What will you make?</span>
+                </p>
               </div>
             </div>
           </div>
@@ -183,22 +191,18 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
                   </CRDButton>
                 </Link>
               </div>
+              
+              {/* Animated Tagline */}
+              <div className="mt-12 pb-16">
+                <p className="text-sm text-gray-400 animate-pulse">
+                  ✨ Where imagination meets technology. <span className="font-caveat text-xl text-crd-orange">What will you make?</span>
+                </p>
+              </div>
             </div>
           </div>
 
           {/* Scroll Indicator for normal screens */}
           <ScrollIndicator isVisible={showScrollIndicator} />
-        </div>
-      )}
-
-      {/* Fixed Animated Tagline - Positioned above scroll indicator */}
-      {showScrollIndicator && (
-        <div className="fixed bottom-14 left-1/2 transform -translate-x-1/2 z-50 pointer-events-none">
-          <div className="text-center px-6">
-            <p className="text-sm text-gray-400 animate-pulse">
-              ✨ Where imagination meets technology. <span className="font-caveat text-xl text-crd-orange">What will you make?</span>
-            </p>
-          </div>
         </div>
       )}
     </>

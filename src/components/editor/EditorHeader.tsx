@@ -126,7 +126,7 @@ export const EditorHeader = ({ cardEditor }: EditorHeaderProps) => {
   };
 
   return (
-    <div className="flex items-center justify-between h-16 px-4 mt-4 bg-editor-dark border-b border-editor-border">
+    <div className="flex items-center justify-between h-16 px-4 bg-editor-dark border-b border-editor-border">
       <div className="flex items-center space-x-4">
         <Button variant="ghost" size="sm" asChild>
           <Link to="/cards">
@@ -146,32 +146,32 @@ export const EditorHeader = ({ cardEditor }: EditorHeaderProps) => {
           <span className={`inline-block w-2 h-2 ml-2 rounded-full ${getStatusIcon()}`}></span>
         </div>
         
-        <Button variant="tool" size="tool" onClick={handleSave} disabled={isSaving} className="text-themed-active-subdued hover:text-themed-active">
-          <Save className="w-4 h-4 mr-1.5" />
+        <Button variant="ghost" size="sm" onClick={handleSave} disabled={isSaving} className="text-themed-active-subdued hover:text-themed-active">
+          <Save className="w-5 h-5 mr-2" />
           {isSaving ? 'Saving...' : 'Save Card'}
         </Button>
         
-        <Button variant="tool" size="tool" onClick={handleShare}>
-          <Share className="w-4 h-4 mr-1.5" />
+        <Button variant="ghost" size="sm" onClick={handleShare}>
+          <Share className="w-5 h-5 mr-2" />
           Share
         </Button>
         
-        <Button variant="tool" size="tool" onClick={handleExport} className="text-themed-active-subdued hover:text-themed-active">
-          <Download className="w-4 h-4 mr-1.5" />
+        <Button variant="ghost" size="sm" onClick={handleExport} className="text-themed-active-subdued hover:text-themed-active">
+          <Download className="w-5 h-5 mr-2" />
           Export
         </Button>
         
-        <Button variant="tool" size="tool">
-          <Settings className="w-4 h-4" />
+        <Button variant="ghost" size="sm">
+          <Settings className="w-5 h-5" />
         </Button>
         
-        <Button variant="tool" size="tool">
-          <Moon className="w-4 h-4" />
+        <Button variant="ghost" size="sm">
+          <Moon className="w-5 h-5" />
         </Button>
         
         {user ? (
           <Button 
-            className="ml-2 bg-crd-orange hover:bg-crd-orange/90 text-white rounded-md h-8 px-3 text-xs" 
+            className="ml-2 bg-crd-orange hover:bg-crd-orange/90 text-white rounded-full" 
             onClick={handlePublish}
             disabled={isSaving}
           >
@@ -180,7 +180,7 @@ export const EditorHeader = ({ cardEditor }: EditorHeaderProps) => {
         ) : (
           <Button 
             variant="outline"
-            className="ml-2 rounded-md h-8 px-3 text-xs" 
+            className="ml-2 rounded-full" 
             asChild
           >
             <Link to="/auth">Sign In</Link>
