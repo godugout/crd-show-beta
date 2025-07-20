@@ -62,9 +62,9 @@ export const GalacticCompass: React.FC<GalacticCompassProps> = ({
     <>
       {/* Left Side - Creating Tools Bar */}
       <div className="fixed bottom-6 left-6 z-50">
-        <div className="flex flex-col items-center gap-2">
+        <div className="flex flex-col items-start gap-2">
           {/* Future creating tools will go here */}
-          <div className="flex items-center gap-2">
+          <div className="flex flex-col items-start gap-2">
             {/* Tutorial Button */}
             {onShowTutorial && (
               <button
