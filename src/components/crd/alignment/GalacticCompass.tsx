@@ -132,9 +132,9 @@ export const GalacticCompass: React.FC<GalacticCompassProps> = ({
 
       {/* Right Side - Playing Controls Bar */}
       <div className="fixed bottom-32 right-6 z-50">
-        <div className="flex flex-col items-center gap-3">
+        <div className="flex flex-col items-end gap-3">
           {/* Compass and data */}
-          <div className="flex flex-col items-center gap-3">
+          <div className="flex flex-col items-end gap-3">
             {/* Compass housing - smaller design */}
             <div 
               className="relative w-12 h-12 cursor-pointer group transition-all duration-300 hover:scale-110"
@@ -223,7 +223,7 @@ export const GalacticCompass: React.FC<GalacticCompassProps> = ({
             </div>
 
             {/* Status and coordinates only */}
-            <div className="flex flex-col items-center gap-1">
+            <div className="flex flex-col items-end gap-1">
               {/* Status indicator */}
               <div className="flex items-center gap-1 text-xs text-blue-400/70 font-mono">
                 <div 

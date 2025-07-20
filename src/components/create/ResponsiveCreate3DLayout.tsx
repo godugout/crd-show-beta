@@ -58,7 +58,7 @@ export const ResponsiveCreate3DLayout: React.FC<ResponsiveCreate3DLayoutProps> =
 
       {/* Control Buttons - Right side vertically aligned */}
       <div className="fixed bottom-6 right-6 z-[100]">
-        <div className="flex flex-col items-center gap-3">
+        <div className="flex flex-col items-end gap-3">
           <StudioPauseButton 
             isPaused={isPaused} 
             onTogglePause={onTogglePause} 
