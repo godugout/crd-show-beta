@@ -5,6 +5,7 @@ import { StarsBackground } from '@/components/ui/stars';
 import { StudioPauseButton } from '@/components/studio/StudioPauseButton';
 import { RefreshCw } from 'lucide-react';
 import { AlignmentTutorial } from './AlignmentTutorial';
+import { type SpaceEnvironment } from '@/components/studio/EnvironmentSwitcher';
 
 interface ResponsiveCreate3DLayoutProps {
   isPaused: boolean;
@@ -18,6 +19,7 @@ export const ResponsiveCreate3DLayout: React.FC<ResponsiveCreate3DLayoutProps> =
   className = ''
 }) => {
   const [showTutorial, setShowTutorial] = useState(false);
+  const [spaceEnvironment, setSpaceEnvironment] = useState<SpaceEnvironment>('starfield');
 
   // Show tutorial automatically on first visit (optional)
   React.useEffect(() => {
@@ -52,6 +54,8 @@ export const ResponsiveCreate3DLayout: React.FC<ResponsiveCreate3DLayoutProps> =
             onTogglePause={onTogglePause}
             showPauseButton={false}
             onShowTutorial={() => setShowTutorial(true)}
+            spaceEnvironment={spaceEnvironment}
+            onSpaceEnvironmentChange={setSpaceEnvironment}
           />
         </StarsBackground>
       </div>
