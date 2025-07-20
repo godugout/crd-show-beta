@@ -27,6 +27,10 @@ export const ResponsiveCreate3DLayout: React.FC<ResponsiveCreate3DLayoutProps> =
       className={`fixed inset-0 z-0 ${className}`}
       style={{ cursor: 'grab' }}
       onMouseDown={(e) => {
+        // Don't capture events in the bottom scroll zone
+        const bottomZone = window.innerHeight - 150; // 150px from bottom
+        if (e.clientY > bottomZone) return;
+        
         e.currentTarget.style.cursor = 'grabbing';
       }}
       onMouseUp={(e) => {
@@ -50,6 +54,27 @@ export const ResponsiveCreate3DLayout: React.FC<ResponsiveCreate3DLayoutProps> =
         </StarsBackground>
       </div>
 
+      {/* Scroll Priority Zone - Bottom area that allows page scrolling */}
+      <div 
+        className="absolute bottom-0 left-0 right-0 h-32 z-10 pointer-events-auto"
+        style={{ 
+          background: 'transparent',
+          cursor: 'default'
+        }}
+        onWheel={(e) => {
+          // Allow normal page scrolling in this zone
+          e.stopPropagation();
+          window.scrollBy(0, e.deltaY);
+        }}
+        onMouseDown={(e) => {
+          // Prevent 3D controls from activating in this zone
+          e.stopPropagation();
+        }}
+        onMouseMove={(e) => {
+          // Prevent 3D controls from activating in this zone
+          e.stopPropagation();
+        }}
+      />
 
       {/* Alignment Tutorial Overlay */}
       <AlignmentTutorial 
