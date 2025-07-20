@@ -101,8 +101,8 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
                 {isTablet ? renderTabletHeroText() : renderStandardHeroText()}
                 
                 {/* Subtitle */}
-                <p className="text-lg md:text-xl text-gray-300 mb-6 max-w-2xl mx-auto leading-relaxed lg:whitespace-nowrap">
-                  Transform your ideas into interactive 3D collectibles that collectors will treasure.
+                <p className="text-lg md:text-xl text-gray-300 mb-6 max-w-2xl mx-auto leading-relaxed text-center">
+                  Transform your ideas into interactive 3D collectibles<br className="block md:hidden" /> that collectors will treasure.
                 </p>
               </div>
             </div>
@@ -163,8 +163,8 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
               {isTablet ? renderTabletHeroText() : renderStandardHeroText()}
               
               {/* Subtitle */}
-              <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed lg:whitespace-nowrap">
-                Transform your ideas into interactive 3D collectibles that collectors will treasure.
+              <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed text-center">
+                Transform your ideas into interactive 3D collectibles<br className="block lg:hidden" /> that collectors will treasure.
               </p>
 
               {/* Action Buttons */}
