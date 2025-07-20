@@ -4,6 +4,7 @@ import { useResponsiveBreakpoints } from '@/hooks/useResponsiveBreakpoints';
 import { ResponsiveCreate3DLayout } from './ResponsiveCreate3DLayout';
 import { CRDButton } from '@/components/ui/design-system';
 import { PixelDigital } from '@/components/ui/PixelDigital';
+import { ScrollIndicator } from './ScrollIndicator';
 
 export const UnifiedCreateHero: React.FC = () => {
   const { isShortScreen, isMobile, isTablet } = useResponsiveBreakpoints();
@@ -122,6 +123,9 @@ export const UnifiedCreateHero: React.FC = () => {
               </div>
             </div>
           </div>
+
+          {/* Scroll Indicator for short screens */}
+          <ScrollIndicator isVisible={true} />
         </div>
       ) : (
         // Normal tall screen layout - Updated with new button variants
@@ -178,6 +182,9 @@ export const UnifiedCreateHero: React.FC = () => {
               </div>
             </div>
           </div>
+
+          {/* Scroll Indicator for normal screens */}
+          <ScrollIndicator isVisible={true} />
         </div>
       )}
     </>
