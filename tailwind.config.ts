@@ -78,22 +78,23 @@ export default {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))'
         },
-        // CRD Design System
+        // CRD Design System - Using CSS variables for proper theming
         crd: {
           // Base colors
-          darkest: '#121212',
-          dark: '#1A1A1A',
-          darkGray: '#23262F',
-          mediumGray: '#353945',
-          lightGray: '#777E90',
-          white: '#FCFCFD',
+          darkest: 'hsl(var(--crd-darkest))',
+          darker: 'hsl(var(--crd-darker))',
+          dark: 'hsl(var(--crd-dark))',
+          darkGray: 'hsl(var(--crd-darkGray))',
+          mediumGray: 'hsl(var(--crd-mediumGray))',
+          lightGray: 'hsl(var(--crd-lightGray))',
+          white: 'hsl(var(--crd-white))',
           
           // Brand colors
-          orange: '#EA6E48',
-          blue: '#45B7D1',
-          green: '#45B26B',
-          purple: '#9757D7',
-          gold: '#FFD700',
+          orange: 'hsl(var(--crd-orange))',
+          blue: 'hsl(var(--crd-blue))',
+          green: 'hsl(var(--crd-green))',
+          purple: 'hsl(var(--crd-purple))',
+          gold: 'hsl(var(--crd-gold))',
         },
         // Comprehensive theme-aware colors using CSS variables
         themed: {
