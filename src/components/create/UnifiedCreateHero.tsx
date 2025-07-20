@@ -116,7 +116,7 @@ export const UnifiedCreateHero: React.FC = () => {
               </div>
               
               {/* Animated Tagline */}
-              <div className="text-center mt-6 px-6">
+              <div className="text-center mt-6 px-6 pb-8">
                 <p className="text-sm text-gray-400 animate-pulse">
                   ✨ Where imagination meets technology
                 </p>
@@ -175,7 +175,7 @@ export const UnifiedCreateHero: React.FC = () => {
               </div>
               
               {/* Animated Tagline */}
-              <div className="mt-12">
+              <div className="mt-12 pb-16">
                 <p className="text-lg text-gray-400 animate-pulse">
                   ✨ Where imagination meets technology
                 </p>
