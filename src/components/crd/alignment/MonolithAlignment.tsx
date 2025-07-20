@@ -172,70 +172,68 @@ export const MonolithAlignment: React.FC<MonolithAlignmentProps> = ({
         )}
       </div>
 
-      {/* Sun - positioned to peek from under the top edge of the card */}
-      {(animationPhase === 'positioning' || animationPhase === 'complete') && (
+      {/* Sun - positioned to peek just a few pixels past the top edge of the CRD */}
+      {animationPhase === 'complete' && (
         <div 
           className="fixed pointer-events-none" 
           style={{ 
             zIndex: 2,
-            top: '5%', // Position near top of screen
+            top: '40%', // Position behind the CRD card's top edge
             left: '50%',
             transform: 'translateX(-50%)',
           }}
         >
-          {/* Main sun body */}
+          {/* Main sun body - bright and intense like 2001 Space Odyssey */}
           <div 
             className="relative"
             style={{
-              width: '800px',
-              height: '400px', // Half height so it peeks from behind card
-              background: 'radial-gradient(ellipse at center bottom, #ffff00 0%, #ff8c00 25%, #ff4500 50%, #ff6347 75%, transparent 100%)',
-              borderRadius: '400px 400px 0 0', // Only top half rounded
-              filter: 'blur(30px)',
-              opacity: animationPhase === 'complete' ? 0.9 : 0.6,
+              width: '300px',
+              height: '50px', // Very small visible portion - just peeking out
+              background: 'radial-gradient(ellipse at center top, #ffffff 0%, #ffff00 30%, #ff8c00 60%, #ff4500 80%, transparent 100%)',
+              borderRadius: '150px 150px 0 0', // Only top half rounded
+              filter: 'blur(8px)',
+              opacity: 1,
               transition: 'opacity 2s ease-in-out'
             }} 
           />
           
-          {/* Inner sun core for more intensity */}
+          {/* Intense bright core - the actual sun tip */}
           <div 
             className="absolute top-0 left-1/2 transform -translate-x-1/2"
             style={{
-              width: '500px',
-              height: '250px',
-              background: 'radial-gradient(ellipse at center bottom, #ffffff 0%, #ffff00 40%, #ff8c00 80%, transparent 100%)',
-              borderRadius: '250px 250px 0 0',
-              filter: 'blur(15px)',
-              opacity: animationPhase === 'complete' ? 0.7 : 0.4
+              width: '200px',
+              height: '30px',
+              background: 'radial-gradient(ellipse at center top, #ffffff 0%, #ffffff 20%, #ffff00 50%, #ff8c00 80%, transparent 100%)',
+              borderRadius: '100px 100px 0 0',
+              filter: 'blur(4px)',
+              opacity: 1
             }} 
           />
 
-          {/* Subtle glow animation rings */}
-          {animationPhase === 'complete' && (
-            <>
-              <div 
-                className="absolute top-0 left-1/2 transform -translate-x-1/2 animate-pulse"
-                style={{
-                  width: '600px',
-                  height: '300px',
-                  background: 'radial-gradient(ellipse at center bottom, transparent 60%, rgba(255,255,0,0.2) 70%, transparent 80%)',
-                  borderRadius: '300px 300px 0 0',
-                  animationDuration: '4s'
-                }} 
-              />
-              <div 
-                className="absolute top-0 left-1/2 transform -translate-x-1/2 animate-pulse"
-                style={{
-                  width: '700px',
-                  height: '350px',
-                  background: 'radial-gradient(ellipse at center bottom, transparent 70%, rgba(255,140,0,0.15) 80%, transparent 90%)',
-                  borderRadius: '350px 350px 0 0',
-                  animationDuration: '6s',
-                  animationDelay: '1s'
-                }} 
-              />
-            </>
-          )}
+          {/* Brilliant white core tip */}
+          <div 
+            className="absolute top-0 left-1/2 transform -translate-x-1/2"
+            style={{
+              width: '120px',
+              height: '20px',
+              background: 'radial-gradient(ellipse at center top, #ffffff 0%, #ffffff 60%, transparent 100%)',
+              borderRadius: '60px 60px 0 0',
+              filter: 'blur(2px)',
+              opacity: 0.9
+            }} 
+          />
+
+          {/* Dramatic glow emanating from the sun tip */}
+          <div 
+            className="absolute top-0 left-1/2 transform -translate-x-1/2 animate-pulse"
+            style={{
+              width: '400px',
+              height: '60px',
+              background: 'radial-gradient(ellipse at center top, rgba(255,255,255,0.3) 0%, rgba(255,255,0,0.2) 40%, rgba(255,140,0,0.1) 70%, transparent 100%)',
+              borderRadius: '200px 200px 0 0',
+              animationDuration: '3s'
+            }} 
+          />
         </div>
       )}
 
