@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import { FloatingCard3D } from '@/components/ui/FloatingCard3D';
 import { StarsBackground } from '@/components/ui/stars';
 import { StudioPauseButton } from '@/components/studio/StudioPauseButton';
+import { EnvironmentSwitcher, type SpaceEnvironment } from '@/components/studio/EnvironmentSwitcher';
 import { AlignmentTutorial } from './AlignmentTutorial';
 
 interface ResponsiveCreate3DLayoutProps {
@@ -17,6 +18,7 @@ export const ResponsiveCreate3DLayout: React.FC<ResponsiveCreate3DLayoutProps> =
   className = ''
 }) => {
   const [showTutorial, setShowTutorial] = useState(false);
+  const [spaceEnvironment, setSpaceEnvironment] = useState<SpaceEnvironment>('starfield');
 
   // Show tutorial automatically on first visit (optional)
   React.useEffect(() => {
@@ -51,12 +53,18 @@ export const ResponsiveCreate3DLayout: React.FC<ResponsiveCreate3DLayoutProps> =
             onTogglePause={onTogglePause}
             showPauseButton={false}
             onShowTutorial={() => setShowTutorial(true)}
+            spaceEnvironment={spaceEnvironment}
+            onSpaceEnvironmentChange={setSpaceEnvironment}
           />
         </StarsBackground>
       </div>
 
       {/* Control Buttons */}
       <div className="absolute bottom-6 right-6 z-[100] flex gap-3">
+        <EnvironmentSwitcher
+          currentEnvironment={spaceEnvironment}
+          onEnvironmentChange={setSpaceEnvironment}
+        />
         <StudioPauseButton 
           isPaused={isPaused} 
           onTogglePause={onTogglePause} 

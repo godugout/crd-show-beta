@@ -2,6 +2,7 @@
 import React from 'react';
 import { CRDViewer } from '@/components/crd/CRDViewer';
 import { useResponsiveBreakpoints } from '@/hooks/useResponsiveBreakpoints';
+import { type SpaceEnvironment } from '@/components/studio/EnvironmentSwitcher';
 
 interface FloatingCard3DProps {
   isPaused?: boolean;
@@ -9,6 +10,8 @@ interface FloatingCard3DProps {
   onReset?: () => void;
   showPauseButton?: boolean;
   onShowTutorial?: () => void;
+  spaceEnvironment?: SpaceEnvironment;
+  onSpaceEnvironmentChange?: (environment: SpaceEnvironment) => void;
 }
 
 export const FloatingCard3D: React.FC<FloatingCard3DProps> = ({ 
@@ -16,7 +19,9 @@ export const FloatingCard3D: React.FC<FloatingCard3DProps> = ({
   onTogglePause,
   onReset,
   showPauseButton = false,
-  onShowTutorial
+  onShowTutorial,
+  spaceEnvironment = 'starfield',
+  onSpaceEnvironmentChange
 }) => {
   const { deviceType, isShortScreen } = useResponsiveBreakpoints();
 
@@ -54,6 +59,8 @@ export const FloatingCard3D: React.FC<FloatingCard3DProps> = ({
         onAlignmentReset={onReset}
         showPauseButton={showPauseButton}
         onShowTutorial={onShowTutorial}
+        spaceEnvironment={spaceEnvironment}
+        onSpaceEnvironmentChange={onSpaceEnvironmentChange}
       />
     </div>
   );
