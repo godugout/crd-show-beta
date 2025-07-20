@@ -27,8 +27,8 @@ export const ResponsiveCreate3DLayout: React.FC<ResponsiveCreate3DLayoutProps> =
       className={`fixed inset-0 z-0 ${className}`}
       style={{ cursor: 'grab' }}
       onMouseDown={(e) => {
-        // Don't capture events in the bottom scroll zone
-        const bottomZone = window.innerHeight - 150; // 150px from bottom
+        // Don't capture events in the bottom scroll zone (starting from scroll indicator)
+        const bottomZone = window.innerHeight - 180; // 180px from bottom to include scroll indicator
         if (e.clientY > bottomZone) return;
         
         e.currentTarget.style.cursor = 'grabbing';
@@ -54,53 +54,87 @@ export const ResponsiveCreate3DLayout: React.FC<ResponsiveCreate3DLayoutProps> =
         </StarsBackground>
       </div>
 
-      {/* Scroll Priority Zone - Bottom area that disables 3D controls and allows page scrolling */}
+      {/* SCROLL PRIORITY ZONE - Complete bottom area for page scrolling only */}
       <div 
         id="scroll-priority-zone"
-        className="absolute bottom-0 left-0 right-0 h-32 z-50 pointer-events-auto"
+        className="absolute left-0 right-0 w-full z-50 pointer-events-auto"
         style={{ 
+          bottom: 0,
+          height: '180px', // Cover from scroll indicator to bottom
           background: 'transparent',
-          cursor: 'default' // Override the grab cursor
+          cursor: 'default'
         }}
-        onMouseEnter={(e) => {
-          // Ensure cursor is default when entering this zone
-          e.currentTarget.style.cursor = 'default';
+        onMouseEnter={() => {
           document.body.style.cursor = 'default';
         }}
-        onMouseLeave={(e) => {
-          // Reset cursor when leaving this zone
+        onMouseLeave={() => {
           document.body.style.cursor = '';
         }}
         onWheel={(e) => {
-          // Allow normal page scrolling in this zone
+          // Only allow page scrolling - block everything else
           e.stopPropagation();
+          e.preventDefault();
           window.scrollBy(0, e.deltaY);
         }}
         onMouseDown={(e) => {
-          // Completely prevent 3D controls from activating in this zone
+          // Block all mouse down events
           e.stopPropagation();
           e.preventDefault();
+          return false;
         }}
         onMouseMove={(e) => {
-          // Prevent 3D controls from activating in this zone and ensure cursor stays default
+          // Block all mouse move events
           e.stopPropagation();
-          e.currentTarget.style.cursor = 'default';
+          e.preventDefault();
+          return false;
         }}
         onMouseUp={(e) => {
-          // Prevent 3D controls from activating in this zone
+          // Block all mouse up events
           e.stopPropagation();
+          e.preventDefault();
+          return false;
+        }}
+        onClick={(e) => {
+          // Block all click events
+          e.stopPropagation();
+          e.preventDefault();
+          return false;
+        }}
+        onDoubleClick={(e) => {
+          // Block double click events
+          e.stopPropagation();
+          e.preventDefault();
+          return false;
+        }}
+        onDrag={(e) => {
+          // Block all drag events
+          e.stopPropagation();
+          e.preventDefault();
+          return false;
         }}
         onDragStart={(e) => {
-          // Disable drag functionality completely in this zone
+          // Block drag start
+          e.stopPropagation();
           e.preventDefault();
+          return false;
         }}
         onTouchStart={(e) => {
-          // Prevent touch controls on mobile
+          // Block touch start for 3D controls
           e.stopPropagation();
         }}
         onTouchMove={(e) => {
-          // Allow touch scrolling on mobile
+          // Allow touch scrolling only
           e.stopPropagation();
+        }}
+        onTouchEnd={(e) => {
+          // Block touch end for 3D controls
+          e.stopPropagation();
+        }}
+        onContextMenu={(e) => {
+          // Block right-click menu
+          e.stopPropagation();
+          e.preventDefault();
+          return false;
         }}
       />
 
