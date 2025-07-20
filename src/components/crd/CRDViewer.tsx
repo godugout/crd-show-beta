@@ -131,6 +131,34 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
   spaceEnvironment = 'starfield',
   onSpaceEnvironmentChange
 }) => {
+  // Responsive card positioning based on screen height
+  const [cardPosition, setCardPosition] = useState<[number, number, number]>([0, -2, 0]);
+  
+  // Update card position responsively based on screen height
+  useEffect(() => {
+    const updateCardPosition = () => {
+      const screenHeight = window.innerHeight;
+      let yPosition = -2; // Default position
+      
+      // Move card up progressively as screen height decreases
+      if (screenHeight <= 800) {
+        // Start moving up when title text starts fading
+        const heightRatio = (800 - screenHeight) / 300; // Scale over 300px range (800px to 500px)
+        yPosition = -2 + (heightRatio * 2); // Move up to 0 at minimum height
+      }
+      
+      // Clamp position to reasonable bounds
+      yPosition = Math.max(-2, Math.min(0, yPosition));
+      
+      setCardPosition([0, yPosition, 0]);
+    };
+    
+    // Update on mount and resize
+    updateCardPosition();
+    window.addEventListener('resize', updateCardPosition);
+    
+    return () => window.removeEventListener('resize', updateCardPosition);
+  }, []);
   // Template engine state
   const [templateEngine, setTemplateEngine] = useState<TemplateEngine | null>(null);
 
@@ -603,9 +631,9 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
             enableShadows={true}
           />
         
-          {/* Main Card with Glass Case Container */}
+          {/* Main Card with Glass Case Container - Responsive positioning */}
           <group 
-            position={[0, -2, 0]}
+            position={cardPosition}
             rotation={[mouseOffset.y * 0.002, mouseOffset.x * 0.002, 0]}
           >
             <Card3DCore
