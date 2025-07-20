@@ -60,7 +60,16 @@ export const ResponsiveCreate3DLayout: React.FC<ResponsiveCreate3DLayoutProps> =
         className="absolute bottom-0 left-0 right-0 h-32 z-50 pointer-events-auto"
         style={{ 
           background: 'transparent',
-          cursor: 'default'
+          cursor: 'default' // Override the grab cursor
+        }}
+        onMouseEnter={(e) => {
+          // Ensure cursor is default when entering this zone
+          e.currentTarget.style.cursor = 'default';
+          document.body.style.cursor = 'default';
+        }}
+        onMouseLeave={(e) => {
+          // Reset cursor when leaving this zone
+          document.body.style.cursor = '';
         }}
         onWheel={(e) => {
           // Allow normal page scrolling in this zone
@@ -73,8 +82,9 @@ export const ResponsiveCreate3DLayout: React.FC<ResponsiveCreate3DLayoutProps> =
           e.preventDefault();
         }}
         onMouseMove={(e) => {
-          // Prevent 3D controls from activating in this zone
+          // Prevent 3D controls from activating in this zone and ensure cursor stays default
           e.stopPropagation();
+          e.currentTarget.style.cursor = 'default';
         }}
         onMouseUp={(e) => {
           // Prevent 3D controls from activating in this zone
