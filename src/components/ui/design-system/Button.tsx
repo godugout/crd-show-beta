@@ -23,6 +23,8 @@ const buttonVariants = cva(
         collective: "crd-collective-button",
         // Official Collect CTA button with blue-purple gradient
         collect: "crd-collect-button",
+        // New tool variant for smaller toolbar buttons
+        tool: "bg-transparent hover:bg-accent/50 text-foreground border border-border/30 hover:border-border/60 rounded-md font-medium",
         // Fallback variants - also rounded pills
         default: "bg-primary text-primary-foreground hover:bg-primary/90",
         destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
@@ -35,6 +37,8 @@ const buttonVariants = cva(
         xl: "text-xl px-10 py-5", /* 20px text, extra padding for CTAs */
         icon: "h-10 w-10",
         "action-icon": "h-12 w-12",
+        // New tool size for smaller buttons
+        tool: "h-8 px-2.5 py-1.5 text-xs rounded-md",
       },
     },
     defaultVariants: {
