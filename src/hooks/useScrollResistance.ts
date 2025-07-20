@@ -21,6 +21,17 @@ export const useScrollResistance = ({
       const animationSection = document.getElementById('animation-section');
       if (!animationSection) return;
 
+      // Check if we're in the scroll priority zone (bottom 128px)
+      const scrollZone = document.getElementById('scroll-priority-zone');
+      if (scrollZone) {
+        const rect = scrollZone.getBoundingClientRect();
+        const isInScrollZone = rect.top <= event.clientY && event.clientY <= rect.bottom;
+        if (isInScrollZone) {
+          // Allow normal scrolling in the priority zone
+          return;
+        }
+      }
+
       const rect = animationSection.getBoundingClientRect();
       isOnResistanceSection = rect.top <= 0 && rect.bottom >= window.innerHeight;
 

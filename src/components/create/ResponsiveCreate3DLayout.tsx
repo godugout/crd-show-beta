@@ -56,6 +56,7 @@ export const ResponsiveCreate3DLayout: React.FC<ResponsiveCreate3DLayoutProps> =
 
       {/* Scroll Priority Zone - Bottom area that allows page scrolling */}
       <div 
+        id="scroll-priority-zone"
         className="absolute bottom-0 left-0 right-0 h-32 z-10 pointer-events-auto"
         style={{ 
           background: 'transparent',

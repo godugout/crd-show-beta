@@ -65,7 +65,7 @@ export const UnifiedCreateHero: React.FC = () => {
     <>
       {isShortScreen ? (
         // Short screen layout - Compact design for limited vertical space
-        <div className="relative w-full h-screen overflow-hidden">
+        <div id="animation-section" className="relative w-full h-screen overflow-hidden">
           {/* Full Screen 3D Background Layer */}
           <ResponsiveCreate3DLayout
             isPaused={isPaused}
@@ -129,7 +129,7 @@ export const UnifiedCreateHero: React.FC = () => {
         </div>
       ) : (
         // Normal tall screen layout - Updated with new button variants
-        <div className="relative w-full min-h-screen">
+        <div id="animation-section" className="relative w-full min-h-screen">
           {/* Full Screen 3D Background Layer */}
           <ResponsiveCreate3DLayout
             isPaused={isPaused}
