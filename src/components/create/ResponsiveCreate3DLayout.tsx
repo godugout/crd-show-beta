@@ -71,10 +71,16 @@ export const ResponsiveCreate3DLayout: React.FC<ResponsiveCreate3DLayoutProps> =
           document.body.style.cursor = '';
         }}
         onWheel={(e) => {
-          // Only allow page scrolling - block everything else
+          // Allow normal page scrolling - completely bypass 3D controls
           e.stopPropagation();
           e.preventDefault();
-          window.scrollBy(0, e.deltaY);
+          
+          // Force smooth scroll behavior
+          const scrollAmount = e.deltaY;
+          window.scrollTo({
+            top: window.scrollY + scrollAmount,
+            behavior: 'smooth'
+          });
         }}
         onMouseDown={(e) => {
           // Block all mouse down events
