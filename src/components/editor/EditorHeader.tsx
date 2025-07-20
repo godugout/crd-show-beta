@@ -126,7 +126,7 @@ export const EditorHeader = ({ cardEditor }: EditorHeaderProps) => {
   };
 
   return (
-    <div className="flex items-center justify-between h-16 px-4 bg-editor-dark border-b border-editor-border">
+    <div className="flex items-center justify-between h-16 px-4 mt-4 bg-editor-dark border-b border-editor-border">
       <div className="flex items-center space-x-4">
         <Button variant="ghost" size="sm" asChild>
           <Link to="/cards">
