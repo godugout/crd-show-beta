@@ -34,7 +34,7 @@ export const MonolithAlignment: React.FC<MonolithAlignmentProps> = ({
     }
     
     let startTime = Date.now();
-    const totalDuration = 4000; // 4 seconds for main animation
+    const totalDuration = 4000; // 4 seconds total
     
     const animateSequence = () => {
       const elapsed = Date.now() - startTime;
@@ -56,19 +56,10 @@ export const MonolithAlignment: React.FC<MonolithAlignmentProps> = ({
       if (progress < 1) {
         requestAnimationFrame(animateSequence);
       } else {
-        // Original animation complete - now do final positioning
-        setTimeout(() => {
-          // Trigger smooth rotation to show bottom edge (x: -10, y: 160) 
-          if (onCardRotationTrigger) {
-            onCardRotationTrigger({ x: -10, y: 160 });
-          }
-          
-          // End flight mode and complete after rotation settles
-          setTimeout(() => {
-            setFlightActive(false);
-            onAlignmentComplete?.();
-          }, 1500); // Allow time for rotation to complete
-        }, 800); // Float for 0.8 seconds first
+        // Show navbar again when animation completes
+        setFlightActive(false);
+        // Complete after animation
+        setTimeout(() => onAlignmentComplete?.(), 1000);
       }
     };
 

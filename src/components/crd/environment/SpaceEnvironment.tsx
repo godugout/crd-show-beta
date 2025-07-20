@@ -46,14 +46,14 @@ export const SpaceEnvironmentRenderer: React.FC<SpaceEnvironmentProps> = ({
             fade: true
           },
           lighting: {
-            ambient: { intensity: 0.2 * intensity, color: '#10b981' }, // Emerald green
+            ambient: { intensity: 0.2 * intensity, color: '#8A2BE2' },
             point: { 
               position: [0, 0, 10] as [number, number, number], 
               intensity: 0.5 * intensity, 
-              color: '#3b82f6' // Bright blue
+              color: '#FF69B4' 
             }
           },
-          background: '#0a1a0f' // Dark green-tinted background
+          background: '#1a0d2e'
         };
 
       case 'deep_space':

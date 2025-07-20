@@ -20,17 +20,6 @@ export const ResponsiveCreate3DLayout: React.FC<ResponsiveCreate3DLayoutProps> =
 }) => {
   const [showTutorial, setShowTutorial] = useState(false);
   const [spaceEnvironment, setSpaceEnvironment] = useState<SpaceEnvironment>('starfield');
-  const [isRevealing, setIsRevealing] = useState(false);
-
-  const handleMaterialReveal = () => {
-    console.log('🎁 Starting material reveal sequence');
-    setIsRevealing(true);
-    
-    // Reset after animation
-    setTimeout(() => {
-      setIsRevealing(false);
-    }, 3000);
-  };
 
   // Removed auto-play tutorial functionality - tutorial only shows when button is clicked
   return (
@@ -55,7 +44,6 @@ export const ResponsiveCreate3DLayout: React.FC<ResponsiveCreate3DLayoutProps> =
             onTogglePause={onTogglePause}
             showPauseButton={false}
             onShowTutorial={() => setShowTutorial(true)}
-            onMaterialReveal={handleMaterialReveal}
             spaceEnvironment={spaceEnvironment}
             onSpaceEnvironmentChange={setSpaceEnvironment}
           />

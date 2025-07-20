@@ -11,7 +11,6 @@ interface GalacticCompassProps {
   onTogglePause?: () => void;
   enableGlassCase?: boolean;
   onToggleGlassCase?: () => void;
-  onMaterialReveal?: () => void;
   spaceEnvironment?: SpaceEnvironment;
   onSpaceEnvironmentChange?: (environment: SpaceEnvironment) => void;
 }
@@ -25,13 +24,11 @@ export const GalacticCompass: React.FC<GalacticCompassProps> = ({
   onTogglePause,
   enableGlassCase = true,
   onToggleGlassCase,
-  onMaterialReveal,
   spaceEnvironment = 'starfield',
   onSpaceEnvironmentChange
 }) => {
   const [compassAngle, setCompassAngle] = useState(0); // 0 = pointing up
   const [isTracking, setIsTracking] = useState(true);
-  const [isRevealing, setIsRevealing] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout>();
 
   // Update compass needles based on real card rotation
@@ -61,21 +58,6 @@ export const GalacticCompass: React.FC<GalacticCompassProps> = ({
     onReset();
   };
 
-  const handleMaterialReveal = () => {
-    if (isRevealing || !onMaterialReveal) return;
-    
-    console.log('🎁 Material reveal sequence triggered');
-    setIsRevealing(true);
-    
-    // Start the spinning ring and material conversion animation
-    onMaterialReveal();
-    
-    // Reset revealing state after animation completes
-    setTimeout(() => {
-      setIsRevealing(false);
-    }, 3000); // 3 second animation
-  };
-
   return (
     <>
       {/* Left Side - Creating Tools Bar */}
@@ -83,29 +65,6 @@ export const GalacticCompass: React.FC<GalacticCompassProps> = ({
         <div className="flex flex-col items-start gap-2">
           {/* Future creating tools will go here */}
           <div className="flex flex-col items-start gap-2">
-
-            {/* Material Reveal Button */}
-            {onMaterialReveal && (
-              <button
-                onClick={handleMaterialReveal}
-                disabled={isRevealing}
-                className={`group text-white p-2 rounded-full shadow-lg transition-all duration-300 hover:scale-105 flex items-center justify-center border ${
-                  isRevealing ? 'animate-pulse cursor-not-allowed' : ''
-                }`}
-                style={{
-                  background: isRevealing 
-                    ? 'linear-gradient(135deg, rgba(255, 215, 0, 0.3) 0%, rgba(255, 165, 0, 0.2) 50%, rgba(255, 140, 0, 0.3) 100%)'
-                    : 'linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.12) 100%)',
-                  borderColor: isRevealing ? 'rgba(255, 215, 0, 0.5)' : 'rgba(255, 255, 255, 0.15)',
-                  backdropFilter: 'blur(12px) saturate(180%)'
-                }}
-                title={isRevealing ? 'Revealing Material...' : 'Reveal New Material'}
-              >
-                <Package className={`w-4 h-4 transition-transform group-hover:scale-110 ${
-                  isRevealing ? 'animate-spin' : ''
-                }`} />
-              </button>
-            )}
 
             {/* Glass Case Toggle Button */}
             {onToggleGlassCase && (

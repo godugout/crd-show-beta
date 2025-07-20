@@ -79,7 +79,6 @@ interface CRDViewerProps {
   onModeChange?: (mode: AnimationMode) => void;
   onIntensityChange?: (intensity: number) => void;
   onShowTutorial?: () => void;
-  onMaterialReveal?: () => void;
   
   // Space environment
   spaceEnvironment?: SpaceEnvironment;
@@ -127,7 +126,6 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
   onModeChange,
   onIntensityChange,
   onShowTutorial,
-  onMaterialReveal,
   
   // Space environment
   spaceEnvironment = 'starfield',
@@ -341,9 +339,8 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
     const startPolar = controls.getPolarAngle();
     
     // Convert target rotation to spherical coordinates
-    // X rotation controls vertical tilt (polar angle), Y rotation controls horizontal rotation (azimuthal)
-    const targetAzimuthal = (targetRotation.x * Math.PI) / 180; // X controls left/right
-    const targetPolar = (targetRotation.y * Math.PI) / 180; // Y controls up/down tilt
+    const targetAzimuthal = (targetRotation.y * Math.PI) / 180;
+    const targetPolar = (targetRotation.x * Math.PI) / 180 + Math.PI / 2; // Offset for proper mapping
     
     let startTime = Date.now();
     const duration = 2000; // 2 seconds smooth animation
@@ -820,10 +817,7 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
         onReset={resetCardPosition}
         isResetting={isResettingCard}
         onShowTutorial={onShowTutorial}
-        onMaterialReveal={onMaterialReveal}
         cardRotation={cardRotationForCompass}
-        isPaused={isPaused}
-        onTogglePause={handleTogglePause}
         enableGlassCase={currentEnableGlassCase}
         onToggleGlassCase={() => setCurrentEnableGlassCase(!currentEnableGlassCase)}
         spaceEnvironment={spaceEnvironment}

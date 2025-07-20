@@ -10,7 +10,6 @@ interface FloatingCard3DProps {
   onReset?: () => void;
   showPauseButton?: boolean;
   onShowTutorial?: () => void;
-  onMaterialReveal?: () => void;
   spaceEnvironment?: SpaceEnvironment;
   onSpaceEnvironmentChange?: (environment: SpaceEnvironment) => void;
 }
@@ -21,7 +20,6 @@ export const FloatingCard3D: React.FC<FloatingCard3DProps> = ({
   onReset,
   showPauseButton = false,
   onShowTutorial,
-  onMaterialReveal,
   spaceEnvironment = 'starfield',
   onSpaceEnvironmentChange
 }) => {
@@ -61,7 +59,6 @@ export const FloatingCard3D: React.FC<FloatingCard3DProps> = ({
         onAlignmentReset={onReset}
         showPauseButton={showPauseButton}
         onShowTutorial={onShowTutorial}
-        onMaterialReveal={onMaterialReveal}
         spaceEnvironment={spaceEnvironment}
         onSpaceEnvironmentChange={onSpaceEnvironmentChange}
       />
