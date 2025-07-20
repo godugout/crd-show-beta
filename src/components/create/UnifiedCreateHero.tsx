@@ -164,7 +164,7 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
               
               {/* Subtitle */}
               <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed text-center">
-                Transform your ideas into interactive 3D collectibles<br className="block lg:hidden" /> that collectors will treasure.
+                Transform your ideas into interactive 3D collectibles<br className="block xl:hidden" /> that collectors will treasure.
               </p>
 
               {/* Action Buttons */}
