@@ -120,12 +120,10 @@ export const GalacticCompass: React.FC<GalacticCompassProps> = ({
           )}
 
            {/* Space Environment Button - replaces refresh button */}
-           {onSpaceEnvironmentChange && (
-             <EnvironmentSwitcher
-               currentEnvironment={spaceEnvironment}
-               onEnvironmentChange={onSpaceEnvironmentChange}
-             />
-           )}
+           <EnvironmentSwitcher
+             currentEnvironment={spaceEnvironment}
+             onEnvironmentChange={onSpaceEnvironmentChange || (() => console.log('No environment change handler'))}
+           />
         </div>
       </div>
 

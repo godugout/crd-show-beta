@@ -78,7 +78,7 @@ export const EnvironmentSwitcher: React.FC<EnvironmentSwitcherProps> = ({
       {/* Environment Picker Dropdown */}
       {isOpen && (
         <div 
-          className="absolute bottom-full right-0 mb-2 min-w-48 rounded-xl shadow-2xl border overflow-hidden z-[9999]"
+          className="absolute bottom-full left-0 mb-2 min-w-48 rounded-xl shadow-2xl border overflow-hidden z-[9999]"
           style={{
             background: 'linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(20, 20, 40, 0.95) 100%)',
             borderColor: 'rgba(255, 255, 255, 0.15)',
