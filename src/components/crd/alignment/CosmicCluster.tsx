@@ -161,9 +161,9 @@ export const CosmicCluster: React.FC<CosmicClusterProps> = ({
     return new THREE.ShaderMaterial({
       uniforms: {
         time: { value: 0 },
-        nebulaColor1: { value: new THREE.Color('#6366f1') }, // Brighter blue
-        nebulaColor2: { value: new THREE.Color('#8b5cf6') }, // Brighter purple  
-        nebulaColor3: { value: new THREE.Color('#f59e0b') }, // Bright orange/gold
+        nebulaColor1: { value: new THREE.Color('#10b981') }, // Emerald green
+        nebulaColor2: { value: new THREE.Color('#3b82f6') }, // Bright blue  
+        nebulaColor3: { value: new THREE.Color('#f97316') }, // Vibrant orange
         intensity: { value: intensity }
       },
       vertexShader,
