@@ -269,7 +269,7 @@ export const CRDCanvas: React.FC<CRDCanvasProps> = ({
           ) : (
             // Show upload dropzone
             <div
-              className="w-full h-full border-2 border-dashed border-crd-blue/50 rounded-lg flex flex-col items-center justify-center cursor-pointer hover:border-crd-blue transition-all duration-300 bg-crd-darker/30 backdrop-blur-sm hover:bg-crd-darker/50 group"
+              className="w-full h-full border-2 border-dashed border-crd-blue/50 rounded-lg flex flex-col items-center justify-center cursor-pointer hover:border-crd-blue transition-all duration-300 bg-crd-darker/80 backdrop-blur-sm hover:bg-crd-darker/90 group relative z-20"
               onClick={() => {
                 const input = document.createElement('input');
                 input.type = 'file';
