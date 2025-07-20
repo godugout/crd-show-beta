@@ -21,17 +21,7 @@ export const ResponsiveCreate3DLayout: React.FC<ResponsiveCreate3DLayoutProps> =
   const [showTutorial, setShowTutorial] = useState(false);
   const [spaceEnvironment, setSpaceEnvironment] = useState<SpaceEnvironment>('starfield');
 
-  // Show tutorial automatically on first visit (optional)
-  React.useEffect(() => {
-    const hasSeenTutorial = localStorage.getItem('crd-alignment-tutorial-seen');
-    if (!hasSeenTutorial) {
-      const timer = setTimeout(() => {
-        setShowTutorial(true);
-        localStorage.setItem('crd-alignment-tutorial-seen', 'true');
-      }, 2000); // Show after 2 seconds
-      return () => clearTimeout(timer);
-    }
-  }, []);
+  // Removed auto-play tutorial functionality - tutorial only shows when button is clicked
   return (
     <div 
       className={`fixed inset-0 z-0 ${className}`}
