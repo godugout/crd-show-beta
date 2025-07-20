@@ -254,10 +254,18 @@
   transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* When screen height is very limited, slide hero text up and fade it out */
+/* Start moving text off screen at the same time buttons move to bottom (700px) */
+@media (max-height: 700px) {
+  .hero-text-responsive {
+    transform: translateY(-60px);
+    opacity: 0.3;
+  }
+}
+
+/* Continue sliding text up for smaller screens */
 @media (max-height: 600px) {
   .hero-text-responsive {
-    transform: translateY(-80px);
+    transform: translateY(-100px);
     opacity: 0;
     pointer-events: none;
   }
