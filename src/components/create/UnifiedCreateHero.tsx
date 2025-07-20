@@ -138,6 +138,9 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
                 <p className="text-sm text-gray-400 animate-pulse">
                   ✨ Where imagination meets technology
                 </p>
+                <p className="text-sm text-gray-300 mt-2">
+                  What will you make?
+                </p>
               </div>
             </div>
           </div>
@@ -196,6 +199,9 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
               <div className="mt-12 pb-16">
                 <p className="text-lg text-gray-400 animate-pulse">
                   ✨ Where imagination meets technology
+                </p>
+                <p className="text-lg text-gray-300 mt-2">
+                  What will you make?
                 </p>
               </div>
             </div>
