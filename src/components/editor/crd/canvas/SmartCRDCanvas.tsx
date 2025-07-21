@@ -38,6 +38,9 @@ export const SmartCRDCanvas: React.FC<SmartCRDCanvasProps> = (props) => {
   const [zoom, setZoom] = useState(150);
   const [showRulers, setShowRulers] = useState(false);
   const [isLocked, setIsLocked] = useState(false);
+  // 3D specific state
+  const [activeLayers, setActiveLayers] = useState<number[]>([1, 2, 3]);
+  const [engine3D, setEngine3D] = useState<any>(null);
   
   // Grid preferences with persistence
   const { gridType, showGrid, setGridType, setShowGrid } = useGridPreferences();
@@ -81,6 +84,25 @@ export const SmartCRDCanvas: React.FC<SmartCRDCanvasProps> = (props) => {
       setZoom(150);
     }
   }, [is3DMode, setShowGrid, setGridType]);
+
+  // 3D Camera control handlers
+  const handleCameraMode = useCallback((mode: 'isometric' | 'top') => {
+    if (engine3D) {
+      engine3D.setCameraMode(mode);
+    }
+  }, [engine3D]);
+
+  // 3D Layer control handlers
+  const handleLayerToggle = useCallback((layer: number, visible: boolean) => {
+    if (engine3D) {
+      engine3D.setLayerVisibility(layer, visible);
+    }
+    setActiveLayers(prev => 
+      visible 
+        ? [...prev, layer].filter((l, i, arr) => arr.indexOf(l) === i)
+        : prev.filter(l => l !== layer)
+    );
+  }, [engine3D]);
 
   // Default CRD data if none provided
   const defaultCRDData: CRD_DNA = {
@@ -147,6 +169,9 @@ export const SmartCRDCanvas: React.FC<SmartCRDCanvasProps> = (props) => {
         onLockToggle={handleLockToggle}
         is3DMode={is3DMode}
         onToggle3D={handleToggle3D}
+        onCameraMode={handleCameraMode}
+        onLayerToggle={handleLayerToggle}
+        activeLayers={activeLayers}
         className={getToolbarClasses()}
         onMouseEnter={onToolbarMouseEnter}
         onMouseLeave={onToolbarMouseLeave}
@@ -171,6 +196,7 @@ export const SmartCRDCanvas: React.FC<SmartCRDCanvasProps> = (props) => {
             showGrid={showGrid}
             gridType={gridType}
             onImageUpload={props.onImageUpload}
+            onEngine3DReady={setEngine3D}
           />
         ) : (
           // 2D Traditional Canvas

@@ -11,6 +11,7 @@ interface CRDBlxCanvasProps {
   showGrid: boolean;
   gridType: string;
   onImageUpload?: (files: File[]) => void;
+  onEngine3DReady?: (engine: any) => void;
 }
 
 export const CRDBlxCanvas: React.FC<CRDBlxCanvasProps> = ({
@@ -19,7 +20,8 @@ export const CRDBlxCanvas: React.FC<CRDBlxCanvasProps> = ({
   zoom,
   showGrid,
   gridType,
-  onImageUpload
+  onImageUpload,
+  onEngine3DReady
 }) => {
   const canvasRef = useRef<HTMLDivElement>(null);
   const [engine3D, setEngine3D] = useState<CRD3DEngine | null>(null);
@@ -40,6 +42,7 @@ export const CRDBlxCanvas: React.FC<CRDBlxCanvasProps> = ({
       });
 
       setEngine3D(newEngine);
+      onEngine3DReady?.(newEngine);
 
       // Load embedded image if available
       if (crdData.embeddedImage.url) {
@@ -86,44 +89,6 @@ export const CRDBlxCanvas: React.FC<CRDBlxCanvasProps> = ({
         }}
       />
 
-      {/* 3D Controls Overlay */}
-      <div className="absolute top-20 right-4 bg-black/75 rounded-lg p-3 text-white text-sm space-y-2 z-10">
-        <div className="flex items-center space-x-2">
-          <span className="text-xs text-gray-400">Camera:</span>
-          <button 
-            onClick={() => engine3D?.setCameraMode('isometric')}
-            className="px-2 py-1 bg-blue-600 rounded text-xs"
-          >
-            ISO
-          </button>
-          <button 
-            onClick={() => engine3D?.setCameraMode('top')}
-            className="px-2 py-1 bg-gray-600 rounded text-xs"
-          >
-            TOP
-          </button>
-        </div>
-      </div>
-
-      {/* Layer Controls */}
-      <div className="absolute bottom-24 left-4 bg-black/75 rounded-lg p-3 text-white z-10">
-        <div className="text-xs text-gray-400 mb-2">Layers ({crdData.layers.length}/5)</div>
-        <div className="flex space-x-2">
-          {[1,2,3,4,5].map(layer => (
-            <button
-              key={layer}
-              onClick={() => engine3D?.setLayerVisibility(layer, true)}
-              className={`w-8 h-8 rounded text-xs ${
-                layer <= crdData.layers.length 
-                  ? 'bg-blue-600 text-white' 
-                  : 'bg-gray-600 text-gray-400'
-              }`}
-            >
-              {layer}
-            </button>
-          ))}
-        </div>
-      </div>
 
       {/* Selection Info */}
       {selectedElement && (

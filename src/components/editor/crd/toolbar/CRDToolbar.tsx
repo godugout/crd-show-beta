@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { ZoomIn, ZoomOut, RotateCcw, Grid3x3, LayoutGrid, Grid, Diamond, Construction, Camera, X, Ruler, Edit3, ChevronDown, Lock, Unlock, Box, Layers } from 'lucide-react';
+import { ZoomIn, ZoomOut, RotateCcw, Grid3x3, LayoutGrid, Grid, Diamond, Construction, Camera, X, Ruler, Edit3, ChevronDown, Lock, Unlock, Box, Layers, View, Eye } from 'lucide-react';
 import { CRDButton } from '@/components/ui/design-system/Button';
 import {
   DropdownMenu,
@@ -23,6 +23,11 @@ interface CRDToolbarProps {
   // CRDBLX 3D mode
   is3DMode?: boolean;
   onToggle3D?: () => void;
+  // 3D Camera controls
+  onCameraMode?: (mode: 'isometric' | 'top') => void;
+  // 3D Layer controls
+  onLayerToggle?: (layer: number, visible: boolean) => void;
+  activeLayers?: number[];
   // Auto-hide props
   className?: string;
   onMouseEnter?: () => void;
@@ -60,6 +65,9 @@ export const CRDToolbar: React.FC<CRDToolbarProps> = ({
   onLockToggle,
   is3DMode = false,
   onToggle3D,
+  onCameraMode,
+  onLayerToggle,
+  activeLayers = [],
   className,
   onMouseEnter,
   onMouseLeave
@@ -164,6 +172,67 @@ export const CRDToolbar: React.FC<CRDToolbarProps> = ({
             </div>
 
             <div className="w-px h-6 bg-crd-mediumGray/30" />
+
+            {/* 3D-Specific Controls */}
+            {is3DMode && (
+              <>
+                {/* Camera Controls */}
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-crd-lightGray font-medium">Camera:</span>
+                  <CRDButton 
+                    variant="outline" 
+                    size="sm" 
+                    onClick={() => onCameraMode?.('isometric')}
+                    className="h-8 px-3 bg-white/5 backdrop-blur-sm border-white/20 border-blue-400/50"
+                    title="Isometric View"
+                  >
+                    <View className="w-3 h-3 mr-1 text-blue-400" />
+                    <span className="text-xs text-blue-400">ISO</span>
+                  </CRDButton>
+                  <CRDButton 
+                    variant="outline" 
+                    size="sm" 
+                    onClick={() => onCameraMode?.('top')}
+                    className="h-8 px-3 bg-white/5 backdrop-blur-sm border-white/20"
+                    title="Top View"
+                  >
+                    <Eye className="w-3 h-3 mr-1 text-gray-400" />
+                    <span className="text-xs text-gray-400">TOP</span>
+                  </CRDButton>
+                </div>
+
+                <div className="w-px h-6 bg-crd-mediumGray/30" />
+
+                {/* Layer Controls */}
+                <div className="flex items-center gap-2">
+                  <span className="text-xs text-crd-lightGray font-medium">Layers:</span>
+                  <div className="flex gap-1">
+                    {[1,2,3,4,5].map(layer => (
+                      <CRDButton
+                        key={layer}
+                        variant="outline"
+                        size="sm"
+                        onClick={() => onLayerToggle?.(layer, !activeLayers.includes(layer))}
+                        className={`h-8 w-8 p-0 bg-white/5 backdrop-blur-sm border-white/20 ${
+                          activeLayers.includes(layer) 
+                            ? 'border-blue-400/50 bg-blue-500/20' 
+                            : 'border-gray-600/50'
+                        }`}
+                        title={`Toggle Layer ${layer}`}
+                      >
+                        <span className={`text-xs ${
+                          activeLayers.includes(layer) ? 'text-blue-400' : 'text-gray-400'
+                        }`}>
+                          {layer}
+                        </span>
+                      </CRDButton>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="w-px h-6 bg-crd-mediumGray/30" />
+              </>
+            )}
 
             {/* Zoom Controls */}
             <div className="flex items-center gap-2">
