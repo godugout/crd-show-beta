@@ -46,25 +46,17 @@ export const EnvironmentSwitcher: React.FC<EnvironmentSwitcherProps> = ({
   currentEnvironment,
   onEnvironmentChange
 }) => {
-  console.log('🔍 DEBUG: EnvironmentSwitcher rendering', { currentEnvironment, onEnvironmentChange: !!onEnvironmentChange });
-  
   const [isOpen, setIsOpen] = useState(false);
 
   const currentEnv = environments.find(env => env.id === currentEnvironment);
   const CurrentIcon = currentEnv?.icon || Globe;
-
-  console.log('🔍 DEBUG: EnvironmentSwitcher component state', { 
-    isOpen, 
-    currentEnv: currentEnv?.name, 
-    CurrentIcon: CurrentIcon.name 
-  });
 
   return (
     <div className="relative">
       {/* Environment Toggle Button */}
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="group text-white p-2 rounded-full shadow-lg transition-all duration-300 hover:scale-105 flex items-center justify-center border"
+        className="group text-white/60 hover:text-white/80 p-2 rounded-full shadow-lg transition-all duration-300 hover:scale-105 flex items-center justify-center border"
         style={{
           background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.12) 100%)',
           borderColor: 'rgba(255, 255, 255, 0.15)',
@@ -78,7 +70,7 @@ export const EnvironmentSwitcher: React.FC<EnvironmentSwitcherProps> = ({
       {/* Environment Picker Dropdown */}
       {isOpen && (
         <div 
-          className="absolute bottom-full left-0 mb-2 min-w-48 rounded-xl shadow-2xl border overflow-hidden z-[9999]"
+          className="absolute bottom-full left-0 mb-2 min-w-48 rounded-xl shadow-2xl border overflow-hidden z-[60]"
           style={{
             background: 'linear-gradient(135deg, rgba(0, 0, 0, 0.95) 0%, rgba(20, 20, 40, 0.95) 100%)',
             borderColor: 'rgba(255, 255, 255, 0.15)',
@@ -137,7 +129,7 @@ export const EnvironmentSwitcher: React.FC<EnvironmentSwitcherProps> = ({
       {/* Backdrop */}
       {isOpen && (
         <div 
-          className="fixed inset-0 z-[9998]" 
+          className="fixed inset-0 z-[59]"
           onClick={() => setIsOpen(false)}
         />
       )}
