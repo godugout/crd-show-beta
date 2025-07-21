@@ -374,7 +374,7 @@ export const EnhancedHero: React.FC = () => {
           <div className="w-full px-4 sm:px-6 lg:px-8 xl:px-12 relative z-10">
             <div className="text-center mb-8 lg:mb-16">
               <h2 className="text-2xl sm:text-3xl lg:text-5xl xl:text-6xl font-bold text-crd-white mb-4 lg:mb-8">
-                Featured Cards
+                Featured CRDs
               </h2>
               <p className="text-crd-lightGray text-base sm:text-lg lg:text-xl xl:text-2xl max-w-4xl mx-auto">
                 Discover amazing cards from our community.

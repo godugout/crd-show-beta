@@ -45,7 +45,7 @@ export const HeroCarousel: React.FC = () => {
       <div>
         <div className="text-center mb-6">
           <Typography variant="h3" className="text-crd-white mb-2">
-            Featured Cards
+            Featured CRDs
           </Typography>
           <Typography variant="body" className="text-crd-mediumGray">
             Discover amazing cards from our community.

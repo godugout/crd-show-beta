@@ -39,7 +39,7 @@ const Collections: React.FC = () => {
         <div className="flex items-center justify-between mb-8">
           <div>
             <Typography variant="h2" className="text-crd-white mb-2">
-              Featured Cards
+              Featured CRDs
             </Typography>
             <Typography variant="body" className="text-crd-lightGray">
               Discover the most popular cards in our gallery

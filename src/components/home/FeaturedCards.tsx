@@ -55,7 +55,7 @@ export const FeaturedCards: React.FC = () => {
     <div className="bg-[#141416] flex flex-col overflow-hidden pt-32 pb-12 px-[352px] max-md:max-w-full max-md:px-5">
       <div className="self-stretch flex w-full justify-between items-center gap-5 max-md:max-w-full max-md:flex-wrap">
         <div className="text-[#FCFCFD] text-2xl font-bold leading-8 tracking-[-0.24px] max-md:max-w-full">
-          Featured cards
+          Featured CRDs
         </div>
         <div className="flex gap-2">
           <button className="flex gap-2.5 p-2 rounded-[40px]">
