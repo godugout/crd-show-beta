@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useResponsiveBreakpoints } from '@/hooks/useResponsiveBreakpoints';
@@ -95,7 +96,7 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
           {/* Overlay Content Layer - Positioned for short screens */}
           <div className="relative z-10 h-full flex flex-col pointer-events-none">
             {/* Top Section - Hero Content - Slide up and fade out on very short screens */}
-            <div className="flex-1 flex items-start justify-center px-6 pt-32 hero-text-responsive transition-all duration-500">{/* Add custom CSS class for height-based responsive behavior */}
+            <div className="flex-1 flex items-start justify-center px-6 pt-32 hero-text-responsive transition-all duration-500">
               <div className="text-center space-y-4 max-w-4xl mx-auto">
                 {/* Hero Text */}
                 {isTablet ? renderTabletHeroText() : renderStandardHeroText()}
@@ -107,8 +108,8 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
               </div>
             </div>
 
-            {/* Bottom Section - Action Buttons */}
-            <div className="flex-shrink-0 pb-8 pointer-events-auto relative z-[100]">
+            {/* Middle Section - Action Buttons */}
+            <div className="flex-shrink-0 pb-16 pointer-events-auto relative z-[100]">
               <div className="flex flex-col sm:flex-row gap-4 justify-center items-center px-6">
                 {/* Primary CTA - Updated to use create variant */}
                 <Link to="/create/crd" className="w-full sm:w-auto">
@@ -132,18 +133,21 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
                   </CRDButton>
                 </Link>
               </div>
-              
-              {/* Animated Tagline */}
-              <div className="text-center mt-6 px-6 pb-8">
-                <p className="text-xs text-gray-400 animate-pulse">
+            </div>
+
+            {/* Bottom Section - Combined Tagline and Scroll Indicator */}
+            <div className="flex-shrink-0 pb-2 pointer-events-none relative z-[100]">
+              <div className="text-center px-6">
+                {/* Animated Tagline */}
+                <p className="text-xs text-gray-400 animate-pulse mb-4">
                   ✨ Where imagination meets technology. <span className="font-caveat text-base text-crd-orange">What will you make?</span>
                 </p>
+                
+                {/* Scroll Indicator */}
+                <ScrollIndicator isVisible={showScrollIndicator} />
               </div>
             </div>
           </div>
-
-          {/* Scroll Indicator for short screens */}
-          <ScrollIndicator isVisible={showScrollIndicator} />
         </div>
       ) : (
         // Normal tall screen layout - Updated with new button variants
@@ -157,52 +161,58 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
           />
 
           {/* Overlay Content Layer - Positioned higher for normal screens */}
-          <div className="relative z-10 min-h-screen flex items-start justify-center px-6 pt-40 pointer-events-none">
-            <div className="text-center space-y-8 max-w-6xl mx-auto">
-              {/* Hero Text */}
-              {isTablet ? renderTabletHeroText() : renderStandardHeroText()}
-              
-              {/* Subtitle */}
-              <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed text-center">
-                Transform your ideas into interactive 3D collectibles.
-              </p>
+          <div className="relative z-10 min-h-screen flex flex-col pointer-events-none">
+            {/* Top Section - Hero Content */}
+            <div className="flex-1 flex items-start justify-center px-6 pt-40">
+              <div className="text-center space-y-8 max-w-6xl mx-auto">
+                {/* Hero Text */}
+                {isTablet ? renderTabletHeroText() : renderStandardHeroText()}
+                
+                {/* Subtitle */}
+                <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed text-center">
+                  Transform your ideas into interactive 3D collectibles.
+                </p>
 
-              {/* Action Buttons */}
-              <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pointer-events-auto relative z-[100]">
-                {/* Primary CTA - Updated to use create variant */}
-                <Link to="/create/crd">
-                  <CRDButton 
-                    variant="create" 
-                    size="xl"
-                    className="px-12 py-6 text-xl font-bold"
-                  >
-                    Start Creating
-                  </CRDButton>
-                </Link>
+                {/* Action Buttons */}
+                <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pointer-events-auto relative z-[100]">
+                  {/* Primary CTA - Updated to use create variant */}
+                  <Link to="/create/crd">
+                    <CRDButton 
+                      variant="create" 
+                      size="xl"
+                      className="px-12 py-6 text-xl font-bold"
+                    >
+                      Start Creating
+                    </CRDButton>
+                  </Link>
 
-                {/* Secondary CTA - Updated to use glass variant */}
-                <Link to="/templates">
-                  <CRDButton 
-                    variant="glass" 
-                    size="xl"
-                    className="px-12 py-6 text-xl font-semibold"
-                  >
-                    Browse Templates
-                  </CRDButton>
-                </Link>
+                  {/* Secondary CTA - Updated to use glass variant */}
+                  <Link to="/templates">
+                    <CRDButton 
+                      variant="glass" 
+                      size="xl"
+                      className="px-12 py-6 text-xl font-semibold"
+                    >
+                      Browse Templates
+                    </CRDButton>
+                  </Link>
+                </div>
               </div>
-              
-              {/* Animated Tagline */}
-              <div className="mt-12 pb-16">
-                <p className="text-sm text-gray-400 animate-pulse">
+            </div>
+
+            {/* Bottom Section - Combined Tagline and Scroll Indicator */}
+            <div className="flex-shrink-0 pb-2 pointer-events-none relative z-[100]">
+              <div className="text-center px-6">
+                {/* Animated Tagline */}
+                <p className="text-sm text-gray-400 animate-pulse mb-4">
                   ✨ Where imagination meets technology. <span className="font-caveat text-xl text-crd-orange">What will you make?</span>
                 </p>
+                
+                {/* Scroll Indicator */}
+                <ScrollIndicator isVisible={showScrollIndicator} />
               </div>
             </div>
           </div>
-
-          {/* Scroll Indicator for normal screens */}
-          <ScrollIndicator isVisible={showScrollIndicator} />
         </div>
       )}
     </>

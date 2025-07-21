@@ -14,7 +14,7 @@ export const ScrollIndicator: React.FC<ScrollIndicatorProps> = ({
   if (!isVisible) return null;
 
   return (
-    <div className={`fixed bottom-8 left-1/2 transform -translate-x-1/2 z-50 pointer-events-none ${className}`}>
+    <div className={`flex justify-center pointer-events-none ${className}`}>
       <div className="flex flex-col items-center animate-bounce">
         {/* Three stacked arrows close together */}
         <ChevronDown 
