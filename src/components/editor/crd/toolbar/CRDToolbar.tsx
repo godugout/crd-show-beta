@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { ZoomIn, ZoomOut, RotateCcw, Grid3x3, LayoutGrid, Grid, Diamond, Construction, Camera, X, Ruler, Edit3, ChevronDown } from 'lucide-react';
+import { ZoomIn, ZoomOut, RotateCcw, Grid3x3, LayoutGrid, Grid, Diamond, Construction, Camera, X, Ruler, Edit3, ChevronDown, Lock, Unlock } from 'lucide-react';
 import { CRDButton } from '@/components/ui/design-system/Button';
 import {
   DropdownMenu,
@@ -18,6 +18,8 @@ interface CRDToolbarProps {
   onGridTypeChange: (type: 'standard' | 'print' | 'golden' | 'isometric' | 'blueprint' | 'photography') => void;
   showRulers: boolean;
   onRulersToggle: () => void;
+  isLocked: boolean;
+  onLockToggle: () => void;
   // Auto-hide props
   className?: string;
   onMouseEnter?: () => void;
@@ -51,6 +53,8 @@ export const CRDToolbar: React.FC<CRDToolbarProps> = ({
   onGridTypeChange,
   showRulers,
   onRulersToggle,
+  isLocked,
+  onLockToggle,
   className,
   onMouseEnter,
   onMouseLeave
@@ -107,6 +111,20 @@ export const CRDToolbar: React.FC<CRDToolbarProps> = ({
               
                <CRDButton variant="outline" size="sm" onClick={onRulersToggle} className={`h-8 w-8 p-0 bg-white/5 backdrop-blur-sm border-white/20 ${showRulers ? 'border-green-400/50' : ''}`} title="Toggle Rulers">
                  <Ruler className={`w-4 h-4 ${showRulers ? 'text-green-400' : 'text-green-400'}`} />
+               </CRDButton>
+
+               <CRDButton 
+                 variant="outline" 
+                 size="sm" 
+                 onClick={onLockToggle} 
+                 className={`h-8 w-8 p-0 bg-white/5 backdrop-blur-sm border-white/20 ${isLocked ? 'border-red-400/50' : 'border-blue-400/50'}`} 
+                 title={isLocked ? "Unlock card position" : "Lock card position"}
+               >
+                 {isLocked ? (
+                   <Lock className="w-4 h-4 text-red-400" />
+                 ) : (
+                   <Unlock className="w-4 h-4 text-blue-400" />
+                 )}
                </CRDButton>
             </div>
 

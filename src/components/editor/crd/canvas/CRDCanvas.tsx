@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { CRDCanvasGrid } from './CRDCanvasGrid';
 import { CRDToolbar } from '../toolbar/CRDToolbar';
 import { ToolbarHotZone } from '../toolbar/ToolbarHotZone';
@@ -46,6 +46,13 @@ export const CRDCanvas: React.FC<CRDCanvasProps> = ({
   const [zoom, setZoom] = useState(150); // Single optimal default for engagement
   const [showRulers, setShowRulers] = useState(false);
   
+  // Card positioning and interaction state
+  const [cardPosition, setCardPosition] = useState({ x: 0, y: 0 });
+  const [isDragging, setIsDragging] = useState(false);
+  const [isLocked, setIsLocked] = useState(false);
+  const [dragStart, setDragStart] = useState({ x: 0, y: 0 });
+  const canvasRef = useRef<HTMLDivElement>(null);
+  
   // Grid preferences with persistence
   const { gridType, showGrid, setGridType, setShowGrid, isLoaded } = useGridPreferences();
   
@@ -75,6 +82,61 @@ export const CRDCanvas: React.FC<CRDCanvasProps> = ({
 
   const cardWidth = baseCardWidth * zoom / 100;
   const cardHeight = baseCardHeight * zoom / 100;
+
+  // Drag handlers
+  const handleMouseDown = useCallback((e: React.MouseEvent) => {
+    if (isLocked || !playerImage) return;
+    
+    setIsDragging(true);
+    setDragStart({
+      x: e.clientX - cardPosition.x,
+      y: e.clientY - cardPosition.y
+    });
+    e.preventDefault();
+  }, [isLocked, playerImage, cardPosition]);
+
+  const handleMouseMove = useCallback((e: MouseEvent) => {
+    if (!isDragging || isLocked) return;
+    
+    const newX = e.clientX - dragStart.x;
+    const newY = e.clientY - dragStart.y;
+    
+    // Optional: Add bounds checking to keep card within canvas
+    if (canvasRef.current) {
+      const canvasRect = canvasRef.current.getBoundingClientRect();
+      const maxX = canvasRect.width - cardWidth;
+      const maxY = canvasRect.height - cardHeight;
+      
+      setCardPosition({
+        x: Math.max(-cardWidth / 2, Math.min(maxX / 2, newX)),
+        y: Math.max(-cardHeight / 2, Math.min(maxY / 2, newY))
+      });
+    } else {
+      setCardPosition({ x: newX, y: newY });
+    }
+  }, [isDragging, isLocked, dragStart, cardWidth, cardHeight]);
+
+  const handleMouseUp = useCallback(() => {
+    setIsDragging(false);
+  }, []);
+
+  // Add global mouse event listeners for drag
+  useEffect(() => {
+    if (isDragging) {
+      document.addEventListener('mousemove', handleMouseMove);
+      document.addEventListener('mouseup', handleMouseUp);
+      
+      return () => {
+        document.removeEventListener('mousemove', handleMouseMove);
+        document.removeEventListener('mouseup', handleMouseUp);
+      };
+    }
+  }, [isDragging, handleMouseMove, handleMouseUp]);
+
+  // Lock/unlock handler
+  const handleLockToggle = useCallback(() => {
+    setIsLocked(!isLocked);
+  }, [isLocked]);
   const getBackgroundStyle = () => {
     const paletteColors = {
       classic: '#1E40AF',
@@ -205,7 +267,9 @@ export const CRDCanvas: React.FC<CRDCanvasProps> = ({
         gridType={gridType} 
         onGridTypeChange={setGridType} 
         showRulers={showRulers} 
-        onRulersToggle={() => setShowRulers(!showRulers)} 
+        onRulersToggle={() => setShowRulers(!showRulers)}
+        isLocked={isLocked}
+        onLockToggle={handleLockToggle}
         className={getToolbarClasses()}
         onMouseEnter={onToolbarMouseEnter}
         onMouseLeave={onToolbarMouseLeave}
@@ -215,15 +279,22 @@ export const CRDCanvas: React.FC<CRDCanvasProps> = ({
       <CRDCanvasGrid showGrid={showGrid} gridType={gridType} gridSize={20} />
 
       {/* Canvas Area */}
-      <div className="flex-1 w-full flex items-center justify-center relative z-10 pt-16 pb-20 overflow-hidden">
+      <div 
+        ref={canvasRef}
+        className="flex-1 w-full flex items-center justify-center relative z-10 pt-16 pb-20 overflow-hidden"
+      >
         
         {/* Card Dropzone */}
         <div 
-          className="relative z-20 transition-transform duration-300 ease-out"
+          className={`relative z-20 transition-transform duration-300 ease-out ${
+            !isLocked && playerImage ? 'cursor-move' : ''
+          } ${isDragging ? 'cursor-grabbing' : ''}`}
           style={{
             width: `${cardWidth}px`,
-            height: `${cardHeight}px`
+            height: `${cardHeight}px`,
+            transform: `translate(${cardPosition.x}px, ${cardPosition.y}px)`
           }}
+          onMouseDown={handleMouseDown}
         >
           {selectedFrame ? (
             // Show selected CRD frame
