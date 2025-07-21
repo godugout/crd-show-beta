@@ -1,5 +1,5 @@
-import React, { useEffect } from 'react';
-import { ZoomIn, ZoomOut, RotateCcw, Grid3x3, LayoutGrid, Grid, Diamond, Construction, Camera, X, Ruler, Edit3, ChevronDown, Lock, Unlock, Box, Layers, View, Eye } from 'lucide-react';
+import React from 'react';
+import { ZoomIn, ZoomOut, RotateCcw, Grid3x3, LayoutGrid, Grid, Diamond, Construction, Camera, X, Ruler, Lock, Unlock, ChevronDown } from 'lucide-react';
 import { CRDButton } from '@/components/ui/design-system/Button';
 import {
   DropdownMenu,
@@ -7,6 +7,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger
 } from '@/components/ui/dropdown-menu';
+
 interface CRDToolbarProps {
   zoom: number;
   onZoomIn: () => void;
@@ -20,12 +21,10 @@ interface CRDToolbarProps {
   onRulersToggle: () => void;
   isLocked: boolean;
   onLockToggle: () => void;
-  // CRDBLX 3D mode
+  // V1: Legacy 3D props (ignored)
   is3DMode?: boolean;
   onToggle3D?: () => void;
-  // 3D Camera controls
   onCameraMode?: (mode: 'isometric' | 'top') => void;
-  // 3D Layer controls
   onLayerToggle?: (layer: number, visible: boolean) => void;
   activeLayers?: number[];
   // Auto-hide props
@@ -50,6 +49,7 @@ const gridOptions: Array<{
   { value: 'blueprint', label: 'Blueprint', icon: Construction, color: 'text-cyan-400' },
   { value: 'photography', label: 'Photography', icon: Camera, color: 'text-pink-400' }
 ];
+
 export const CRDToolbar: React.FC<CRDToolbarProps> = ({
   zoom,
   onZoomIn,
@@ -63,199 +63,113 @@ export const CRDToolbar: React.FC<CRDToolbarProps> = ({
   onRulersToggle,
   isLocked,
   onLockToggle,
-  is3DMode = false,
-  onToggle3D,
-  onCameraMode,
-  onLayerToggle,
-  activeLayers = [],
   className,
   onMouseEnter,
   onMouseLeave
 }) => {
-  console.log('🔧 CRDToolbar rendering - is3DMode:', is3DMode, 'onToggle3D:', !!onToggle3D);
-  return <div
-    className={className || "absolute top-16 left-1/2 transform -translate-x-1/2 z-20 bg-crd-darker/80 backdrop-blur-sm border border-crd-mediumGray/30 rounded-lg shadow-lg"}
-    onMouseEnter={onMouseEnter}
-    onMouseLeave={onMouseLeave}
-  >
+  console.log('🔧 CRD V1 Toolbar rendering - 2D mode only');
+  
+  return (
+    <div
+      className={className || "absolute top-16 left-1/2 transform -translate-x-1/2 z-20 bg-crd-darker/80 backdrop-blur-sm border border-crd-mediumGray/30 rounded-lg shadow-lg"}
+      onMouseEnter={onMouseEnter}
+      onMouseLeave={onMouseLeave}
+    >
       <div className="px-4 py-2">
         <div className="flex items-center gap-6 h-10">
-          {/* Mode Toggle */}
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2">
-              <span className="text-xs text-crd-lightGray font-medium">Mode:</span>
-              
-              {onToggle3D && (
-                <CRDButton 
-                  variant="outline" 
-                  size="sm" 
-                  onClick={onToggle3D} 
-                  className={`h-8 px-3 bg-white/5 backdrop-blur-sm border-white/20 ${is3DMode ? 'border-purple-400/50 bg-purple-500/20' : ''}`} 
-                  title={is3DMode ? "Switch to 2D editing" : "Switch to 3D CRDBLX builder"}
-                >
-                  {is3DMode ? (
-                    <>
-                      <Box className="w-3 h-3 mr-1 text-purple-400" />
-                      <span className="text-xs text-purple-400">CRDBLX</span>
-                    </>
-                  ) : (
-                    <>
-                      <Edit3 className="w-3 h-3 mr-1 text-blue-400" />
-                      <span className="text-xs text-blue-400">2D</span>
-                    </>
-                  )}
-                </CRDButton>
-              )}
-            </div>
+          {/* V1 Mode Indicator */}
+          <div className="flex items-center gap-2">
+            <span className="text-xs text-crd-lightGray font-medium">Mode:</span>
+            <span className="text-xs text-blue-400 font-medium">2D Card Creator</span>
+          </div>
 
-            <div className="w-px h-6 bg-crd-mediumGray/30" />
+          <div className="w-px h-6 bg-crd-mediumGray/30" />
 
-            {/* View Controls */}
-            <div className="flex items-center gap-2">
-              <span className="text-xs text-crd-lightGray font-medium">Grid:</span>
-              <DropdownMenu>
-                 <DropdownMenuTrigger asChild>
-                   <CRDButton variant="outline" size="sm" className="h-8 w-8 p-0 bg-white/5 backdrop-blur-sm border-white/20" title="Select Grid Type">
-                     {(() => {
-                       const currentOption = gridOptions.find(option => option.value === (showGrid ? gridType : null));
-                       const Icon = currentOption?.icon || X;
-                       return (
-                         <>
-                           <Icon className={`w-4 h-4 text-green-400`} />
-                           <ChevronDown className="w-3 h-3 absolute -bottom-0.5 -right-0.5 text-green-400" />
-                         </>
-                       );
-                     })()}
-                   </CRDButton>
-                 </DropdownMenuTrigger>
-                <DropdownMenuContent className="bg-crd-darker border-crd-mediumGray/30 min-w-[140px]">
-                  {gridOptions.map((option) => {
-                    const Icon = option.icon;
+          {/* Grid Controls */}
+          <div className="flex items-center gap-2">
+            <span className="text-xs text-crd-lightGray font-medium">Grid:</span>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <CRDButton variant="outline" size="sm" className="h-8 w-8 p-0 bg-white/5 backdrop-blur-sm border-white/20" title="Select Grid Type">
+                  {(() => {
+                    const currentOption = gridOptions.find(option => option.value === (showGrid ? gridType : null));
+                    const Icon = currentOption?.icon || X;
                     return (
-                      <DropdownMenuItem
-                        key={option.value || 'none'}
-                        className="text-crd-white hover:bg-crd-mediumGray/20 cursor-pointer"
-                        onClick={() => {
-                          if (option.value === null) {
-                            if (showGrid) onGridToggle();
-                          } else {
-                            if (!showGrid) onGridToggle();
-                            onGridTypeChange(option.value);
-                          }
-                        }}
-                      >
-                        <Icon className={`w-4 h-4 mr-2 ${option.color}`} />
-                        {option.label}
-                      </DropdownMenuItem>
+                      <>
+                        <Icon className={`w-4 h-4 text-green-400`} />
+                        <ChevronDown className="w-3 h-3 absolute -bottom-0.5 -right-0.5 text-green-400" />
+                      </>
                     );
-                  })}
-                </DropdownMenuContent>
-              </DropdownMenu>
-              
-               <CRDButton variant="outline" size="sm" onClick={onRulersToggle} className={`h-8 w-8 p-0 bg-white/5 backdrop-blur-sm border-white/20 ${showRulers ? 'border-green-400/50' : ''}`} title="Toggle Rulers">
-                 <Ruler className={`w-4 h-4 ${showRulers ? 'text-green-400' : 'text-green-400'}`} />
-               </CRDButton>
+                  })()}
+                </CRDButton>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="bg-crd-darker border-crd-mediumGray/30 min-w-[140px]">
+                {gridOptions.map((option) => {
+                  const Icon = option.icon;
+                  return (
+                    <DropdownMenuItem
+                      key={option.value || 'none'}
+                      className="text-crd-white hover:bg-crd-mediumGray/20 cursor-pointer"
+                      onClick={() => {
+                        if (option.value === null) {
+                          if (showGrid) onGridToggle();
+                        } else {
+                          if (!showGrid) onGridToggle();
+                          onGridTypeChange(option.value);
+                        }
+                      }}
+                    >
+                      <Icon className={`w-4 h-4 mr-2 ${option.color}`} />
+                      {option.label}
+                    </DropdownMenuItem>
+                  );
+                })}
+              </DropdownMenuContent>
+            </DropdownMenu>
+            
+            <CRDButton variant="outline" size="sm" onClick={onRulersToggle} className={`h-8 w-8 p-0 bg-white/5 backdrop-blur-sm border-white/20 ${showRulers ? 'border-green-400/50' : ''}`} title="Toggle Rulers">
+              <Ruler className={`w-4 h-4 ${showRulers ? 'text-green-400' : 'text-green-400'}`} />
+            </CRDButton>
 
-               <CRDButton 
-                 variant="outline" 
-                 size="sm" 
-                 onClick={onLockToggle} 
-                 className={`h-8 w-8 p-0 bg-white/5 backdrop-blur-sm border-white/20 ${isLocked ? 'border-red-400/50' : 'border-blue-400/50'}`} 
-                 title={isLocked ? "Unlock card position" : "Lock card position"}
-               >
-                 {isLocked ? (
-                   <Lock className="w-4 h-4 text-red-400" />
-                 ) : (
-                   <Unlock className="w-4 h-4 text-blue-400" />
-                 )}
-               </CRDButton>
+            <CRDButton 
+              variant="outline" 
+              size="sm" 
+              onClick={onLockToggle} 
+              className={`h-8 w-8 p-0 bg-white/5 backdrop-blur-sm border-white/20 ${isLocked ? 'border-red-400/50' : 'border-blue-400/50'}`} 
+              title={isLocked ? "Unlock card position" : "Lock card position"}
+            >
+              {isLocked ? (
+                <Lock className="w-4 h-4 text-red-400" />
+              ) : (
+                <Unlock className="w-4 h-4 text-blue-400" />
+              )}
+            </CRDButton>
+          </div>
+
+          <div className="w-px h-6 bg-crd-mediumGray/30" />
+
+          {/* Zoom Controls */}
+          <div className="flex items-center gap-2">
+            <span className="text-xs text-crd-lightGray font-medium">Zoom:</span>
+            <CRDButton variant="ghost" size="sm" onClick={onZoomOut} disabled={zoom <= 25} className="h-8 w-8 p-0">
+              <ZoomOut className="w-3 h-3" />
+            </CRDButton>
+            
+            <div className="text-crd-white text-xs font-mono bg-crd-darkest px-2 py-1 rounded min-w-[50px] text-center h-8 flex items-center justify-center">
+              {Math.round(zoom)}%
             </div>
-
-            <div className="w-px h-6 bg-crd-mediumGray/30" />
-
-            {/* 3D-Specific Controls */}
-            {is3DMode && (
-              <>
-                {/* Camera Controls */}
-                <div className="flex items-center gap-2">
-                  <span className="text-xs text-crd-lightGray font-medium">Camera:</span>
-                  <CRDButton 
-                    variant="outline" 
-                    size="sm" 
-                    onClick={() => onCameraMode?.('isometric')}
-                    className="h-8 px-3 bg-white/5 backdrop-blur-sm border-white/20 border-blue-400/50"
-                    title="Isometric View"
-                  >
-                    <View className="w-3 h-3 mr-1 text-blue-400" />
-                    <span className="text-xs text-blue-400">ISO</span>
-                  </CRDButton>
-                  <CRDButton 
-                    variant="outline" 
-                    size="sm" 
-                    onClick={() => onCameraMode?.('top')}
-                    className="h-8 px-3 bg-white/5 backdrop-blur-sm border-white/20"
-                    title="Top View"
-                  >
-                    <Eye className="w-3 h-3 mr-1 text-gray-400" />
-                    <span className="text-xs text-gray-400">TOP</span>
-                  </CRDButton>
-                </div>
-
-                <div className="w-px h-6 bg-crd-mediumGray/30" />
-
-                {/* Layer Controls */}
-                <div className="flex items-center gap-2">
-                  <span className="text-xs text-crd-lightGray font-medium">Layers:</span>
-                  <div className="flex gap-1">
-                    {[1,2,3,4,5].map(layer => (
-                      <CRDButton
-                        key={layer}
-                        variant="outline"
-                        size="sm"
-                        onClick={() => onLayerToggle?.(layer, !activeLayers.includes(layer))}
-                        className={`h-8 w-8 p-0 bg-white/5 backdrop-blur-sm border-white/20 ${
-                          activeLayers.includes(layer) 
-                            ? 'border-blue-400/50 bg-blue-500/20' 
-                            : 'border-gray-600/50'
-                        }`}
-                        title={`Toggle Layer ${layer}`}
-                      >
-                        <span className={`text-xs ${
-                          activeLayers.includes(layer) ? 'text-blue-400' : 'text-gray-400'
-                        }`}>
-                          {layer}
-                        </span>
-                      </CRDButton>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="w-px h-6 bg-crd-mediumGray/30" />
-              </>
-            )}
-
-            {/* Zoom Controls */}
-            <div className="flex items-center gap-2">
-              <span className="text-xs text-crd-lightGray font-medium">Zoom:</span>
-              <CRDButton variant="ghost" size="sm" onClick={onZoomOut} disabled={zoom <= 25} className="h-8 w-8 p-0">
-                <ZoomOut className="w-3 h-3" />
-              </CRDButton>
-              
-              <div className="text-crd-white text-xs font-mono bg-crd-darkest px-2 py-1 rounded min-w-[50px] text-center h-8 flex items-center justify-center">
-                {Math.round(zoom)}%
-              </div>
-              
-              <CRDButton variant="ghost" size="sm" onClick={onZoomIn} disabled={zoom >= 300} className="h-8 w-8 p-0">
-                <ZoomIn className="w-3 h-3" />
-              </CRDButton>
-              
-              <CRDButton variant="ghost" size="sm" onClick={onZoomReset} className="h-8 px-2 text-xs" title="Reset zoom (125%)">
-                <RotateCcw className="w-3 h-3 mr-1" />
-                Reset
-              </CRDButton>
-            </div>
+            
+            <CRDButton variant="ghost" size="sm" onClick={onZoomIn} disabled={zoom >= 300} className="h-8 w-8 p-0">
+              <ZoomIn className="w-3 h-3" />
+            </CRDButton>
+            
+            <CRDButton variant="ghost" size="sm" onClick={onZoomReset} className="h-8 px-2 text-xs" title="Reset zoom (150%)">
+              <RotateCcw className="w-3 h-3 mr-1" />
+              Reset
+            </CRDButton>
           </div>
         </div>
       </div>
-    </div>;
+    </div>
+  );
 };
