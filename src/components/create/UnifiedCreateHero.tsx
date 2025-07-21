@@ -102,7 +102,7 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
                 {isTablet ? renderTabletHeroText() : renderStandardHeroText()}
                 
                 {/* Subtitle */}
-                <p className="font-caveat text-xl md:text-2xl text-crd-green mb-6 max-w-2xl mx-auto leading-relaxed text-center">
+                <p className="font-architects-daughter text-xl md:text-2xl text-crd-green mb-6 max-w-2xl mx-auto leading-relaxed text-center">
                   Transform your ideas into interactive 3D collectibles.
                 </p>
               </div>
@@ -169,7 +169,7 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
                 {isTablet ? renderTabletHeroText() : renderStandardHeroText()}
                 
                 {/* Subtitle */}
-                <p className="font-caveat text-2xl md:text-3xl text-crd-green mb-12 max-w-3xl mx-auto leading-relaxed text-center">
+                <p className="font-architects-daughter text-2xl md:text-3xl text-crd-green mb-12 max-w-3xl mx-auto leading-relaxed text-center">
                   Transform your ideas into interactive 3D collectibles.
                 </p>
 
