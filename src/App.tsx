@@ -62,14 +62,6 @@ const AdminLoading = () => (
   />
 );
 
-const StudioLoading = () => (
-  <LoadingState 
-    fullPage 
-    message="Loading studio..." 
-    size="lg"
-    className="bg-crd-darkest"
-  />
-);
 
 const App = () => {
   // Main App Error Boundary wrapper
