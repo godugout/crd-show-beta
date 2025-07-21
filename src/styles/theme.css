@@ -75,7 +75,7 @@
   }
   
   .btn-themed-ghost {
-    @apply bg-transparent text-crd-lightGray hover:bg-crd-mediumGray/20 hover:text-white border border-crd-mediumGray/30 rounded-lg;
+    @apply bg-crd-mediumGray/10 text-crd-lightGray hover:bg-crd-mediumGray/30 hover:text-white border border-crd-mediumGray/40 rounded-lg transition-all duration-200;
   }
   
   /* Card theming */
