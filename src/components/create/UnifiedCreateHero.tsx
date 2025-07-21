@@ -42,7 +42,7 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
          CUT, CRAFT & CREATE DIGITALLY
        </div>
       
-      <h1 className="leading-tight mb-8 font-light">
+      <h1 className="font-architects-daughter leading-tight mb-8 font-light">
         <div className="text-xl md:text-2xl lg:text-3xl text-gray-400 mb-2 whitespace-nowrap">
           From <span className="paper-scraps">paper scraps</span> and <span className="cardboard-text">cardboard</span> to
         </div>
@@ -65,7 +65,7 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
          CUT, CRAFT & CREATE DIGITALLY
        </div>
       
-      <h1 className="leading-tight mb-8 font-light">
+      <h1 className="font-architects-daughter leading-tight mb-8 font-light">
         <div className="text-xl md:text-2xl lg:text-3xl text-gray-400 mb-2 whitespace-nowrap">
           From <span className="paper-scraps">paper scraps</span> and <span className="cardboard-text">cardboard</span> to
         </div>
