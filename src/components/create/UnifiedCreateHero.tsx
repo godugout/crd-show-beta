@@ -85,11 +85,11 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
       {isShortScreen ? (
         // Short screen layout - Compact design for limited vertical space
         <div id="animation-section" className="relative w-full h-screen overflow-hidden">
-          {/* Full Screen 3D Background Layer */}
+          {/* 3D Background Layer - Limited to hero section only */}
           <ResponsiveCreate3DLayout
             isPaused={isPaused}
             onTogglePause={handleTogglePause}
-            className="fixed inset-0 z-0"
+            className="absolute inset-0 z-0"
             onAnimationComplete={onAnimationComplete}
           />
 
@@ -151,17 +151,17 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
         </div>
       ) : (
         // Normal tall screen layout - Updated with new button variants
-        <div id="animation-section" className="relative w-full min-h-screen">
-          {/* Full Screen 3D Background Layer */}
+        <div id="animation-section" className="relative w-full h-screen">
+          {/* 3D Background Layer - Limited to hero section only */}
           <ResponsiveCreate3DLayout
             isPaused={isPaused}
             onTogglePause={handleTogglePause}
-            className="fixed inset-0 z-0"
+            className="absolute inset-0 z-0"
             onAnimationComplete={onAnimationComplete}
           />
 
           {/* Overlay Content Layer - Positioned higher for normal screens */}
-          <div className="relative z-10 min-h-screen flex flex-col pointer-events-none">
+          <div className="relative z-10 h-screen flex flex-col pointer-events-none">
             {/* Top Section - Hero Content */}
             <div className="flex-1 flex items-start justify-center px-6 pt-40">
               <div className="text-center space-y-8 max-w-6xl mx-auto">
