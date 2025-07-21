@@ -25,7 +25,7 @@ export const CircularProgressIndicator: React.FC<CircularProgressIndicatorProps>
     return {
       x,
       y,
-      rotation: angle + 90 + (360 / arrowCount), // Point to next arrow position (clockwise)
+      rotation: angle, // Each arrow points tangentially around the circle (clockwise)
       delay: i * (1.5 / arrowCount) // Stagger animation delays
     };
   });
