@@ -85,7 +85,7 @@
   
   /* Focus theming */
   .focus-themed {
-    @apply focus:outline-none focus:ring-2 focus:ring-crd-blue focus:ring-offset-2 focus:ring-offset-crd-darkest;
+    @apply focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-gray-900;
   }
 }
 
