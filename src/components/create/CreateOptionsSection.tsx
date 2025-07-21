@@ -16,9 +16,7 @@ export const CreateOptionsSection: React.FC = () => {
           <h2 className="text-4xl md:text-5xl font-bold text-crd-white mb-6">
             What do you feel like creating today?
           </h2>
-          <p className="text-lg md:text-xl text-crd-lightGray max-w-2xl mx-auto leading-relaxed">
-            Choose your creative path and bring your vision to life with our powerful design tools.
-          </p>
+          <p className="text-lg md:text-xl text-crd-lightGray max-w-2xl mx-auto leading-relaxed">Choose your creative path and bring your vision to life with our powerful design tools.</p>
         </div>
 
         {/* Creation Options Grid */}
