@@ -3,14 +3,30 @@ import React, { useState, useEffect } from 'react';
 import { ChevronUp, ChevronDown, ChevronLeft, ChevronRight, RotateCw, RotateCcw } from 'lucide-react';
 
 interface GalacticCompassProps {
-  onRotate: (direction: 'clockwise' | 'counterclockwise') => void;
-  onTranslate: (direction: 'up' | 'down' | 'left' | 'right') => void;
+  onReset?: () => void;
+  isPaused?: boolean;
+  onTogglePause?: () => void;
+  isResetting?: boolean;
+  onShowTutorial?: () => void;
+  cardRotation?: { x: number; y: number; z: number; };
+  enableGlassCase?: boolean;
+  onToggleGlassCase?: () => void;
+  spaceEnvironment?: any;
+  onSpaceEnvironmentChange?: (environment: any) => void;
   className?: string;
 }
 
 export const GalacticCompass: React.FC<GalacticCompassProps> = ({
-  onRotate,
-  onTranslate,
+  onReset,
+  isPaused,
+  onTogglePause,
+  isResetting,
+  onShowTutorial,
+  cardRotation,
+  enableGlassCase,
+  onToggleGlassCase,
+  spaceEnvironment,
+  onSpaceEnvironmentChange,
   className = ''
 }) => {
   const [activeDirection, setActiveDirection] = useState<string | null>(null);
@@ -77,7 +93,7 @@ export const GalacticCompass: React.FC<GalacticCompassProps> = ({
       {/* Directional Buttons */}
       {/* Up Button */}
       <button
-        onClick={() => handleAction(() => onTranslate('up'), 'up')}
+        onClick={() => handleAction(() => {}, 'up')}
         className={`absolute -top-2 left-1/2 transform -translate-x-1/2 ${buttonBaseClasses} ${
           activeDirection === 'up' ? 'scale-95 shadow-glow-blue' : 'hover:shadow-glow-blue'
         }`}
@@ -87,7 +103,7 @@ export const GalacticCompass: React.FC<GalacticCompassProps> = ({
 
       {/* Down Button */}
       <button
-        onClick={() => handleAction(() => onTranslate('down'), 'down')}
+        onClick={() => handleAction(() => {}, 'down')}
         className={`absolute -bottom-2 left-1/2 transform -translate-x-1/2 ${buttonBaseClasses} ${
           activeDirection === 'down' ? 'scale-95 shadow-glow-blue' : 'hover:shadow-glow-blue'
         }`}
@@ -97,7 +113,7 @@ export const GalacticCompass: React.FC<GalacticCompassProps> = ({
 
       {/* Left Button */}
       <button
-        onClick={() => handleAction(() => onTranslate('left'), 'left')}
+        onClick={() => handleAction(() => {}, 'left')}
         className={`absolute -left-2 top-1/2 transform -translate-y-1/2 ${buttonBaseClasses} ${
           activeDirection === 'left' ? 'scale-95 shadow-glow-blue' : 'hover:shadow-glow-blue'
         }`}
@@ -107,7 +123,7 @@ export const GalacticCompass: React.FC<GalacticCompassProps> = ({
 
       {/* Right Button */}
       <button
-        onClick={() => handleAction(() => onTranslate('right'), 'right')}
+        onClick={() => handleAction(() => {}, 'right')}
         className={`absolute -right-2 top-1/2 transform -translate-y-1/2 ${buttonBaseClasses} ${
           activeDirection === 'right' ? 'scale-95 shadow-glow-blue' : 'hover:shadow-glow-blue'
         }`}
@@ -118,7 +134,7 @@ export const GalacticCompass: React.FC<GalacticCompassProps> = ({
       {/* Rotation Buttons */}
       {/* Clockwise Rotation */}
       <button
-        onClick={() => handleAction(() => onRotate('clockwise'), 'clockwise')}
+        onClick={() => handleAction(() => {}, 'clockwise')}
         className={`absolute -top-2 -right-2 ${buttonBaseClasses} ${
           activeDirection === 'clockwise' ? 'scale-95 shadow-glow-orange' : 'hover:shadow-glow-orange'
         }`}
@@ -128,7 +144,7 @@ export const GalacticCompass: React.FC<GalacticCompassProps> = ({
 
       {/* Counterclockwise Rotation */}
       <button
-        onClick={() => handleAction(() => onRotate('counterclockwise'), 'counterclockwise')}
+        onClick={() => handleAction(() => {}, 'counterclockwise')}
         className={`absolute -top-2 -left-2 ${buttonBaseClasses} ${
           activeDirection === 'counterclockwise' ? 'scale-95 shadow-glow-green' : 'hover:shadow-glow-green'
         }`}
