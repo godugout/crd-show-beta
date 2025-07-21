@@ -1,96 +1,220 @@
 
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useResponsiveBreakpoints } from '@/hooks/useResponsiveBreakpoints';
-import { CRDButton } from '@/components/ui/design-system/Button';
-import { ScrollIndicator } from './ScrollIndicator';
 import { ResponsiveCreate3DLayout } from './ResponsiveCreate3DLayout';
+import { CRDButton } from '@/components/ui/design-system';
+import { PixelDigital } from '@/components/ui/PixelDigital';
+import { ScrollIndicator } from './ScrollIndicator';
 
 interface UnifiedCreateHeroProps {
   onAnimationComplete?: () => void;
 }
 
 export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimationComplete }) => {
-  const { isMobile, isShortScreen } = useResponsiveBreakpoints();
+  const { isShortScreen, isMobile, isTablet } = useResponsiveBreakpoints();
   const [isPaused, setIsPaused] = useState(false);
+  const [showScrollIndicator, setShowScrollIndicator] = useState(true);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const scrollThreshold = windowHeight * 0.3; // Hide after scrolling 30% of viewport
+      
+      setShowScrollIndicator(scrollY < scrollThreshold);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   const handleTogglePause = () => {
-    setIsPaused(prev => !prev);
+    setIsPaused(!isPaused);
   };
 
-  const handleAnimationComplete = () => {
-    console.log('🎬 UnifiedCreateHero: Animation complete, forwarding to parent');
-    if (onAnimationComplete) {
-      onAnimationComplete();
-    }
-  };
+
+  // Render tablet-specific hero text with line breaks
+  const renderTabletHeroText = () => (
+    <div className="text-center max-w-4xl mx-auto">
+      {/* Intro Label */}
+       <div className="mb-6 gradient-text-green-blue-purple font-bold tracking-wider text-sm uppercase animate-fade-in">
+         CUT, CRAFT & CREATE DIGITALLY
+       </div>
+      
+      <h1 className="leading-tight mb-8 font-light">
+        <div className="text-xl md:text-2xl lg:text-3xl text-gray-400 mb-2 whitespace-nowrap">
+          From <span className="paper-scraps">paper scraps</span> and <span className="cardboard-text">cardboard</span> to
+        </div>
+         <div className="text-3xl md:text-5xl lg:text-6xl font-bold">
+           <span className="text-white">CRD</span>
+           <span className="mx-2">
+             <span className="text-white">art</span>
+           </span>
+           <span className="animate-gradient-flow bg-clip-text text-transparent">that comes alive!</span>
+         </div>
+      </h1>
+    </div>
+  );
+
+  // Render standard hero text (desktop and mobile)
+  const renderStandardHeroText = () => (
+    <div className="text-center max-w-4xl mx-auto">
+      {/* Intro Label */}
+       <div className="mb-6 gradient-text-green-blue-purple font-bold tracking-wider text-sm uppercase animate-fade-in">
+         CUT, CRAFT & CREATE DIGITALLY
+       </div>
+      
+      <h1 className="leading-tight mb-8 font-light">
+        <div className="text-xl md:text-2xl lg:text-3xl text-gray-400 mb-2 whitespace-nowrap">
+          From <span className="paper-scraps">paper scraps</span> and <span className="cardboard-text">cardboard</span> to
+        </div>
+         <div className="text-3xl md:text-5xl lg:text-6xl font-bold">
+           <span className="text-white">CRD</span>
+           <span className="mx-2">
+             <span className="text-white">art</span>
+           </span>
+           <span className="animate-gradient-flow bg-clip-text text-transparent">that comes alive!</span>
+         </div>
+      </h1>
+    </div>
+  );
 
   return (
-    <section className="relative w-full h-screen overflow-hidden snap-start bg-gradient-to-b from-crd-darkest to-crd-darker">
-      {/* 3D Background */}
-      <div className="absolute inset-0">
-        <ResponsiveCreate3DLayout
-          isPaused={isPaused}
-          onTogglePause={handleTogglePause}
-          onAnimationComplete={handleAnimationComplete}
-        />
-      </div>
+    <>
+      {isShortScreen ? (
+        // Short screen layout - Compact design for limited vertical space
+        <div id="animation-section" className="relative w-full h-screen overflow-hidden">
+          {/* Full Screen 3D Background Layer */}
+          <ResponsiveCreate3DLayout
+            isPaused={isPaused}
+            onTogglePause={handleTogglePause}
+            className="fixed inset-0 z-0"
+            onAnimationComplete={onAnimationComplete}
+          />
 
-      {/* Content Overlay */}
-      <div className="relative z-10 h-full flex flex-col justify-center items-center px-4 sm:px-6 lg:px-8">
-        {/* Label */}
-        <div className="mb-4 text-crd-blue font-bold tracking-wider text-xs sm:text-sm uppercase animate-fade-in">
-          CUT, CRAFT & CREATE DIGITALLY
-        </div>
-
-        {/* Main Heading */}
-        <div className="mb-6 text-center">
-          <h1 className="leading-tight text-white drop-shadow-lg animate-fade-in">
-            <div className="flex flex-wrap justify-center items-center mb-2 text-2xl sm:text-3xl md:text-4xl lg:text-5xl">
-              <span className="text-gray-300 font-light">
-                From <span className="text-yellow-400">paper scraps</span> and <span className="text-orange-400">cardboard</span> to
-              </span>
+          {/* Overlay Content Layer - Positioned for short screens */}
+          <div className="relative z-10 h-full flex flex-col pointer-events-none">
+            {/* Top Section - Hero Content - Slide up and fade out on very short screens */}
+            <div className="flex-1 flex items-start justify-center px-6 pt-32 hero-text-responsive transition-all duration-500">
+              <div className="text-center space-y-4 max-w-4xl mx-auto">
+                {/* Hero Text */}
+                {isTablet ? renderTabletHeroText() : renderStandardHeroText()}
+                
+                {/* Subtitle */}
+                <p className="text-lg md:text-xl text-gray-300 mb-6 max-w-2xl mx-auto leading-relaxed text-center">
+                  Transform your ideas into interactive 3D collectibles.
+                </p>
+              </div>
             </div>
-            <div className="flex justify-center items-center text-3xl sm:text-4xl md:text-5xl lg:text-6xl">
-              <span className="font-bold">
-                CRD art <span className="gradient-text-themed">that comes alive!</span>
-              </span>
+
+            {/* Middle Section - Action Buttons */}
+            <div className="flex-shrink-0 pb-16 pointer-events-auto relative z-[100]">
+              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center px-6">
+                {/* Primary CTA - Updated to use create variant */}
+                <Link to="/create/crd" className="w-full sm:w-auto">
+                  <CRDButton 
+                    variant="create" 
+                    size="lg"
+                    className="w-full sm:w-auto px-8 py-4 text-lg font-semibold"
+                  >
+                    Start Creating
+                  </CRDButton>
+                </Link>
+
+                {/* Secondary CTA - Updated to use glass variant */}
+                <Link to="/templates" className="w-full sm:w-auto">
+                  <CRDButton 
+                    variant="glass" 
+                    size="lg"
+                    className="w-full sm:w-auto px-8 py-4 text-lg font-semibold"
+                  >
+                    Browse Templates
+                  </CRDButton>
+                </Link>
+              </div>
             </div>
-          </h1>
+
+            {/* Bottom Section - Combined Tagline and Scroll Indicator */}
+            <div className="flex-shrink-0 pb-2 pointer-events-none relative z-[100]">
+              <div className="text-center px-6">
+                {/* Animated Tagline */}
+                <p className="text-xs text-gray-400 animate-pulse mb-4">
+                  ✨ Where imagination meets technology. <span className="font-caveat text-base text-crd-orange">What will you make?</span>
+                </p>
+                
+                {/* Scroll Indicator */}
+                <ScrollIndicator isVisible={showScrollIndicator} />
+              </div>
+            </div>
+          </div>
         </div>
+      ) : (
+        // Normal tall screen layout - Updated with new button variants
+        <div id="animation-section" className="relative w-full min-h-screen">
+          {/* Full Screen 3D Background Layer */}
+          <ResponsiveCreate3DLayout
+            isPaused={isPaused}
+            onTogglePause={handleTogglePause}
+            className="fixed inset-0 z-0"
+            onAnimationComplete={onAnimationComplete}
+          />
 
-        {/* Subtext */}
-        <p className="text-gray-300 text-lg sm:text-xl mb-8 text-center max-w-2xl animate-fade-in animation-delay-200">
-          Transform your ideas into interactive 3D collectibles.
-        </p>
+          {/* Overlay Content Layer - Positioned higher for normal screens */}
+          <div className="relative z-10 min-h-screen flex flex-col pointer-events-none">
+            {/* Top Section - Hero Content */}
+            <div className="flex-1 flex items-start justify-center px-6 pt-40">
+              <div className="text-center space-y-8 max-w-6xl mx-auto">
+                {/* Hero Text */}
+                {isTablet ? renderTabletHeroText() : renderStandardHeroText()}
+                
+                {/* Subtitle */}
+                <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed text-center">
+                  Transform your ideas into interactive 3D collectibles.
+                </p>
 
-        {/* CTA Buttons */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in animation-delay-400">
-          <Link to="/create/crd">
-            <CRDButton 
-              size={isMobile ? "default" : "lg"}
-              variant="create"
-              className="min-w-[200px] bg-gradient-to-r from-yellow-500 to-green-500 hover:from-yellow-600 hover:to-green-600 text-white font-bold border-0"
-            >
-              Start Creating
-            </CRDButton>
-          </Link>
-          <Link to="/templates">
-            <CRDButton 
-              variant="outline" 
-              size={isMobile ? "default" : "lg"}
-              className="min-w-[200px] bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white border-0"
-            >
-              Browse Templates
-            </CRDButton>
-          </Link>
+                {/* Action Buttons */}
+                <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pointer-events-auto relative z-[100]">
+                  {/* Primary CTA - Updated to use create variant */}
+                  <Link to="/create/crd">
+                    <CRDButton 
+                      variant="create" 
+                      size="xl"
+                      className="px-12 py-6 text-xl font-bold"
+                    >
+                      Start Creating
+                    </CRDButton>
+                  </Link>
+
+                  {/* Secondary CTA - Updated to use glass variant */}
+                  <Link to="/templates">
+                    <CRDButton 
+                      variant="glass" 
+                      size="xl"
+                      className="px-12 py-6 text-xl font-semibold"
+                    >
+                      Browse Templates
+                    </CRDButton>
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+            {/* Bottom Section - Combined Tagline and Scroll Indicator */}
+            <div className="flex-shrink-0 pb-2 pointer-events-none relative z-[100]">
+              <div className="text-center px-6">
+                {/* Animated Tagline */}
+                <p className="text-sm text-gray-400 animate-pulse mb-4">
+                  ✨ Where imagination meets technology. <span className="font-caveat text-xl text-crd-orange">What will you make?</span>
+                </p>
+                
+                {/* Scroll Indicator */}
+                <ScrollIndicator isVisible={showScrollIndicator} />
+              </div>
+            </div>
+          </div>
         </div>
-      </div>
-
-      {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20">
-        <ScrollIndicator isVisible={true} />
-      </div>
-    </section>
+      )}
+    </>
   );
 };
