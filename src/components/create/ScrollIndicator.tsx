@@ -34,9 +34,9 @@ export const ScrollIndicator: React.FC<ScrollIndicatorProps> = ({
           strokeWidth={2}
         />
         
-        {/* Animated orange arrow */}
+        {/* Animated orange arrow - starts at 5th position */}
         <ChevronDown 
-          className="w-6 h-6 text-crd-orange absolute top-0 animate-[slideDown_1.5s_ease-in-out_infinite]" 
+          className="w-6 h-6 text-crd-orange absolute top-[72px] animate-[slideDown_1.5s_ease-in-out_infinite]" 
           strokeWidth={2}
         />
       </div>

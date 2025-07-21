@@ -274,14 +274,14 @@ export default {
         },
         'slideDown': {
           '0%': {
-            transform: 'translateY(-120%)',
-            opacity: '0'
+            transform: 'translateY(0%)',
+            opacity: '1'
           },
           '50%': {
             opacity: '1'
           },
           '100%': {
-            transform: 'translateY(120%)',
+            transform: 'translateY(240%)',
             opacity: '0'
           }
         }
