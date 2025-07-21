@@ -100,11 +100,6 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
               <div className="text-center space-y-4 max-w-4xl mx-auto">
                 {/* Hero Text */}
                 {isTablet ? renderTabletHeroText() : renderStandardHeroText()}
-                
-                {/* Subtitle */}
-                <p className="text-lg md:text-xl text-gray-300 mb-6 max-w-2xl mx-auto leading-relaxed text-center">
-                  Transform your ideas into interactive 3D collectibles.
-                </p>
               </div>
             </div>
 
@@ -132,6 +127,15 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
                     Browse Templates
                   </CRDButton>
                 </Link>
+              </div>
+            </div>
+
+            {/* Subtitle */}
+            <div className="flex-shrink-0 pb-4 pointer-events-none relative z-[100]">
+              <div className="text-center px-6">
+                <p className="text-lg md:text-xl font-architects-daughter text-crd-primary mb-4 max-w-2xl mx-auto leading-relaxed">
+                  Transform your ideas into interactive 3D collectibles.
+                </p>
               </div>
             </div>
 
@@ -168,12 +172,7 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
                 {/* Hero Text */}
                 {isTablet ? renderTabletHeroText() : renderStandardHeroText()}
                 
-                {/* Subtitle */}
-                <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed text-center">
-                  Transform your ideas into interactive 3D collectibles.
-                </p>
-
-                {/* Action Buttons */}
+                 {/* Action Buttons */}
                 <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pointer-events-auto relative z-[100]">
                   {/* Primary CTA - Updated to use create variant */}
                   <Link to="/create/crd">
@@ -196,6 +195,13 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
                       Browse Templates
                     </CRDButton>
                   </Link>
+                </div>
+                
+                {/* Subtitle */}
+                <div className="text-center px-6 mt-6">
+                  <p className="text-lg md:text-xl font-architects-daughter text-crd-primary mb-4 max-w-2xl mx-auto leading-relaxed">
+                    Transform your ideas into interactive 3D collectibles.
+                  </p>
                 </div>
               </div>
             </div>
