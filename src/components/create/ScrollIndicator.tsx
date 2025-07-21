@@ -16,7 +16,11 @@ export const ScrollIndicator: React.FC<ScrollIndicatorProps> = ({
   return (
     <div className={`flex justify-center pointer-events-none ${className}`}>
       <div className="flex flex-col items-center relative">
-        {/* Static arrows */}
+        {/* Static arrows - darkest to lightest */}
+        <ChevronDown 
+          className="w-6 h-6 text-gray-600 -mb-3" 
+          strokeWidth={2}
+        />
         <ChevronDown 
           className="w-6 h-6 text-gray-500 -mb-3" 
           strokeWidth={2}
