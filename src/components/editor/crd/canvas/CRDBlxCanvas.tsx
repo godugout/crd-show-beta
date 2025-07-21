@@ -87,7 +87,7 @@ export const CRDBlxCanvas: React.FC<CRDBlxCanvasProps> = ({
       />
 
       {/* 3D Controls Overlay */}
-      <div className="absolute top-20 right-4 bg-black/75 rounded-lg p-3 text-white text-sm space-y-2 z-10">
+      <div className="absolute top-20 right-4 bg-black/75 rounded-lg p-3 text-white text-sm space-y-2 z-15">
         <div className="flex items-center space-x-2">
           <span className="text-xs text-gray-400">Camera:</span>
           <button 
@@ -106,7 +106,7 @@ export const CRDBlxCanvas: React.FC<CRDBlxCanvasProps> = ({
       </div>
 
       {/* Layer Controls */}
-      <div className="absolute bottom-24 left-4 bg-black/75 rounded-lg p-3 text-white z-10">
+      <div className="absolute bottom-24 left-4 bg-black/75 rounded-lg p-3 text-white z-14">
         <div className="text-xs text-gray-400 mb-2">Layers ({crdData.layers.length}/5)</div>
         <div className="flex space-x-2">
           {[1,2,3,4,5].map(layer => (
@@ -127,7 +127,7 @@ export const CRDBlxCanvas: React.FC<CRDBlxCanvasProps> = ({
 
       {/* Selection Info */}
       {selectedElement && (
-        <div className="absolute top-20 left-4 bg-green-900/90 text-white px-3 py-1 rounded text-sm z-10">
+        <div className="absolute top-20 left-4 bg-green-900/90 text-white px-3 py-1 rounded text-sm z-16">
           Selected: {selectedElement}
         </div>
       )}
