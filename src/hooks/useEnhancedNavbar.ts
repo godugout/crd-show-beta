@@ -38,7 +38,6 @@ export const useEnhancedNavbar = ({
   const lastTimestamp = useRef(Date.now());
   const scrollTimeout = useRef<NodeJS.Timeout>();
   const visibilityTimeout = useRef<NodeJS.Timeout>();
-  const showOnStopTimeout = useRef<NodeJS.Timeout>();
   const velocityHistory = useRef<number[]>([]);
 
   // Route-specific behavior
@@ -97,12 +96,9 @@ export const useEnhancedNavbar = ({
     // Set scrolled state for styling
     setIsScrolled(currentScrollY > threshold);
 
-    // Clear existing timeouts
+    // Clear existing scroll timeout
     if (scrollTimeout.current) {
       clearTimeout(scrollTimeout.current);
-    }
-    if (showOnStopTimeout.current) {
-      clearTimeout(showOnStopTimeout.current);
     }
 
     // Visibility logic
@@ -134,13 +130,6 @@ export const useEnhancedNavbar = ({
     // Set scroll idle timeout
     scrollTimeout.current = setTimeout(() => {
       setScrollMetrics(prev => ({ ...prev, isScrolling: false }));
-      
-      // Start timer to show navbar after 1.5 seconds of no scrolling
-      showOnStopTimeout.current = setTimeout(() => {
-        if (currentScrollY > threshold) {
-          updateVisibility(true);
-        }
-      }, 1500);
     }, 150);
   }, [threshold, hideOffset, scrollVelocityThreshold, showDelay, hideDelay, isSpecialRoute, calculateVelocity, updateVisibility]);
 
@@ -168,7 +157,6 @@ export const useEnhancedNavbar = ({
       window.removeEventListener('scroll', throttledScroll);
       if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
       if (visibilityTimeout.current) clearTimeout(visibilityTimeout.current);
-      if (showOnStopTimeout.current) clearTimeout(showOnStopTimeout.current);
     };
   }, [handleScroll]);
 
