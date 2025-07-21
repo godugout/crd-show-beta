@@ -10,7 +10,7 @@ import { CRDLayoutTab } from './tabs/CRDLayoutTab';
 import { CRDDesignTab } from './tabs/CRDDesignTab';
 import { CRDContentTab } from './tabs/CRDContentTab';
 import { CRDExportTab } from './tabs/CRDExportTab';
-import { CRDCanvas } from './canvas/CRDCanvas';
+import { SmartCRDCanvas } from './canvas/SmartCRDCanvas';
 import { CRDSidebar } from './sidebar/CRDSidebar';
 import { CollapsibleSidebar } from './sidebar/CollapsibleSidebar';
 import { LeftSidebarContent, LeftSidebarCollapsedContent } from './sidebar/LeftSidebarContent';
@@ -270,7 +270,7 @@ export const CRDCardCreator: React.FC<CRDCardCreatorProps> = ({
                 selectedLayer={selectedLayer}
               />
             ) : (
-              <CRDCanvas 
+              <SmartCRDCanvas 
                 template={selectedTemplate} 
                 colorPalette={colorPalette} 
                 typography={typography} 
