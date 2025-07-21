@@ -104,6 +104,15 @@
     animation: gradient-flow 4s ease infinite;
   }
 
+  /* Animation delays */
+  .animation-delay-200 {
+    animation-delay: 0.2s;
+  }
+
+  .animation-delay-400 {
+    animation-delay: 0.4s;
+  }
+
   /* Performance optimizations */
   .gpu-accelerated {
     transform: translateZ(0);
