@@ -11,60 +11,80 @@ export const CircularProgressIndicator: React.FC<CircularProgressIndicatorProps>
   size = 16, 
   className = '' 
 }) => {
-  // Calculate positions for 8 arrows in a circle
-  const arrows = Array.from({ length: 8 }, (_, i) => {
-    const angle = (i * 45) - 90; // Start from top (-90°), increment by 45°
+  // Create more arrows for a denser ring effect
+  const arrowCount = 12;
+  const arrows = Array.from({ length: arrowCount }, (_, i) => {
+    const angle = (i * (360 / arrowCount)) - 90; // Start from top, distribute evenly
     const radian = (angle * Math.PI) / 180;
-    const radius = size * 0.6; // Radius relative to size
+    const radius = size * 0.35; // Distance from center
     
+    // Calculate arrow position
     const x = Math.cos(radian) * radius;
     const y = Math.sin(radian) * radius;
     
     return {
       x,
       y,
-      rotation: angle + 90, // Point outward from center
-      delay: i * 0.125, // Stagger animation by 1/8 second
+      rotation: angle + 90, // Rotate arrow to point radially outward
+      delay: i * (1.5 / arrowCount) // Stagger animation delays
     };
   });
 
   return (
     <div 
-      className={`relative inline-block ${className}`}
+      className={`relative inline-flex ${className}`}
       style={{ width: size, height: size }}
     >
-      {/* Gradient background ring */}
-      <div
-        className="absolute inset-0 rounded-full animate-[circularGradientFlow_2s_linear_infinite]"
+      {/* Rotating gradient background ring */}
+      <div 
+        className="absolute inset-0 rounded-full animate-circularGradientFlow"
         style={{
-          background: `conic-gradient(from 0deg, 
-            hsl(var(--crd-orange)), 
-            hsl(var(--crd-green)), 
-            hsl(var(--crd-blue)), 
-            hsl(var(--crd-orange))
-          )`,
           width: size,
           height: size,
-          opacity: 0.3,
+          background: `conic-gradient(
+            from 0deg,
+            #F97316 0deg,
+            #45B26B 120deg,
+            #3772FF 240deg,
+            #F97316 360deg
+          )`,
+          mask: `radial-gradient(circle, transparent ${size * 0.25}px, black ${size * 0.3}px, black ${size * 0.45}px, transparent ${size * 0.5}px)`,
+          WebkitMask: `radial-gradient(circle, transparent ${size * 0.25}px, black ${size * 0.3}px, black ${size * 0.45}px, transparent ${size * 0.5}px)`
         }}
       />
       
-      {/* Arrow icons positioned in circle */}
-      {arrows.map((arrow, index) => (
-        <ChevronDown
-          key={index}
-          className="absolute text-crd-orange animate-[arrowPulse_1.5s_ease-in-out_infinite]"
+      {/* Ring of arrows */}
+      <div className="absolute inset-0 flex items-center justify-center">
+        {arrows.map((arrow, index) => (
+          <ChevronDown
+            key={index}
+            className="absolute text-white animate-arrowPulse"
+            style={{
+              width: size * 0.2,
+              height: size * 0.2,
+              left: `calc(50% + ${arrow.x}px - ${size * 0.1}px)`,
+              top: `calc(50% + ${arrow.y}px - ${size * 0.1}px)`,
+              transform: `rotate(${arrow.rotation}deg)`,
+              animationDelay: `${arrow.delay}s`,
+              filter: 'drop-shadow(0 0 2px rgba(0,0,0,0.5))',
+              strokeWidth: 2.5
+            }}
+          />
+        ))}
+      </div>
+      
+      {/* Center dot for visual anchor */}
+      <div 
+        className="absolute inset-0 flex items-center justify-center"
+      >
+        <div 
+          className="rounded-full bg-white/10"
           style={{
-            width: size * 0.25,
-            height: size * 0.25,
-            left: '50%',
-            top: '50%',
-            transform: `translate(-50%, -50%) translate(${arrow.x}px, ${arrow.y}px) rotate(${arrow.rotation}deg)`,
-            animationDelay: `${arrow.delay}s`,
+            width: size * 0.2,
+            height: size * 0.2
           }}
-          strokeWidth={2}
         />
-      ))}
+      </div>
     </div>
   );
 };
