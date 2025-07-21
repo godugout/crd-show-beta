@@ -1,6 +1,5 @@
-
 import React from 'react';
-import { ChevronDown } from 'lucide-react';
+import { ChevronRight } from 'lucide-react';
 
 interface CircularProgressIndicatorProps {
   size?: number;
@@ -11,12 +10,12 @@ export const CircularProgressIndicator: React.FC<CircularProgressIndicatorProps>
   size = 16, 
   className = '' 
 }) => {
-  // Create more arrows for a denser ring effect
+  // Create arrows arranged in a circle, each pointing to the next position
   const arrowCount = 12;
   const arrows = Array.from({ length: arrowCount }, (_, i) => {
-    const angle = (i * (360 / arrowCount)) - 90; // Start from top, distribute evenly
+    const angle = (i * (360 / arrowCount)); // Distribute evenly around circle
     const radian = (angle * Math.PI) / 180;
-    const radius = size * 0.4; // Position arrows on the outer circle line
+    const radius = size * 0.4; // Position on outer circle line
     
     // Calculate arrow position
     const x = Math.cos(radian) * radius;
@@ -25,7 +24,7 @@ export const CircularProgressIndicator: React.FC<CircularProgressIndicatorProps>
     return {
       x,
       y,
-      rotation: angle, // Each arrow points tangentially around the circle (clockwise)
+      rotation: angle + 90, // Each arrow points clockwise around the circle
       delay: i * (1.5 / arrowCount) // Stagger animation delays
     };
   });
@@ -53,17 +52,17 @@ export const CircularProgressIndicator: React.FC<CircularProgressIndicatorProps>
         }}
       />
       
-      {/* Ring of arrows */}
+      {/* Ring of arrows - each pointing to next position */}
       <div className="absolute inset-0 flex items-center justify-center">
         {arrows.map((arrow, index) => (
-          <ChevronDown
+          <ChevronRight
             key={index}
             className="absolute text-white animate-arrowPulse"
             style={{
-              width: size * 0.2,
-              height: size * 0.2,
-              left: `calc(50% + ${arrow.x}px - ${size * 0.1}px)`,
-              top: `calc(50% + ${arrow.y}px - ${size * 0.1}px)`,
+              width: size * 0.15,
+              height: size * 0.15,
+              left: `calc(50% + ${arrow.x}px - ${size * 0.075}px)`,
+              top: `calc(50% + ${arrow.y}px - ${size * 0.075}px)`,
               transform: `rotate(${arrow.rotation}deg)`,
               animationDelay: `${arrow.delay}s`,
               filter: 'drop-shadow(0 0 2px rgba(0,0,0,0.5))',
@@ -80,8 +79,8 @@ export const CircularProgressIndicator: React.FC<CircularProgressIndicatorProps>
         <div 
           className="rounded-full bg-white/10"
           style={{
-            width: size * 0.2,
-            height: size * 0.2
+            width: size * 0.15,
+            height: size * 0.15
           }}
         />
       </div>
