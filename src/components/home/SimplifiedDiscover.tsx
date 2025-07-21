@@ -92,7 +92,7 @@ export const SimplifiedDiscover = () => {
                 Cards Rendered Digitally<span className="font-caveat text-gray-400 text-lg sm:text-xl lg:text-2xl align-super">™</span>
               </h2>
               <p className="text-themed-secondary text-base sm:text-lg max-w-2xl mx-auto">
-                Explore the latest cards from creators around the world
+                Explore the latest cards from creators around the world.
               </p>
             </div>
             
@@ -117,7 +117,7 @@ export const SimplifiedDiscover = () => {
               Cards Rendered Digitally<span className="font-caveat text-gray-400 text-lg sm:text-xl lg:text-2xl align-super">™</span>
             </h2>
             <p className="text-themed-secondary text-base sm:text-lg max-w-2xl mx-auto px-2">
-              Explore the latest cards from creators around the world
+              Explore the latest cards from creators around the world.
             </p>
           </div>
         </div>
