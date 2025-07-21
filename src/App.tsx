@@ -27,7 +27,7 @@ const CreateEnhanced = lazy(() => import('@/pages/CreateEnhanced'));
 const CreateStory = lazy(() => import('@/pages/CreateStory'));
 const CreateCRD = lazy(() => import('@/pages/CreateCRD'));
 const Gallery = lazy(() => import('@/pages/Gallery'));
-// const Studio = lazy(() => import('@/pages/Studio')); // Removed for V1
+const Studio = lazy(() => import('@/pages/Studio'));
 const Collections = lazy(() => import('@/pages/Collections'));
 const CollectionsCatalog = lazy(() => import('@/pages/CollectionsCatalog'));
 
@@ -62,6 +62,14 @@ const AdminLoading = () => (
   />
 );
 
+const StudioLoading = () => (
+  <LoadingState 
+    fullPage 
+    message="Loading studio..." 
+    size="lg"
+    className="bg-crd-darkest"
+  />
+);
 
 const App = () => {
   // Main App Error Boundary wrapper
@@ -147,7 +155,26 @@ const App = () => {
                       </RouteErrorBoundary>
                     } 
                   />
-                  {/* Studio routes removed for V1 */}
+                  <Route 
+                    path="/studio/demo" 
+                    element={
+                      <RouteErrorBoundary>
+                        <Suspense fallback={<StudioLoading />}>
+                          <Studio />
+                        </Suspense>
+                      </RouteErrorBoundary>
+                    } 
+                  />
+                  <Route 
+                    path="/studio/demo/:cardId" 
+                    element={
+                      <RouteErrorBoundary>
+                        <Suspense fallback={<StudioLoading />}>
+                          <Studio />
+                        </Suspense>
+                      </RouteErrorBoundary>
+                    } 
+                  />
                   <Route 
                     path="/upload-test" 
                     element={

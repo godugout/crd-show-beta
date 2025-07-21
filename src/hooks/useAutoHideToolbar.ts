@@ -15,7 +15,7 @@ interface UseAutoHideToolbarReturn {
 }
 
 export const useAutoHideToolbar = (): UseAutoHideToolbarReturn => {
-  const [visibilityState, setVisibilityState] = useState<VisibilityState>('visible');
+  const [visibilityState, setVisibilityState] = useState<VisibilityState>('hidden');
   const [isHoveringToolbar, setIsHoveringToolbar] = useState(false);
   const [isHoveringHotZone, setIsHoveringHotZone] = useState(false);
   

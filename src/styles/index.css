@@ -5,7 +5,6 @@
 @import './animations.css';  /* All keyframes here */
 @import './utilities.css';
 @import './components.css';
-@import './cardTemplates.css';  /* CRD V1 Template Styles */
 
 /* Legacy imports - will be refactored */
 @import './base.css';

@@ -1,4 +1,6 @@
-// Studio V1 Components (2D Only)
+// Studio 3D Components
+export { StudioCardManager } from './StudioCardManager';
+export { default as Card3DPositioned } from './components/Card3DPositioned';
 export { default as StudioScene } from './components/StudioScene';
 
 // Studio Hooks

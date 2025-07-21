@@ -1,8 +1,11 @@
 import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { CRDCanvasGrid } from './CRDCanvasGrid';
+import { CRDToolbar } from '../toolbar/CRDToolbar';
+import { ToolbarHotZone } from '../toolbar/ToolbarHotZone';
 import { CRDFrameRenderer } from '../frame/CRDFrameRenderer';
 import { CRDBottomInfoBar } from './CRDBottomInfoBar';
 import { useGridPreferences } from '@/hooks/useGridPreferences';
+import { useAutoHideToolbar } from '@/hooks/useAutoHideToolbar';
 interface CRDCanvasProps {
   template: string;
   colorPalette: string;
@@ -53,7 +56,15 @@ export const CRDCanvas: React.FC<CRDCanvasProps> = ({
   // Grid preferences with persistence
   const { gridType, showGrid, setGridType, setShowGrid, isLoaded } = useGridPreferences();
   
-  // Canvas controls (handled by SmartCRDCanvas parent now)
+  // Auto-hide toolbar
+  const { 
+    getToolbarClasses, 
+    getHotZoneProps, 
+    onMouseEnter: onToolbarMouseEnter, 
+    onMouseLeave: onToolbarMouseLeave 
+  } = useAutoHideToolbar();
+
+  // Canvas controls
   const handleZoomIn = useCallback(() => {
     setZoom(prev => Math.min(prev + 25, 300));
   }, []);
@@ -242,6 +253,28 @@ export const CRDCanvas: React.FC<CRDCanvasProps> = ({
     return overlayEffects.join(' ');
   };
   return <div className="relative h-full w-full overflow-hidden bg-transparent flex flex-col">
+      {/* Hot Zone for Toolbar Auto-Show */}
+      <ToolbarHotZone {...getHotZoneProps()} />
+      
+      {/* Toolbar */}
+      <CRDToolbar 
+        zoom={zoom} 
+        onZoomIn={handleZoomIn} 
+        onZoomOut={handleZoomOut} 
+        onZoomReset={handleZoomReset} 
+        showGrid={showGrid} 
+        onGridToggle={() => setShowGrid(!showGrid)} 
+        gridType={gridType} 
+        onGridTypeChange={setGridType} 
+        showRulers={showRulers} 
+        onRulersToggle={() => setShowRulers(!showRulers)}
+        isLocked={isLocked}
+        onLockToggle={handleLockToggle}
+        className={getToolbarClasses()}
+        onMouseEnter={onToolbarMouseEnter}
+        onMouseLeave={onToolbarMouseLeave}
+      />
+
       {/* Grid Background */}
       <CRDCanvasGrid showGrid={showGrid} gridType={gridType} gridSize={20} />
 
