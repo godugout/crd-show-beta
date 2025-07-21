@@ -1,3 +1,4 @@
+
 import React, { useState } from 'react';
 import { FloatingCard3D } from '@/components/ui/FloatingCard3D';
 import { StarsBackground } from '@/components/ui/stars';
@@ -31,7 +32,7 @@ export const ResponsiveCreate3DLayout: React.FC<ResponsiveCreate3DLayoutProps> =
 
   return (
     <div 
-      className={`fixed inset-0 z-0 ${className}`}
+      className={className}
       style={{ cursor: 'grab' }}
       onMouseDown={(e) => {
         // Don't capture events in the bottom scroll zone (starting from scroll indicator)
