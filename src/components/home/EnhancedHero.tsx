@@ -377,7 +377,7 @@ export const EnhancedHero: React.FC = () => {
                 Featured Cards
               </h2>
               <p className="text-crd-lightGray text-base sm:text-lg lg:text-xl xl:text-2xl max-w-4xl mx-auto">
-                Discover amazing cards from our community
+                Discover amazing cards from our community.
               </p>
             </div>
             

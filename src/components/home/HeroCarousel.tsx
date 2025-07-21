@@ -48,7 +48,7 @@ export const HeroCarousel: React.FC = () => {
             Featured Cards
           </Typography>
           <Typography variant="body" className="text-crd-mediumGray">
-            Discover amazing cards from our community
+            Discover amazing cards from our community.
           </Typography>
         </div>
         
