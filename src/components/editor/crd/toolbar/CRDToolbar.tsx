@@ -64,6 +64,7 @@ export const CRDToolbar: React.FC<CRDToolbarProps> = ({
   onMouseEnter,
   onMouseLeave
 }) => {
+  console.log('🔧 CRDToolbar rendering - is3DMode:', is3DMode, 'onToggle3D:', !!onToggle3D);
   return <div
     className={className || "absolute top-16 left-1/2 transform -translate-x-1/2 z-20 bg-crd-darker/80 backdrop-blur-sm border border-crd-mediumGray/30 rounded-lg shadow-lg"}
     onMouseEnter={onMouseEnter}

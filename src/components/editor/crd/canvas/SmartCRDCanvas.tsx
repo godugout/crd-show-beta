@@ -124,6 +124,8 @@ export const SmartCRDCanvas: React.FC<SmartCRDCanvasProps> = (props) => {
 
   const currentCRDData = props.crdData || defaultCRDData;
 
+  console.log('🔍 SmartCRDCanvas rendering - is3DMode:', is3DMode, 'handleToggle3D:', !!handleToggle3D);
+  
   return (
     <div className="relative h-full w-full overflow-hidden bg-transparent flex flex-col">
       {/* Hot Zone for Toolbar Auto-Show */}
