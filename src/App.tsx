@@ -27,7 +27,7 @@ const CreateEnhanced = lazy(() => import('@/pages/CreateEnhanced'));
 const CreateStory = lazy(() => import('@/pages/CreateStory'));
 const CreateCRD = lazy(() => import('@/pages/CreateCRD'));
 const Gallery = lazy(() => import('@/pages/Gallery'));
-const Studio = lazy(() => import('@/pages/Studio'));
+// const Studio = lazy(() => import('@/pages/Studio')); // Removed for V1
 const Collections = lazy(() => import('@/pages/Collections'));
 const CollectionsCatalog = lazy(() => import('@/pages/CollectionsCatalog'));
 
@@ -155,26 +155,7 @@ const App = () => {
                       </RouteErrorBoundary>
                     } 
                   />
-                  <Route 
-                    path="/studio/demo" 
-                    element={
-                      <RouteErrorBoundary>
-                        <Suspense fallback={<StudioLoading />}>
-                          <Studio />
-                        </Suspense>
-                      </RouteErrorBoundary>
-                    } 
-                  />
-                  <Route 
-                    path="/studio/demo/:cardId" 
-                    element={
-                      <RouteErrorBoundary>
-                        <Suspense fallback={<StudioLoading />}>
-                          <Studio />
-                        </Suspense>
-                      </RouteErrorBoundary>
-                    } 
-                  />
+                  {/* Studio routes removed for V1 */}
                   <Route 
                     path="/upload-test" 
                     element={

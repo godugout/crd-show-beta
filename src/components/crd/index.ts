@@ -1,16 +1,7 @@
-// Main CRD System Exports
-export { CRDViewer } from './CRDViewer';
-export { Card3DCore } from './core/Card3DCore';
-export { MaterialSystem } from './materials/MaterialSystem';
-export { AnimationController } from './animation/AnimationController';
+// Main CRD System Exports - V1 (2D Only)
 export { LightingRig } from './lighting/LightingRig';
 export { CRDControlPanel } from './controls/CRDControlPanel';
 export { CRDStickyFooter } from './controls/CRDStickyFooter';
-
-// Orbital Material System
-export { OrbitalMaterialSystem } from './orbital/OrbitalMaterialSystem';
-export { OrbitalRing } from './orbital/OrbitalRing';
-export { MaterialSatellite } from './orbital/MaterialSatellite';
 
 // Premium Styles System
 export { StyleSelector, StyleTile } from './styles/StyleSelector';

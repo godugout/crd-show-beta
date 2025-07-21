@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useResponsiveBreakpoints } from '@/hooks/useResponsiveBreakpoints';
-import { ResponsiveCreate3DLayout } from './ResponsiveCreate3DLayout';
 import { CRDButton } from '@/components/ui/design-system';
 import { PixelDigital } from '@/components/ui/PixelDigital';
 import { ScrollIndicator } from './ScrollIndicator';
@@ -83,14 +82,8 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
     <>
       {isShortScreen ? (
         // Short screen layout - Compact design for limited vertical space
-        <div id="animation-section" className="relative w-full h-screen overflow-hidden">
-          {/* Full Screen 3D Background Layer */}
-          <ResponsiveCreate3DLayout
-            isPaused={isPaused}
-            onTogglePause={handleTogglePause}
-            className="fixed inset-0 z-0"
-            onAnimationComplete={onAnimationComplete}
-          />
+        <div id="animation-section" className="relative w-full h-screen overflow-hidden bg-gradient-to-br from-crd-darkest via-crd-dark to-crd-darkest">
+          {/* V1 Simple Background */}
 
           {/* Overlay Content Layer - Positioned for short screens */}
           <div className="relative z-10 h-full flex flex-col pointer-events-none">
@@ -147,14 +140,8 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
         </div>
       ) : (
         // Normal tall screen layout - Updated with new button variants
-        <div id="animation-section" className="relative w-full min-h-screen">
-          {/* Full Screen 3D Background Layer */}
-          <ResponsiveCreate3DLayout
-            isPaused={isPaused}
-            onTogglePause={handleTogglePause}
-            className="fixed inset-0 z-0"
-            onAnimationComplete={onAnimationComplete}
-          />
+        <div id="animation-section" className="relative w-full min-h-screen bg-gradient-to-br from-crd-darkest via-crd-dark to-crd-darkest">
+          {/* V1 Simple Background */}
 
           {/* Overlay Content Layer - Positioned higher for normal screens */}
           <div className="relative z-10 min-h-screen flex items-start justify-center px-6 pt-40 pointer-events-none">
