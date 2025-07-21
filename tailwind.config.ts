@@ -271,6 +271,19 @@ export default {
           '100%': {
             transform: 'translateX(-50%)'
           }
+        },
+        'slideDown': {
+          '0%': {
+            transform: 'translateY(-120%)',
+            opacity: '0'
+          },
+          '50%': {
+            opacity: '1'
+          },
+          '100%': {
+            transform: 'translateY(120%)',
+            opacity: '0'
+          }
         }
       },
       animation: {

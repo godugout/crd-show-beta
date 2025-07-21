@@ -15,18 +15,24 @@ export const ScrollIndicator: React.FC<ScrollIndicatorProps> = ({
 
   return (
     <div className={`flex justify-center pointer-events-none ${className}`}>
-      <div className="flex flex-col items-center animate-bounce">
-        {/* Three stacked arrows close together */}
+      <div className="flex flex-col items-center relative">
+        {/* Static arrows */}
         <ChevronDown 
-          className="w-6 h-6 text-gray-300 -mb-3" 
+          className="w-6 h-6 text-gray-500 -mb-3" 
           strokeWidth={2}
         />
         <ChevronDown 
-          className="w-6 h-6 text-gray-300 -mb-3" 
+          className="w-6 h-6 text-gray-400 -mb-3" 
           strokeWidth={2}
         />
         <ChevronDown 
           className="w-6 h-6 text-gray-300" 
+          strokeWidth={2}
+        />
+        
+        {/* Animated orange arrow */}
+        <ChevronDown 
+          className="w-6 h-6 text-crd-orange absolute top-0 animate-[slideDown_1.5s_ease-in-out_infinite]" 
           strokeWidth={2}
         />
       </div>
