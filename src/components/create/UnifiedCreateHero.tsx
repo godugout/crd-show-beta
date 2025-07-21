@@ -133,7 +133,7 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
             {/* Subtitle */}
             <div className="flex-shrink-0 pb-4 pointer-events-none relative z-[100]">
               <div className="text-center px-6">
-                <p className="text-lg md:text-xl font-architects-daughter text-crd-primary mb-4 max-w-2xl mx-auto leading-relaxed">
+                <p className="text-lg md:text-xl font-caveat text-crd-orange mb-4 max-w-2xl mx-auto leading-relaxed">
                   Transform your ideas into interactive 3D collectibles.
                 </p>
               </div>
@@ -199,7 +199,7 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
                 
                 {/* Subtitle */}
                 <div className="text-center px-6 mt-6">
-                  <p className="text-lg md:text-xl font-architects-daughter text-crd-primary mb-4 max-w-2xl mx-auto leading-relaxed">
+                  <p className="text-lg md:text-xl font-caveat text-crd-orange mb-4 max-w-2xl mx-auto leading-relaxed">
                     Transform your ideas into interactive 3D collectibles.
                   </p>
                 </div>
