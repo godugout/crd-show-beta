@@ -16,7 +16,7 @@ export const CircularProgressIndicator: React.FC<CircularProgressIndicatorProps>
   const arrows = Array.from({ length: arrowCount }, (_, i) => {
     const angle = (i * (360 / arrowCount)) - 90; // Start from top, distribute evenly
     const radian = (angle * Math.PI) / 180;
-    const radius = size * 0.35; // Distance from center
+    const radius = size * 0.4; // Position arrows on the outer circle line
     
     // Calculate arrow position
     const x = Math.cos(radian) * radius;
@@ -48,8 +48,8 @@ export const CircularProgressIndicator: React.FC<CircularProgressIndicatorProps>
             #3772FF 240deg,
             #F97316 360deg
           )`,
-          mask: `radial-gradient(circle, transparent ${size * 0.25}px, black ${size * 0.3}px, black ${size * 0.45}px, transparent ${size * 0.5}px)`,
-          WebkitMask: `radial-gradient(circle, transparent ${size * 0.25}px, black ${size * 0.3}px, black ${size * 0.45}px, transparent ${size * 0.5}px)`
+          mask: `radial-gradient(circle, transparent ${size * 0.28}px, black ${size * 0.32}px, black ${size * 0.48}px, transparent ${size * 0.52}px)`,
+          WebkitMask: `radial-gradient(circle, transparent ${size * 0.28}px, black ${size * 0.32}px, black ${size * 0.48}px, transparent ${size * 0.52}px)`
         }}
       />
       
