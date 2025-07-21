@@ -71,19 +71,6 @@ export const CircularProgressIndicator: React.FC<CircularProgressIndicatorProps>
           />
         ))}
       </div>
-      
-      {/* Center dot for visual anchor */}
-      <div 
-        className="absolute inset-0 flex items-center justify-center"
-      >
-        <div 
-          className="rounded-full bg-white/10"
-          style={{
-            width: size * 0.15,
-            height: size * 0.15
-          }}
-        />
-      </div>
     </div>
   );
 };
