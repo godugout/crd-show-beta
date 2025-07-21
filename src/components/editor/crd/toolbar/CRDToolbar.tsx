@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { ZoomIn, ZoomOut, RotateCcw, Grid3x3, LayoutGrid, Grid, Diamond, Construction, Camera, X, Ruler, Edit3, ChevronDown, Lock, Unlock } from 'lucide-react';
+import { ZoomIn, ZoomOut, RotateCcw, Grid3x3, LayoutGrid, Grid, Diamond, Construction, Camera, X, Ruler, Edit3, ChevronDown, Lock, Unlock, Box, Layers } from 'lucide-react';
 import { CRDButton } from '@/components/ui/design-system/Button';
 import {
   DropdownMenu,
@@ -20,6 +20,9 @@ interface CRDToolbarProps {
   onRulersToggle: () => void;
   isLocked: boolean;
   onLockToggle: () => void;
+  // CRDBLX 3D mode
+  is3DMode?: boolean;
+  onToggle3D?: () => void;
   // Auto-hide props
   className?: string;
   onMouseEnter?: () => void;
@@ -55,6 +58,8 @@ export const CRDToolbar: React.FC<CRDToolbarProps> = ({
   onRulersToggle,
   isLocked,
   onLockToggle,
+  is3DMode = false,
+  onToggle3D,
   className,
   onMouseEnter,
   onMouseLeave
@@ -66,10 +71,39 @@ export const CRDToolbar: React.FC<CRDToolbarProps> = ({
   >
       <div className="px-4 py-2">
         <div className="flex items-center gap-6 h-10">
-          {/* View Controls */}
+          {/* Mode Toggle */}
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2">
-              <span className="text-xs text-crd-lightGray font-medium">View:</span>
+              <span className="text-xs text-crd-lightGray font-medium">Mode:</span>
+              
+              {onToggle3D && (
+                <CRDButton 
+                  variant="outline" 
+                  size="sm" 
+                  onClick={onToggle3D} 
+                  className={`h-8 px-3 bg-white/5 backdrop-blur-sm border-white/20 ${is3DMode ? 'border-purple-400/50 bg-purple-500/20' : ''}`} 
+                  title={is3DMode ? "Switch to 2D editing" : "Switch to 3D CRDBLX builder"}
+                >
+                  {is3DMode ? (
+                    <>
+                      <Box className="w-3 h-3 mr-1 text-purple-400" />
+                      <span className="text-xs text-purple-400">CRDBLX</span>
+                    </>
+                  ) : (
+                    <>
+                      <Edit3 className="w-3 h-3 mr-1 text-blue-400" />
+                      <span className="text-xs text-blue-400">2D</span>
+                    </>
+                  )}
+                </CRDButton>
+              )}
+            </div>
+
+            <div className="w-px h-6 bg-crd-mediumGray/30" />
+
+            {/* View Controls */}
+            <div className="flex items-center gap-2">
+              <span className="text-xs text-crd-lightGray font-medium">Grid:</span>
               <DropdownMenu>
                  <DropdownMenuTrigger asChild>
                    <CRDButton variant="outline" size="sm" className="h-8 w-8 p-0 bg-white/5 backdrop-blur-sm border-white/20" title="Select Grid Type">
