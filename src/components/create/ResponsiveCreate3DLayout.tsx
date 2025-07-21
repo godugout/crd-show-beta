@@ -63,53 +63,6 @@ export const ResponsiveCreate3DLayout: React.FC<ResponsiveCreate3DLayoutProps> =
         </StarsBackground>
       </div>
 
-      {/* SCROLL PRIORITY ZONE - Complete bottom area for page scrolling only */}
-      <div 
-        id="scroll-priority-zone"
-        className="absolute right-0 w-full z-50 pointer-events-auto"
-        style={{ 
-          bottom: 0,
-          left: '200px', // Leave space for buttons on the left
-          height: '180px', // Cover from scroll indicator to bottom
-          background: 'transparent',
-          cursor: 'default'
-        }}
-        onMouseEnter={() => {
-          document.body.style.cursor = 'default';
-        }}
-        onMouseLeave={() => {
-          document.body.style.cursor = '';
-        }}
-        onWheel={(e) => {
-          // Simply allow native scrolling - no interference at all
-          e.stopPropagation();
-          // Don't preventDefault - let browser handle scroll naturally
-        }}
-        onMouseDown={(e) => {
-          // Block 3D controls but don't prevent default scroll behavior
-          e.stopPropagation();
-        }}
-        onMouseMove={(e) => {
-          // Block 3D controls but don't prevent scroll
-          e.stopPropagation();
-        }}
-        onMouseUp={(e) => {
-          // Block 3D controls
-          e.stopPropagation();
-        }}
-        onClick={(e) => {
-          // Block clicks to 3D
-          e.stopPropagation();
-        }}
-        onTouchStart={(e) => {
-          // Block touch controls for 3D
-          e.stopPropagation();
-        }}
-        onTouchMove={(e) => {
-          // Allow touch scrolling
-          e.stopPropagation();
-        }}
-      />
 
       {/* Alignment Tutorial Overlay */}
       <AlignmentTutorial 
