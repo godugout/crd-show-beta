@@ -128,11 +128,9 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
                   </CRDButton>
                 </Link>
               </div>
-            </div>
-
-            {/* Subtitle */}
-            <div className="flex-shrink-0 pb-4 pointer-events-none relative z-[100]">
-              <div className="text-center px-6">
+              
+              {/* Subtitle */}
+              <div className="text-center px-6 mt-4">
                 <p className="text-lg md:text-xl font-caveat text-crd-orange mb-4 max-w-2xl mx-auto leading-relaxed">
                   Transform your ideas into interactive 3D collectibles.
                 </p>
@@ -198,7 +196,7 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
                 </div>
                 
                 {/* Subtitle */}
-                <div className="text-center px-6 mt-6">
+                <div className="text-center px-6 mt-4">
                   <p className="text-lg md:text-xl font-caveat text-crd-orange mb-4 max-w-2xl mx-auto leading-relaxed">
                     Transform your ideas into interactive 3D collectibles.
                   </p>
