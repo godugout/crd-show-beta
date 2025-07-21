@@ -42,7 +42,7 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
          CUT, CRAFT & CREATE DIGITALLY
        </div>
       
-      <h1 className="font-architects-daughter leading-tight mb-8 font-light">
+      <h1 className="leading-tight mb-8 font-light">
         <div className="text-xl md:text-2xl lg:text-3xl text-gray-400 mb-2 whitespace-nowrap">
           From <span className="paper-scraps">paper scraps</span> and <span className="cardboard-text">cardboard</span> to
         </div>
@@ -65,7 +65,7 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
          CUT, CRAFT & CREATE DIGITALLY
        </div>
       
-      <h1 className="font-architects-daughter leading-tight mb-8 font-light">
+      <h1 className="leading-tight mb-8 font-light">
         <div className="text-xl md:text-2xl lg:text-3xl text-gray-400 mb-2 whitespace-nowrap">
           From <span className="paper-scraps">paper scraps</span> and <span className="cardboard-text">cardboard</span> to
         </div>
@@ -102,7 +102,7 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
                 {isTablet ? renderTabletHeroText() : renderStandardHeroText()}
                 
                 {/* Subtitle */}
-                <p className="font-architects-daughter text-xl md:text-2xl text-crd-green mb-6 max-w-2xl mx-auto leading-relaxed text-center">
+                <p className="text-lg md:text-xl text-gray-300 mb-6 max-w-2xl mx-auto leading-relaxed text-center">
                   Transform your ideas into interactive 3D collectibles.
                 </p>
               </div>
@@ -169,7 +169,7 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
                 {isTablet ? renderTabletHeroText() : renderStandardHeroText()}
                 
                 {/* Subtitle */}
-                <p className="font-architects-daughter text-2xl md:text-3xl text-crd-green mb-12 max-w-3xl mx-auto leading-relaxed text-center">
+                <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed text-center">
                   Transform your ideas into interactive 3D collectibles.
                 </p>
 

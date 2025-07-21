@@ -327,7 +327,6 @@ export default {
         'bouncy': ['Fredoka One', 'cursive'], // alias for fredoka
         'playful': ['Caveat', 'cursive'], // alias for caveat
         'fun': ['Chewy', 'cursive'], // alias for chewy
-        'architects-daughter': ['Architects Daughter', 'cursive'], // Hand-drawn style font
       },
       fontSize: {
         'display': ['3rem', { lineHeight: '1.1', fontWeight: '800' }], // 48px
