@@ -60,7 +60,7 @@
   
   /* Interactive theming */
   .hover-themed {
-    @apply transition-all duration-200 hover:bg-crd-mediumGray/20 hover:text-white;
+    @apply transition-all duration-200 hover:bg-crd-mediumGray hover:text-white;
   }
   
   /* Button theming */
@@ -75,17 +75,17 @@
   }
   
   .btn-themed-ghost {
-    @apply bg-transparent text-crd-lightGray hover:bg-crd-mediumGray/20 hover:text-white border border-crd-mediumGray/30 rounded-lg;
+    @apply bg-transparent text-crd-lightGray hover:bg-crd-mediumGray hover:text-white border border-crd-mediumGray rounded-lg;
   }
   
   /* Card theming */
   .card-themed {
-    @apply bg-crd-darkGray border border-crd-mediumGray/30 rounded-lg;
+    @apply bg-crd-darkGray border border-crd-mediumGray rounded-lg;
   }
   
   /* Focus theming */
   .focus-themed {
-    @apply focus:outline-none focus:ring-2 focus:ring-crd-blue/50 focus:ring-offset-2 focus:ring-offset-crd-darkest;
+    @apply focus:outline-none focus:ring-2 focus:ring-crd-blue focus:ring-offset-2 focus:ring-offset-crd-darkest;
   }
 }
 
