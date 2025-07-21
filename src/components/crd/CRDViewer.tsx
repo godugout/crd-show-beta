@@ -188,7 +188,7 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
   const [showTemplateControls, setShowTemplateControls] = useState(false);
   
   // Glass case toggle state
-  const [currentEnableGlassCase, setCurrentEnableGlassCase] = useState(enableGlassCase);
+  const [currentEnableGlassCase, setCurrentEnableGlassCase] = useState(false); // Always start with case off for create page
 
   // Animation State
   const [currentMode, setCurrentMode] = useState<AnimationMode>(initialMode);
@@ -598,6 +598,9 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
     spaceEnvironment, 
     onSpaceEnvironmentChange: !!onSpaceEnvironmentChange 
   });
+
+  // Force case to be 'none' for the create page
+  const forcedCaseStyle = 'none';
 
   return (
     <div className={`overflow-hidden relative ${className}`}>
