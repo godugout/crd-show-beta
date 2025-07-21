@@ -26,10 +26,12 @@ const CreateEnhanced: React.FC = () => {
         {/* Unified Responsive Hero Section */}
         <CreatePageHero onAnimationComplete={handleAnimationFinished} />
         
-        {/* Creation Options Section - Always show but with responsive design */}
-        <div className="w-full">
-          <CreateOptionsSection />
-        </div>
+        {/* Creation Options Section - Only show on desktop with sufficient height */}
+        {!isMobile && !isShortScreen && (
+          <div className="hidden lg:block">
+            <CreateOptionsSection />
+          </div>
+        )}
         
         {/* Kobe Reward System */}
         <KobeReward 
