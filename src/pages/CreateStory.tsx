@@ -1,5 +1,5 @@
 import React from 'react';
-import { RevolutionaryCardCreatorWrapper } from '@/components/editor/revolutionary/RevolutionaryCardCreatorWrapper';
+import { CRDCardCreatorWrapper } from '@/components/editor/crd/CRDCardCreatorWrapper';
 import { useNavigate } from 'react-router-dom';
 import { ErrorBoundary } from '@/components/common/ErrorBoundary';
 import { SubscriptionBanner } from '@/components/monetization/SubscriptionBanner';
@@ -27,7 +27,7 @@ const CreateStory = () => {
       </div>
       
       <ErrorBoundary>
-        <RevolutionaryCardCreatorWrapper 
+        <CRDCardCreatorWrapper 
           onComplete={handleComplete}
           onCancel={handleCancel}
         />

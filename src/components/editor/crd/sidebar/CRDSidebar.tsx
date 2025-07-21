@@ -156,9 +156,7 @@ export const CRDSidebar: React.FC<CRDSidebarProps> = ({
               </div>
               <div className="bg-crd-darkest/90 border border-crd-mediumGray/30 rounded-lg px-3 py-2 backdrop-blur-sm">
                 <div className="text-crd-white text-sm font-mono tracking-wider">
-                  {cardData.card_dna?.genetic_code || (
-                    <span className="text-crd-lightGray animate-pulse">Generating...</span>
-                  )}
+                  CRD-{cardData.id.slice(-8).toUpperCase()}
                 </div>
               </div>
             </div>

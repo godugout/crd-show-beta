@@ -8,7 +8,6 @@ import type { CreationMode } from '../../types';
 interface IntentStepProps {
   onModeSelect: (mode: CreationMode) => void;
   onBulkUpload: () => void;
-  onRevolutionaryMode?: () => void;
 }
 
 const modeOptions = [
@@ -36,7 +35,7 @@ const modeOptions = [
   }
 ];
 
-export const IntentStep = ({ onModeSelect, onBulkUpload, onRevolutionaryMode }: IntentStepProps) => {
+export const IntentStep = ({ onModeSelect, onBulkUpload }: IntentStepProps) => {
   const { isEnabled } = useFeatureFlags();
   
   const handleModeSelect = (mode: CreationMode) => {
@@ -49,10 +48,6 @@ export const IntentStep = ({ onModeSelect, onBulkUpload, onRevolutionaryMode }: 
     onBulkUpload();
   };
 
-  const handleRevolutionaryMode = () => {
-    console.log('IntentStep: Revolutionary mode selected');
-    onRevolutionaryMode?.();
-  };
 
   return (
     <div className="max-w-4xl mx-auto">
@@ -122,34 +117,6 @@ export const IntentStep = ({ onModeSelect, onBulkUpload, onRevolutionaryMode }: 
         })}
       </div>
 
-      {/* Revolutionary Mode Option - Feature Flag Controlled */}
-      {isEnabled('revolutionary_create_mode') && (
-        <div className="bg-crd-darker border border-crd-purple/20 rounded-xl p-6 mb-6">
-          <div className="flex items-center justify-between">
-            <div className="flex items-center gap-3">
-              <div className="w-12 h-12 bg-crd-purple/10 rounded-lg flex items-center justify-center">
-                <Sparkles className="w-6 h-6 text-crd-purple" />
-              </div>
-              <div>
-                <h3 className="text-xl font-semibold text-crd-white">Revolutionary Mode</h3>
-                <p className="text-crd-lightGray">Create living, interactive cards with advanced features</p>
-                <div className="flex items-center gap-2 mt-1">
-                  <div className="px-2 py-1 bg-crd-purple/20 text-crd-purple text-xs rounded">Beta</div>
-                  <div className="px-2 py-1 bg-crd-green/20 text-crd-green text-xs rounded">Cutting Edge</div>
-                </div>
-              </div>
-            </div>
-            <CRDButton
-              variant="outline"
-              onClick={handleRevolutionaryMode}
-              className="border-crd-purple/20 text-crd-purple hover:text-crd-white hover:border-crd-purple/50"
-            >
-              <Sparkles className="w-4 h-4 mr-2" />
-              Try Revolutionary
-            </CRDButton>
-          </div>
-        </div>
-      )}
 
       {/* Bulk Upload Option */}
       <div className="bg-crd-darker border border-crd-mediumGray/20 rounded-xl p-6">

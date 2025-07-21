@@ -5,7 +5,7 @@ import { CRDButton } from '@/components/ui/design-system/Button';
 import { Layers, Image, Type, Palette, Settings, Eye, Save, Download } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { CRDGradientLogo } from '@/components/home/navbar/CRDGradientLogo';
-import { InteractiveCardData, CardState } from '@/types/interactiveCard';
+import { InteractiveCardData } from '@/types/interactiveCard';
 import { CRDLayoutTab } from './tabs/CRDLayoutTab';
 import { CRDDesignTab } from './tabs/CRDDesignTab';
 import { CRDContentTab } from './tabs/CRDContentTab';
@@ -37,80 +37,11 @@ export const CRDCardCreator: React.FC<CRDCardCreatorProps> = ({
     creator_id: initialCard?.creator_id || 'current_user',
     created_at: new Date().toISOString(),
     updated_at: new Date().toISOString(),
-    // CRD-specific features
-    is_interactive: false,
-    default_state_id: 'default',
-    states: [{
-      id: 'default',
-      name: 'Default State',
-      description: 'The card\'s standard appearance',
-      visual_properties: {
-        opacity: 1,
-        scale: 1,
-        rotation: 0
-      },
-      transition_rules: []
-    }],
-    behavior_rules: [],
     assets: {
       images: [],
-      audio: [],
-      videos: [],
-      models_3d: []
+      videos: []
     },
-    particle_systems: [],
-    mini_games: [],
-    kinetic_text: [],
-    biometric_triggers: [],
-    environmental_config: {
-      weather_enabled: false,
-      time_enabled: false,
-      location_enabled: false,
-      device_sensors_enabled: false,
-      weather_effects: [],
-      time_effects: []
-    },
-    card_dna: {
-      genetic_code: generateCRDCode(),
-      remix_permissions: {
-        allow_visual_remix: true,
-        allow_behavior_remix: false,
-        allow_audio_remix: false,
-        require_attribution: true,
-        commercial_use: true
-      },
-      inheritance_traits: [],
-      generation: 0,
-      parent_cards: []
-    },
-    fusion_history: [],
-    platform_optimizations: {
-      discord: {
-        animated: false,
-        size_limit: 8
-      },
-      twitter: {
-        gif_preview: '',
-        static_fallback: ''
-      },
-      instagram: {
-        story_format: '',
-        post_format: ''
-      },
-      tiktok: {
-        vertical_format: '',
-        effects_enabled: false
-      }
-    },
-    performance_profile: {
-      target_fps: 60,
-      memory_budget: 64,
-      battery_impact: 'low',
-      network_requirements: 'minimal'
-    },
-    api_endpoints: [],
-    version: 1,
-    edit_history: []
+    version: 1
   });
 
   // CRDMKR State
@@ -321,7 +252,7 @@ export const CRDCardCreator: React.FC<CRDCardCreatorProps> = ({
               Print Ready
             </div>
             <div className="bg-crd-mediumGray/20 px-2 py-1 rounded">
-              {cardData.card_dna?.genetic_code?.split('-')[0] || 'CRD'}
+              CRD-{cardData.id.slice(-4)}
             </div>
           </div>
         </div>
@@ -460,11 +391,3 @@ export const CRDCardCreator: React.FC<CRDCardCreatorProps> = ({
     </div>
   );
 };
-
-// Helper function to generate CRD-specific codes
-function generateCRDCode(): string {
-  const prefixes = ['CRD', 'TCD', 'PRO', 'STD', 'PRE'];
-  const numbers = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
-  const suffix = Math.random().toString(36).substr(2, 2).toUpperCase();
-  return `${prefixes[Math.floor(Math.random() * prefixes.length)]}-${numbers}-${suffix}`;
-}

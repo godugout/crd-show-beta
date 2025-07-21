@@ -14,7 +14,6 @@ interface SimpleCardCreatorProps {
   onComplete?: (cardData: CardData) => void;
   onCancel?: () => void;
   skipIntent?: boolean;
-  onRevolutionaryMode?: () => void;
 }
 
 // Static configuration to prevent re-creation
@@ -29,8 +28,7 @@ export const SimpleCardCreator = ({
   initialMode = 'quick',
   onComplete,
   onCancel,
-  skipIntent = false,
-  onRevolutionaryMode
+  skipIntent = false
 }: SimpleCardCreatorProps) => {
   console.log('🚀 SimpleCardCreator: Initializing with mode:', initialMode, 'skipIntent:', skipIntent);
   
@@ -291,7 +289,6 @@ export const SimpleCardCreator = ({
           onBulkUpload={handleBulkUpload}
           onGoToGallery={handleGoToGallery}
           onStartOver={handleStartOver}
-          onRevolutionaryMode={onRevolutionaryMode}
         />
       </div>
 
