@@ -70,7 +70,7 @@ export const GalacticCompass: React.FC<GalacticCompassProps> = ({
             {onToggleGlassCase && (
               <button
                 onClick={onToggleGlassCase}
-                className="group text-white p-2 rounded-full shadow-lg transition-all duration-300 hover:scale-105 flex items-center justify-center border"
+                className="group text-white/60 hover:text-white/80 p-2 rounded-full shadow-lg transition-all duration-300 hover:scale-105 flex items-center justify-center border"
                 style={{
                   background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.12) 100%)',
                   borderColor: 'rgba(255, 255, 255, 0.15)',
@@ -96,7 +96,7 @@ export const GalacticCompass: React.FC<GalacticCompassProps> = ({
             {onShowTutorial && (
               <button
                 onClick={onShowTutorial}
-                className="group text-white p-2 rounded-full shadow-lg transition-all duration-300 hover:scale-105 flex items-center justify-center border"
+                className="group text-white/60 hover:text-white/80 p-2 rounded-full shadow-lg transition-all duration-300 hover:scale-105 flex items-center justify-center border"
                 style={{
                   background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.12) 100%)',
                   borderColor: 'rgba(255, 255, 255, 0.15)',
@@ -111,7 +111,7 @@ export const GalacticCompass: React.FC<GalacticCompassProps> = ({
             {/* Refresh Button - Moved to bottom of left stack */}
             <button
               onClick={() => window.location.reload()}
-              className="group text-white p-2 rounded-full shadow-lg transition-all duration-300 hover:scale-105 flex items-center justify-center border"
+              className="group text-white/60 hover:text-white/80 p-2 rounded-full shadow-lg transition-all duration-300 hover:scale-105 flex items-center justify-center border"
               style={{
                 background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.12) 100%)',
                 borderColor: 'rgba(255, 255, 255, 0.15)',
