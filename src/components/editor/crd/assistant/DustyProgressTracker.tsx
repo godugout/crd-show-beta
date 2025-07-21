@@ -1,5 +1,7 @@
+
 import React from 'react';
-import { CheckCircle, Circle, AlertCircle } from 'lucide-react';
+import { CheckCircle, Circle } from 'lucide-react';
+import { CircularProgressIndicator } from '@/components/ui/CircularProgressIndicator';
 
 interface ProgressStep {
   id: string;
@@ -18,7 +20,7 @@ export const DustyProgressTracker: React.FC<DustyProgressTrackerProps> = ({ prog
       case 'complete':
         return <CheckCircle className="w-4 h-4 text-crd-green" />;
       case 'in-progress':
-        return <AlertCircle className="w-4 h-4 text-crd-blue animate-pulse" />;
+        return <CircularProgressIndicator size={16} className="text-crd-blue" />;
       default:
         return <Circle className={`w-4 h-4 ${required ? 'text-crd-orange' : 'text-crd-mediumGray'}`} />;
     }
