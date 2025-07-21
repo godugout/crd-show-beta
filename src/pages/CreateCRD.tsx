@@ -1,14 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { PreloadedCRDEditor } from '@/components/editor/crd/PreloadedCRDEditor';
 import { CRDEditorProvider } from '@/contexts/CRDEditorContext';
 import { useNavigate } from 'react-router-dom';
 import { ErrorBoundary } from '@/components/common/ErrorBoundary';
-import { CircularProgressDemo } from '@/components/ui/CircularProgressDemo';
 import type { CardData } from '@/hooks/useCardEditor';
 
 const CreateCRD = () => {
   const navigate = useNavigate();
-  const [showDemo, setShowDemo] = useState(false);
 
   console.log('CRD Collectibles page loaded - Professional card maker');
 
@@ -21,16 +19,6 @@ const CreateCRD = () => {
     console.log('CRD Collectible creation cancelled');
     navigate('/');
   };
-
-  // Show demo if URL contains ?demo=true
-  React.useEffect(() => {
-    const urlParams = new URLSearchParams(window.location.search);
-    setShowDemo(urlParams.get('demo') === 'true');
-  }, []);
-
-  if (showDemo) {
-    return <CircularProgressDemo />;
-  }
 
   return (
     <CRDEditorProvider>

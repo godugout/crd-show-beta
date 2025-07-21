@@ -247,7 +247,7 @@
   
   /* Mobile-first card styles */
   .mobile-card {
-    @apply bg-crd-darkGray border border-crd-mediumGray rounded-lg sm:rounded-xl overflow-hidden transition-all duration-300 hover:scale-[1.02] sm:hover:scale-105;
+    @apply bg-themed-card-bg border border-themed-card-border rounded-lg sm:rounded-xl overflow-hidden transition-all duration-300 hover:scale-[1.02] sm:hover:scale-105;
   }
   
   /* Mobile navigation styles */
