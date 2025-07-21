@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useResponsiveBreakpoints } from '@/hooks/useResponsiveBreakpoints';
@@ -129,9 +128,9 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
                 </Link>
               </div>
               
-              {/* Subtitle */}
-              <div className="text-center px-6 mt-4">
-                <p className="text-lg md:text-xl font-caveat text-crd-orange mb-4 max-w-2xl mx-auto leading-relaxed">
+              {/* Subtitle - directly under buttons */}
+              <div className="text-center px-6 mt-2">
+                <p className="text-lg md:text-xl font-caveat text-crd-orange max-w-2xl mx-auto leading-relaxed">
                   Transform your ideas into interactive 3D collectibles.
                 </p>
               </div>
@@ -195,9 +194,9 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
                   </Link>
                 </div>
                 
-                {/* Subtitle */}
-                <div className="text-center px-6 mt-4">
-                  <p className="text-lg md:text-xl font-caveat text-crd-orange mb-4 max-w-2xl mx-auto leading-relaxed">
+                {/* Subtitle - directly under buttons */}
+                <div className="text-center px-6 mt-2">
+                  <p className="text-lg md:text-xl font-caveat text-crd-orange max-w-2xl mx-auto leading-relaxed">
                     Transform your ideas into interactive 3D collectibles.
                   </p>
                 </div>
