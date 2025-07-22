@@ -140,7 +140,7 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
                     variant="large-body" 
                     className="text-crd-lightGray max-w-3xl mx-auto mobile-body animate-fade-in"
                   >
-                    From basketball legends to anime heroes, fantasy realms to family memories — craft CRDs that captivate hearts and soon share STRYs that bring your universe to life.
+                     From basketball legends to anime heroes, fantasy realms to family memories — craft CRDs that captivate audiences and bring your art, photography, and custom trading cards to life!
                   </Typography>
                 </div>
                 
@@ -212,7 +212,7 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
                     variant="large-body" 
                     className="text-crd-lightGray max-w-3xl mx-auto mobile-body animate-fade-in"
                   >
-                    From basketball legends to anime heroes, fantasy realms to family memories — craft CRDs that captivate hearts and soon share STRYs that bring your universe to life.
+                    From basketball legends to anime heroes, fantasy realms to family memories — craft CRDs that captivate audiences and bring your art, photography, and custom trading cards to life!
                   </Typography>
                 </div>
                 
