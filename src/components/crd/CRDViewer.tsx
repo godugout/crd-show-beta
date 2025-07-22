@@ -132,23 +132,23 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
   onSpaceEnvironmentChange
 }) => {
   // Responsive card positioning based on screen height
-  const [cardPosition, setCardPosition] = useState<[number, number, number]>([0, -2, 0]);
+  const [cardPosition, setCardPosition] = useState<[number, number, number]>([0, 1, 0]);
   
   // Update card position responsively based on screen height
   useEffect(() => {
     const updateCardPosition = () => {
       const screenHeight = window.innerHeight;
-      let yPosition = -2; // Default position
+      let yPosition = 1; // Default position
       
       // Move card up progressively as screen height decreases
       if (screenHeight <= 800) {
         // Start moving up when title text starts fading
         const heightRatio = (800 - screenHeight) / 300; // Scale over 300px range (800px to 500px)
-        yPosition = -2 + (heightRatio * 2); // Move up to 0 at minimum height
+        yPosition = 1 + (heightRatio * 2); // Move up to 3 at minimum height
       }
       
       // Clamp position to reasonable bounds
-      yPosition = Math.max(-2, Math.min(0, yPosition));
+      yPosition = Math.max(1, Math.min(3, yPosition));
       
       setCardPosition([0, yPosition, 0]);
     };
