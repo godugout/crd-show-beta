@@ -38,6 +38,7 @@ interface CRDViewerProps {
   enableControls?: boolean;
   enableGlassCase?: boolean;
   showModeText?: boolean;
+  initialCameraDistance?: number;
   
   // Orbital controls
   orbitalAutoRotate?: boolean;
@@ -97,6 +98,7 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
   enableControls = true,
   enableGlassCase = true,
   showModeText = true,
+  initialCameraDistance = 15,
   
   // Orbital controls
   orbitalAutoRotate = true,
@@ -482,7 +484,7 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
     if (controlsRef.current) {
       // Smooth animation to reset position
       const controls = controlsRef.current;
-      const targetPosition = [0, 0, 15];
+      const targetPosition = [0, 0, initialCameraDistance];
       const targetTarget = [0, 0, 0];
       
       // Animate camera back to initial position
@@ -604,7 +606,7 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
         {/* 3D Scene - Responsive sizing */}
         <Canvas
           className={`relative ${getZIndexClass(COMPONENT_Z_INDEX.THREE_JS_CANVAS)} w-full h-full`}
-          camera={{ position: [0, 1, 15], fov: 60 }}
+          camera={{ position: [0, 1, initialCameraDistance], fov: 60 }}
           gl={{ 
             antialias: true, 
             alpha: true,
