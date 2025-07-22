@@ -104,35 +104,37 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
 
             {/* Middle Section - Action Buttons */}
             <div className="flex-shrink-0 pb-16 pointer-events-auto relative z-[100]">
-              <div className="flex flex-col sm:flex-row gap-4 justify-center items-center px-6">
-                {/* Primary CTA - Updated to use create variant */}
-                <Link to="/create/crd" className="w-full sm:w-auto">
-                  <CRDButton 
-                    variant="create" 
-                    size="lg"
-                    className="w-full sm:w-auto px-8 py-4 text-lg font-semibold"
-                  >
-                    Start Creating
-                  </CRDButton>
-                </Link>
+              <div className="space-y-1">
+                <div className="flex flex-col sm:flex-row gap-4 justify-center items-center px-6">
+                  {/* Primary CTA - Updated to use create variant */}
+                  <Link to="/create/crd" className="w-full sm:w-auto">
+                    <CRDButton 
+                      variant="create" 
+                      size="lg"
+                      className="w-full sm:w-auto px-8 py-4 text-lg font-semibold"
+                    >
+                      Start Creating
+                    </CRDButton>
+                  </Link>
 
-                {/* Secondary CTA - Updated to use glass variant */}
-                <Link to="/templates" className="w-full sm:w-auto">
-                  <CRDButton 
-                    variant="glass" 
-                    size="lg"
-                    className="w-full sm:w-auto px-8 py-4 text-lg font-semibold"
-                  >
-                    Browse Templates
-                  </CRDButton>
-                </Link>
-              </div>
-              
-              {/* Subtitle - directly under buttons */}
-              <div className="text-center px-6 mt-2">
-                <p className="text-lg md:text-xl font-caveat text-crd-orange max-w-2xl mx-auto leading-relaxed">
-                  Transform your ideas into interactive 3D collectibles.
-                </p>
+                  {/* Secondary CTA - Updated to use glass variant */}
+                  <Link to="/templates" className="w-full sm:w-auto">
+                    <CRDButton 
+                      variant="glass" 
+                      size="lg"
+                      className="w-full sm:w-auto px-8 py-4 text-lg font-semibold"
+                    >
+                      Browse Templates
+                    </CRDButton>
+                  </Link>
+                </div>
+                
+                {/* Subtitle - directly under buttons with minimal spacing */}
+                <div className="text-center px-6">
+                  <p className="text-lg md:text-xl font-caveat text-crd-orange max-w-2xl mx-auto leading-relaxed">
+                    Transform your ideas into interactive 3D collectibles.
+                  </p>
+                </div>
               </div>
             </div>
 
@@ -170,35 +172,37 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
                 {isTablet ? renderTabletHeroText() : renderStandardHeroText()}
                 
                  {/* Action Buttons */}
-                <div className="flex flex-col sm:flex-row gap-6 justify-center items-center pointer-events-auto relative z-[100]">
-                  {/* Primary CTA - Updated to use create variant */}
-                  <Link to="/create/crd">
-                    <CRDButton 
-                      variant="create" 
-                      size="xl"
-                      className="px-12 py-6 text-xl font-bold"
-                    >
-                      Start Creating
-                    </CRDButton>
-                  </Link>
+                <div className="space-y-1 pointer-events-auto relative z-[100]">
+                  <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
+                    {/* Primary CTA - Updated to use create variant */}
+                    <Link to="/create/crd">
+                      <CRDButton 
+                        variant="create" 
+                        size="xl"
+                        className="px-12 py-6 text-xl font-bold"
+                      >
+                        Start Creating
+                      </CRDButton>
+                    </Link>
 
-                  {/* Secondary CTA - Updated to use glass variant */}
-                  <Link to="/templates">
-                    <CRDButton 
-                      variant="glass" 
-                      size="xl"
-                      className="px-12 py-6 text-xl font-semibold"
-                    >
-                      Browse Templates
-                    </CRDButton>
-                  </Link>
-                </div>
-                
-                {/* Subtitle - directly under buttons */}
-                <div className="text-center px-6 mt-2">
-                  <p className="text-lg md:text-xl font-caveat text-crd-orange max-w-2xl mx-auto leading-relaxed">
-                    Transform your ideas into interactive 3D collectibles.
-                  </p>
+                    {/* Secondary CTA - Updated to use glass variant */}
+                    <Link to="/templates">
+                      <CRDButton 
+                        variant="glass" 
+                        size="xl"
+                        className="px-12 py-6 text-xl font-semibold"
+                      >
+                        Browse Templates
+                      </CRDButton>
+                    </Link>
+                  </div>
+                  
+                  {/* Subtitle - directly under buttons with minimal spacing */}
+                  <div className="text-center px-6">
+                    <p className="text-lg md:text-xl font-caveat text-crd-orange max-w-2xl mx-auto leading-relaxed">
+                      Transform your ideas into interactive 3D collectibles.
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
