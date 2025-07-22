@@ -104,7 +104,7 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
 
             {/* Middle Section - Action Buttons */}
             <div className="flex-shrink-0 pb-16 pointer-events-auto relative z-[100]">
-              <div className="space-y-4">
+              <div className="mt-10 space-y-4">
                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center px-6">
                   {/* Primary CTA - Updated to use create variant */}
                   <Link to="/create/crd" className="w-full sm:w-auto">
@@ -175,7 +175,7 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
                 {isTablet ? renderTabletHeroText() : renderStandardHeroText()}
                 
                  {/* Action Buttons */}
-                <div className="space-y-4 pointer-events-auto relative z-[100]">
+                <div className="mt-10 space-y-4 pointer-events-auto relative z-[100]">
                   <div className="flex flex-col sm:flex-row gap-6 justify-center items-center">
                     {/* Primary CTA - Updated to use create variant */}
                     <Link to="/create/crd">
