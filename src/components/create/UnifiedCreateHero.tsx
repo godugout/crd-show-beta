@@ -137,7 +137,7 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
                 {/* Inspirational tagline */}
                 <div className="mb-6">
                   <Typography 
-                    variant="large-body" 
+                    variant="body" 
                     className="text-crd-lightGray max-w-3xl mx-auto mobile-body animate-fade-in"
                   >
                      From basketball legends to anime heroes, fantasy realms to family memories — craft CRDs that captivate audiences and bring your art, photography, and custom trading cards to life!
@@ -209,7 +209,7 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
                 {/* Inspirational tagline */}
                 <div className="mb-6">
                   <Typography 
-                    variant="large-body" 
+                    variant="body" 
                     className="text-crd-lightGray max-w-3xl mx-auto mobile-body animate-fade-in"
                   >
                     From basketball legends to anime heroes, fantasy realms to family memories — craft CRDs that captivate audiences and bring your art, photography, and custom trading cards to life!
