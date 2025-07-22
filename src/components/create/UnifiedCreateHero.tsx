@@ -45,7 +45,7 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
         onAnimationComplete={handleAnimationComplete}
       />
       
-      {/* Hero Content Overlay - Standardized spacing like StandardHero */}
+      {/* Hero Content Overlay - Exactly matching StandardHero positioning */}
       <div className="relative z-10 min-h-[60vh] max-h-[90vh] flex flex-col justify-center text-center py-16">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Label */}
