@@ -131,7 +131,7 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
                 
                 {/* Inspirational tagline */}
                 <div className="text-center px-6">
-                  <p className="text-lg md:text-xl font-caveat text-crd-orange max-w-2xl mx-auto leading-relaxed">
+                  <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
                     From basketball legends to anime heroes, fantasy realms to family memories — craft CRDs that captivate hearts and soon share STRYs that bring your universe to life.
                   </p>
                 </div>
@@ -199,7 +199,7 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
                   
                   {/* Inspirational tagline */}
                   <div className="text-center px-6">
-                    <p className="text-lg md:text-xl font-caveat text-crd-orange max-w-2xl mx-auto leading-relaxed">
+                    <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
                       From basketball legends to anime heroes, fantasy realms to family memories — craft CRDs that captivate hearts and soon share STRYs that bring your universe to life.
                     </p>
                   </div>
