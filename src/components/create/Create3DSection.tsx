@@ -28,7 +28,7 @@ export const Create3DSection: React.FC = () => {
       </div>
 
       {/* Control Button */}
-      <div className="absolute bottom-6 right-6 z-50 flex gap-3">
+      <div className="absolute bottom-6 right-6 z-[999] flex gap-3">
         <StudioPauseButton 
           isPaused={isPaused} 
           onTogglePause={handleTogglePause} 
