@@ -141,67 +141,63 @@ export const GalacticCompass: React.FC<GalacticCompassProps> = ({
       {/* Right Side - Playing Controls Bar */}
       <div className="fixed bottom-6 right-6 z-[9999]">
         <div className="flex flex-col items-end gap-3">
-          {/* Control Buttons - Rewind, Pause/Play above compass */}
-          <div className="flex flex-col items-end gap-3">
-            
-            {/* Rewind Controls - Show when movement history exists */}
-            {canRewind && totalMovements > 1 && (
-              <div className="flex flex-col items-end gap-2">
-                {/* Rewind to Start Button */}
-                <button
-                  onClick={(e) => {
-                    e.preventDefault();
-                    e.stopPropagation();
-                    console.log('🔥 REWIND BUTTON CLICKED!');
-                    console.log('🔍 onRewindToStart type:', typeof onRewindToStart);
-                    console.log('🔍 canRewind:', canRewind);
-                    console.log('🔍 totalMovements:', totalMovements);
-                    
-                    if (onRewindToStart) {
-                      console.log('✅ Calling onRewindToStart...');
-                      onRewindToStart();
-                    } else {
-                      console.error('❌ onRewindToStart is not defined!');
-                    }
-                  }}
-                  className="group text-white/40 hover:text-orange-400 p-2 rounded-full shadow-lg transition-all duration-300 hover:scale-105 flex items-center justify-center border"
-                  style={{
-                    background: 'linear-gradient(135deg, rgba(255, 165, 0, 0.08) 0%, rgba(255, 165, 0, 0.05) 50%, rgba(255, 165, 0, 0.12) 100%)',
-                    borderColor: 'rgba(255, 165, 0, 0.15)',
-                    backdropFilter: 'blur(12px) saturate(180%)'
-                  }}
-                  title="Rewind to Start"
-                >
-                  <SkipBack className="w-4 h-4 transition-transform group-hover:scale-110" />
-                </button>
-
-                {/* Movement History Indicator */}
-                <div className="text-xs text-orange-400/70 font-mono text-right">
-                  <span>{totalMovements} moves</span>
-                </div>
-              </div>
-            )}
-
-            {/* Pause/Play Button */}
-            {onTogglePause && (
+          {/* Rewind Controls - Positioned above compass with proper spacing */}
+          {canRewind && totalMovements > 1 && (
+            <div className="flex flex-col items-end gap-2 mb-4">
+              {/* Rewind to Start Button */}
               <button
-                onClick={onTogglePause}
-            className="group text-white/40 hover:text-[#3772FF] p-2 rounded-full shadow-lg transition-all duration-300 hover:scale-105 flex items-center justify-center border"
+                onClick={(e) => {
+                  e.preventDefault();
+                  e.stopPropagation();
+                  console.log('🔥 REWIND BUTTON CLICKED!');
+                  console.log('🔍 onRewindToStart type:', typeof onRewindToStart);
+                  console.log('🔍 canRewind:', canRewind);
+                  console.log('🔍 totalMovements:', totalMovements);
+                  
+                  if (onRewindToStart) {
+                    console.log('✅ Calling onRewindToStart...');
+                    onRewindToStart();
+                  } else {
+                    console.error('❌ onRewindToStart is not defined!');
+                  }
+                }}
+                className="group text-white/40 hover:text-orange-400 p-2 rounded-full shadow-lg transition-all duration-300 hover:scale-105 flex items-center justify-center border"
                 style={{
-                  background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.12) 100%)',
-                  borderColor: 'rgba(255, 255, 255, 0.15)',
+                  background: 'linear-gradient(135deg, rgba(255, 165, 0, 0.08) 0%, rgba(255, 165, 0, 0.05) 50%, rgba(255, 165, 0, 0.12) 100%)',
+                  borderColor: 'rgba(255, 165, 0, 0.15)',
                   backdropFilter: 'blur(12px) saturate(180%)'
                 }}
-                title={isPaused ? "Resume" : "Pause"}
+                title="Rewind to Start"
               >
-                {isPaused ? (
-                  <Play className="w-4 h-4 transition-transform group-hover:scale-110" />
-                ) : (
-                  <Pause className="w-4 h-4 transition-transform group-hover:scale-110" />
-                )}
+                <SkipBack className="w-4 h-4 transition-transform group-hover:scale-110" />
               </button>
-            )}
-          </div>
+
+              {/* Movement History Indicator */}
+              <div className="text-xs text-orange-400/70 font-mono text-right">
+                <span>{totalMovements} moves</span>
+              </div>
+            </div>
+          )}
+
+          {/* Pause/Play Button */}
+          {onTogglePause && (
+            <button
+              onClick={onTogglePause}
+              className="group text-white/40 hover:text-[#3772FF] p-2 rounded-full shadow-lg transition-all duration-300 hover:scale-105 flex items-center justify-center border"
+              style={{
+                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.12) 100%)',
+                borderColor: 'rgba(255, 255, 255, 0.15)',
+                backdropFilter: 'blur(12px) saturate(180%)'
+              }}
+              title={isPaused ? "Resume" : "Pause"}
+            >
+              {isPaused ? (
+                <Play className="w-4 h-4 transition-transform group-hover:scale-110" />
+              ) : (
+                <Pause className="w-4 h-4 transition-transform group-hover:scale-110" />
+              )}
+            </button>
+          )}
           
           {/* Compass and data below buttons */}
           <div className="flex flex-col items-end gap-3">
