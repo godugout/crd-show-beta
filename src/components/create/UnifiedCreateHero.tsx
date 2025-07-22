@@ -111,7 +111,7 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
                     <CRDButton 
                       variant="create" 
                       size="lg"
-                      className="w-full sm:w-auto px-8 py-4 text-lg font-semibold"
+                      className="w-full sm:w-auto min-w-[200px]"
                     >
                       Start Creating
                     </CRDButton>
@@ -122,7 +122,7 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
                     <CRDButton 
                       variant="glass" 
                       size="lg"
-                      className="w-full sm:w-auto px-8 py-4 text-lg font-semibold"
+                      className="w-full sm:w-auto min-w-[200px]"
                     >
                       Browse Frames
                     </CRDButton>
@@ -181,8 +181,8 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
                     <Link to="/create/crd">
                       <CRDButton 
                         variant="create" 
-                        size="xl"
-                        className="px-12 py-6 text-xl font-bold"
+                        size="lg"
+                        className="min-w-[200px]"
                       >
                         Start Creating
                       </CRDButton>
@@ -192,8 +192,8 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
                     <Link to="/frames">
                       <CRDButton 
                         variant="glass" 
-                        size="xl"
-                        className="px-12 py-6 text-xl font-semibold"
+                        size="lg"
+                        className="min-w-[200px]"
                       >
                         Browse Frames
                       </CRDButton>
