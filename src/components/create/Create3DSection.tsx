@@ -28,13 +28,6 @@ export const Create3DSection: React.FC = () => {
         </StarsBackground>
       </div>
 
-      {/* Control Button */}
-      <div className={`absolute bottom-6 right-6 ${getZIndexClass(COMPONENT_Z_INDEX.PAUSE_BUTTON)} flex gap-3`}>
-        <StudioPauseButton 
-          isPaused={isPaused} 
-          onTogglePause={handleTogglePause} 
-        />
-      </div>
 
       {/* Device-specific UI hints */}
       {deviceType === 'desktop' && (
