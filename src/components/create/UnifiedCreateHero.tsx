@@ -63,7 +63,7 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
           <div className="flex flex-col sm:flex-row gap-3 justify-center my-4">
             <Link to="/create/crd">
               <CRDButton 
-                size="md" 
+                size="default" 
                 variant="create"
                 className="min-w-[160px]"
               >
@@ -73,7 +73,7 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
             <Link to="/frames">
               <CRDButton 
                 variant="outline" 
-                size="md" 
+                size="default" 
                 className="min-w-[160px]"
               >
                 Browse Frames
