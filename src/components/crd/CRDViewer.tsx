@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
+import { useCardMovementHistory } from '@/hooks/useCardMovementHistory';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls, Text, Points, PointMaterial } from '@react-three/drei';
 import * as THREE from 'three';
@@ -169,6 +170,16 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
   const [playbackSpeed, setPlaybackSpeed] = useState(1);
   const [isResettingCard, setIsResettingCard] = useState(false);
   const [cardRotationForCompass, setCardRotationForCompass] = useState({ x: 0, y: 0, z: 0 });
+
+  // Movement history tracking
+  const {
+    recordInitialState,
+    recordMovement,
+    resetToInitial,
+    rewindToProgress,
+    canRewind,
+    getHistoryStats
+  } = useCardMovementHistory();
 
   // Performance monitoring
   const [performanceEnabled, setPerformanceEnabled] = useState(false);
@@ -477,6 +488,18 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
     // Reset all animation states
     resetTemplateState();
     
+    // Reset movement history to initial state
+    const initialFrame = resetToInitial();
+    if (initialFrame && controlsRef.current) {
+      const controls = controlsRef.current;
+      controls.object.position.copy(initialFrame.cameraPosition);
+      controls.target.copy(initialFrame.cameraTarget);
+      controls.update();
+      setIsResettingCard(false);
+      console.log('🧭 Card reset complete - using recorded initial state');
+      return;
+    }
+    
     // Reset camera to initial position
     if (controlsRef.current) {
       // Smooth animation to reset position
@@ -526,7 +549,115 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
     } else {
       setIsResettingCard(false);
     }
-  }, [resetTemplateState, controlsRef]);
+  }, [resetTemplateState, resetToInitial, controlsRef]);
+
+  // Record initial camera state when component mounts
+  useEffect(() => {
+    if (controlsRef.current) {
+      const controls = controlsRef.current;
+      const initialPosition = new THREE.Vector3(0, 0, 15);
+      const initialTarget = new THREE.Vector3(0, 1, 0);
+      
+      recordInitialState(initialPosition, initialTarget);
+      console.log('📹 Initial camera state recorded for movement history');
+    }
+  }, [controlsRef, recordInitialState]);
+
+  // Handle rewind to start
+  const handleRewindToStart = useCallback(() => {
+    const initialFrame = resetToInitial();
+    if (initialFrame && controlsRef.current) {
+      console.log('⏪ Rewinding to start position');
+      setIsResettingCard(true);
+      
+      const controls = controlsRef.current;
+      const startPosition = controls.object.position.clone();
+      const startTarget = controls.target.clone();
+      const duration = 1000; // 1 second rewind
+      const startTime = Date.now();
+      
+      const animateRewind = () => {
+        const elapsed = Date.now() - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        
+        // Smooth easing
+        const easeProgress = 1 - Math.pow(1 - progress, 3);
+        
+        // Interpolate position
+        controls.object.position.lerpVectors(
+          startPosition,
+          initialFrame.cameraPosition,
+          easeProgress
+        );
+        
+        // Interpolate target
+        controls.target.lerpVectors(
+          startTarget,
+          initialFrame.cameraTarget,
+          easeProgress
+        );
+        
+        controls.update();
+        
+        if (progress < 1) {
+          requestAnimationFrame(animateRewind);
+        } else {
+          setIsResettingCard(false);
+          console.log('⏪ Rewind to start complete');
+        }
+      };
+      
+      requestAnimationFrame(animateRewind);
+    }
+  }, [resetToInitial, controlsRef]);
+
+  // Handle rewind to specific progress
+  const handleRewindToProgress = useCallback((progress: number) => {
+    const targetFrame = rewindToProgress(progress);
+    if (targetFrame && controlsRef.current) {
+      console.log(`⏪ Rewinding to ${(progress * 100).toFixed(1)}% of history`);
+      setIsResettingCard(true);
+      
+      const controls = controlsRef.current;
+      const startPosition = controls.object.position.clone();
+      const startTarget = controls.target.clone();
+      const duration = 800; // 0.8 seconds
+      const startTime = Date.now();
+      
+      const animateRewind = () => {
+        const elapsed = Date.now() - startTime;
+        const animProgress = Math.min(elapsed / duration, 1);
+        
+        // Smooth easing
+        const easeProgress = 1 - Math.pow(1 - animProgress, 3);
+        
+        // Interpolate position
+        controls.object.position.lerpVectors(
+          startPosition,
+          targetFrame.cameraPosition,
+          easeProgress
+        );
+        
+        // Interpolate target
+        controls.target.lerpVectors(
+          startTarget,
+          targetFrame.cameraTarget,
+          easeProgress
+        );
+        
+        controls.update();
+        
+        if (animProgress < 1) {
+          requestAnimationFrame(animateRewind);
+        } else {
+          setIsResettingCard(false);
+          console.log(`⏪ Rewind to ${(progress * 100).toFixed(1)}% complete`);
+        }
+      };
+      
+      requestAnimationFrame(animateRewind);
+    }
+  }, [rewindToProgress, controlsRef]);
 
   const handleResetAnimation = () => {
     resetCardPosition(); // Use enhanced reset for compass compatibility
@@ -720,6 +851,17 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
                   };
                   setCurrentTransform(newTransform);
                   
+                  // Record movement for history tracking
+                  recordMovement(
+                    controls.object.position,
+                    controls.target,
+                    new THREE.Euler(
+                      newTransform.rotation.x * Math.PI / 180,
+                      newTransform.rotation.y * Math.PI / 180,
+                      newTransform.rotation.z * Math.PI / 180
+                    )
+                  );
+                  
                   // Debug logging for development
                   if (process.env.NODE_ENV === 'development' && Math.random() < 0.02) { // Log ~2% of frames
                     console.log('🎯 Transform update:', {
@@ -819,6 +961,12 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
         onToggleGlassCase={() => setCurrentEnableGlassCase(!currentEnableGlassCase)}
         spaceEnvironment={spaceEnvironment}
         onSpaceEnvironmentChange={onSpaceEnvironmentChange}
+        
+        // Movement history integration
+        onRewindToStart={handleRewindToStart}
+        onRewindToProgress={handleRewindToProgress}
+        canRewind={canRewind}
+        totalMovements={getHistoryStats().totalFrames}
       />
     </div>
   );
