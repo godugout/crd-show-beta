@@ -651,7 +651,7 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
 
           {/* Orbital Material Ring System - Synced with mouse */}
           <group 
-            position={[0, -2, 0]}
+            position={[0, 1, 0]}
             rotation={[mouseOffset.y * 0.001, mouseOffset.x * 0.001, 0]}
           >
             <OrbitalMaterialSystem
