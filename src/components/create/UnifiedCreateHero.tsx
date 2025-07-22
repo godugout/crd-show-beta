@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { useResponsiveBreakpoints } from '@/hooks/useResponsiveBreakpoints';
 import { ResponsiveCreate3DLayout } from './ResponsiveCreate3DLayout';
-import { CRDButton } from '@/components/ui/design-system';
+import { CRDButton, Typography } from '@/components/ui/design-system';
 import { PixelDigital } from '@/components/ui/PixelDigital';
 import { ScrollIndicator } from './ScrollIndicator';
 
@@ -131,9 +131,12 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
                 
                 {/* Inspirational tagline */}
                 <div className="text-center px-6">
-                  <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
+                  <Typography 
+                    variant="large-body" 
+                    className="text-crd-lightGray max-w-3xl mx-auto mobile-body animate-fade-in"
+                  >
                     From basketball legends to anime heroes, fantasy realms to family memories — craft CRDs that captivate hearts and soon share STRYs that bring your universe to life.
-                  </p>
+                  </Typography>
                 </div>
               </div>
             </div>
@@ -199,9 +202,12 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
                   
                   {/* Inspirational tagline */}
                   <div className="text-center px-6">
-                    <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
+                    <Typography 
+                      variant="large-body" 
+                      className="text-crd-lightGray max-w-3xl mx-auto mobile-body animate-fade-in"
+                    >
                       From basketball legends to anime heroes, fantasy realms to family memories — craft CRDs that captivate hearts and soon share STRYs that bring your universe to life.
-                    </p>
+                    </Typography>
                   </div>
                 </div>
               </div>
