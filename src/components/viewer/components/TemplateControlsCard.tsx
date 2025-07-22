@@ -162,7 +162,7 @@ export const TemplateControlsCard: React.FC<TemplateControlsCardProps> = ({
             </div>
           </div>
 
-          {/* Template Actions */}
+          {/* Frame Actions */}
           <div className="flex gap-2">
             {isTemplateReplayable && (
               <Button
@@ -203,10 +203,10 @@ export const TemplateControlsCard: React.FC<TemplateControlsCardProps> = ({
             </Button>
           </div>
 
-          {/* Template Info */}
+          {/* Frame Info */}
           {templateEngine.replayable && (
             <div className="text-xs text-crd-orange bg-crd-orange/10 rounded px-2 py-1">
-              This template is replayable
+              This frame is replayable
             </div>
           )}
         </CardContent>

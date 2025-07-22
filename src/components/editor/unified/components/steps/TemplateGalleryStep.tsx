@@ -24,7 +24,7 @@ export const TemplateGalleryStep = ({ mode, cardData, onFieldUpdate }: TemplateG
   const [selectedTemplate, setSelectedTemplate] = useState<DesignTemplate | null>(null);
 
   const categories = [
-    { id: 'all', name: 'All Templates', icon: Grid },
+    { id: 'all', name: 'All Frames', icon: Grid },
     { id: 'sports', name: 'Sports', icon: Star },
     { id: 'fantasy', name: 'Fantasy', icon: Zap },
     { id: 'scifi', name: 'Sci-Fi', icon: Grid },
@@ -61,13 +61,13 @@ export const TemplateGalleryStep = ({ mode, cardData, onFieldUpdate }: TemplateG
       <CardContent className="space-y-4">
         {/* Search */}
         <div className="space-y-2">
-          <label className="text-crd-lightGray text-sm font-medium">Search Templates</label>
+          <label className="text-crd-lightGray text-sm font-medium">Search Frames</label>
           <div className="relative">
             <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-crd-lightGray w-4 h-4" />
             <Input
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search templates..."
+              placeholder="Search frames..."
               className="pl-10 bg-crd-darkest/80 border-crd-mediumGray/40 text-crd-white h-11 text-base focus:border-crd-green/50"
             />
           </div>
@@ -100,7 +100,7 @@ export const TemplateGalleryStep = ({ mode, cardData, onFieldUpdate }: TemplateG
         {/* Current Selection */}
         {selectedTemplate && (
           <div className="border-t border-crd-mediumGray/20 pt-4">
-            <label className="text-crd-lightGray text-sm mb-2 block font-medium">Selected Template</label>
+            <label className="text-crd-lightGray text-sm mb-2 block font-medium">Selected Frame</label>
             <div className="bg-crd-darkest/50 rounded-lg p-3">
               <p className="text-crd-white font-medium">{selectedTemplate.name}</p>
               <p className="text-crd-lightGray text-xs mt-1">
@@ -118,7 +118,7 @@ export const TemplateGalleryStep = ({ mode, cardData, onFieldUpdate }: TemplateG
       <CardHeader className="pb-4 flex-shrink-0">
         <CardTitle className="text-crd-white flex items-center gap-3 text-lg">
           <Eye className="w-5 h-5" />
-          Template Gallery
+          Frame Gallery
         </CardTitle>
       </CardHeader>
       <CardContent className="flex-1 flex flex-col">
@@ -144,7 +144,7 @@ export const TemplateGalleryStep = ({ mode, cardData, onFieldUpdate }: TemplateG
               {/* Overlay */}
               <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors" />
               
-              {/* Template Info */}
+              {/* Frame Info */}
               <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-3">
                 <h3 className="text-white text-sm font-medium mb-1">{template.name}</h3>
                 <div className="flex items-center justify-between">
@@ -172,7 +172,7 @@ export const TemplateGalleryStep = ({ mode, cardData, onFieldUpdate }: TemplateG
         {filteredTemplates.length === 0 && (
           <div className="text-center py-12">
             <Grid className="w-16 h-16 text-crd-mediumGray mx-auto mb-4" />
-            <h3 className="text-crd-white text-lg font-medium mb-2">No templates found</h3>
+            <h3 className="text-crd-white text-lg font-medium mb-2">No frames found</h3>
             <p className="text-crd-lightGray">Try adjusting your search or filter criteria</p>
           </div>
         )}
@@ -183,7 +183,7 @@ export const TemplateGalleryStep = ({ mode, cardData, onFieldUpdate }: TemplateG
   const rightPanel = (
     <Card className="bg-crd-darker/90 border-crd-mediumGray/40 backdrop-blur-sm flex-1">
       <CardHeader className="pb-4">
-        <CardTitle className="text-crd-white text-lg">Template Info</CardTitle>
+        <CardTitle className="text-crd-white text-lg">Frame Info</CardTitle>
       </CardHeader>
       <CardContent>
         {selectedTemplate ? (
@@ -191,7 +191,7 @@ export const TemplateGalleryStep = ({ mode, cardData, onFieldUpdate }: TemplateG
             <div>
               <h4 className="text-crd-white font-semibold text-base mb-1">{selectedTemplate.name}</h4>
               <p className="text-crd-lightGray text-sm">
-                {selectedTemplate.description || 'Professional template design'}
+                {selectedTemplate.description || 'Professional frame design'}
               </p>
             </div>
             <div className="space-y-2">
@@ -214,7 +214,7 @@ export const TemplateGalleryStep = ({ mode, cardData, onFieldUpdate }: TemplateG
         ) : (
           <div className="text-center text-crd-lightGray py-8">
             <Grid className="w-12 h-12 mx-auto mb-3 opacity-50" />
-            <p>Select a template to see details</p>
+            <p>Select a frame to see details</p>
           </div>
         )}
       </CardContent>
@@ -223,8 +223,8 @@ export const TemplateGalleryStep = ({ mode, cardData, onFieldUpdate }: TemplateG
 
   return (
     <CreationLayout
-      title="Browse Templates"
-      subtitle="Explore our template gallery and find the perfect design for your card"
+      title="Browse Frames"
+      subtitle="Explore our frame gallery and find the perfect design for your card"
       currentStep={3}
       totalSteps={4}
     >

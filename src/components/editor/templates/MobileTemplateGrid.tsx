@@ -34,7 +34,7 @@ export const MobileTemplateGrid: React.FC<MobileTemplateGridProps> = ({
     return (
       <div className="space-y-4">
         <div className="flex justify-between items-center">
-          <h3 className="text-lg font-semibold text-crd-white">Choose Template</h3>
+          <h3 className="text-lg font-semibold text-crd-white">Choose Frame</h3>
           <div className="flex gap-2">
             <Skeleton className="w-10 h-10 bg-crd-mediumGray/20" />
             <Skeleton className="w-10 h-10 bg-crd-mediumGray/20" />
@@ -89,7 +89,7 @@ export const MobileTemplateGrid: React.FC<MobileTemplateGridProps> = ({
               <div className="w-full h-full flex items-center justify-center text-crd-lightGray">
                 <div className="text-center">
                   <Grid3X3 className="w-8 h-8 mx-auto mb-2 opacity-50" />
-                  <span className="text-sm">Template</span>
+                  <span className="text-sm">Frame</span>
                 </div>
               </div>
             )}
@@ -132,7 +132,7 @@ export const MobileTemplateGrid: React.FC<MobileTemplateGridProps> = ({
         <PremiumTooltip
           cost={creditCost}
           featureName={template.name}
-          description={`Unlock this premium ${template.category} template`}
+          description={`Unlock this premium ${template.category} frame`}
           isLocked={true}
         >
           {templateCard}
@@ -147,7 +147,7 @@ export const MobileTemplateGrid: React.FC<MobileTemplateGridProps> = ({
     <div className="space-y-4">
       {/* Header with view mode toggle */}
       <div className="flex justify-between items-center">
-        <h3 className="text-lg font-semibold text-crd-white">Choose Template</h3>
+        <h3 className="text-lg font-semibold text-crd-white">Choose Frame</h3>
         <div className="flex gap-1 bg-crd-mediumGray/20 rounded-lg p-1">
           <button
             onClick={() => setViewMode('grid')}
@@ -186,7 +186,7 @@ export const MobileTemplateGrid: React.FC<MobileTemplateGridProps> = ({
       {templates.length === 0 && (
         <div className="text-center py-8">
           <Grid3X3 className="w-12 h-12 mx-auto mb-4 text-crd-lightGray opacity-50" />
-          <p className="text-crd-lightGray">No templates available</p>
+          <p className="text-crd-lightGray">No frames available</p>
         </div>
       )}
     </div>
