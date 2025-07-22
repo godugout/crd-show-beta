@@ -63,13 +63,13 @@ export const MobileCreateHero: React.FC = () => {
               Start Creating
             </CRDButton>
           </Link>
-          <Link to="/templates">
+          <Link to="/frames">
             <CRDButton 
               variant="outline" 
               size="default" 
               className="min-w-[180px] text-base"
             >
-              Browse Templates
+              Browse Frames
             </CRDButton>
           </Link>
         </div>

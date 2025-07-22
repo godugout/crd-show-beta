@@ -118,13 +118,13 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
                   </Link>
 
                   {/* Secondary CTA - Updated to use glass variant */}
-                  <Link to="/templates" className="w-full sm:w-auto">
+                  <Link to="/frames" className="w-full sm:w-auto">
                     <CRDButton 
                       variant="glass" 
                       size="lg"
                       className="w-full sm:w-auto px-8 py-4 text-lg font-semibold"
                     >
-                      Browse Templates
+                      Browse Frames
                     </CRDButton>
                   </Link>
                 </div>
@@ -186,13 +186,13 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
                     </Link>
 
                     {/* Secondary CTA - Updated to use glass variant */}
-                    <Link to="/templates">
+                    <Link to="/frames">
                       <CRDButton 
                         variant="glass" 
                         size="xl"
                         className="px-12 py-6 text-xl font-semibold"
                       >
-                        Browse Templates
+                        Browse Frames
                       </CRDButton>
                     </Link>
                   </div>

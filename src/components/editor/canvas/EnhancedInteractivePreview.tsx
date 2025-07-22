@@ -393,7 +393,7 @@ export const EnhancedInteractivePreview = ({
       {/* Help text */}
       <div className="text-center text-crd-lightGray text-xs max-w-md">
         <p>
-          Your card preview will update as you upload photos and select templates. 
+          Your card preview will update as you upload photos and select frames. 
           Click elements to edit them or use the sidebar tools for more options.
         </p>
       </div>

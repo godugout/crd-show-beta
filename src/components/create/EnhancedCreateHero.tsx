@@ -46,13 +46,13 @@ export const EnhancedCreateHero: React.FC = () => {
               Start Creating
             </CRDButton>
           </Link>
-          <Link to="/templates">
+          <Link to="/frames">
             <CRDButton 
               variant="outline" 
               size="lg" 
               className="min-w-[200px]"
             >
-              Browse Templates
+              Browse Frames
             </CRDButton>
           </Link>
         </div>

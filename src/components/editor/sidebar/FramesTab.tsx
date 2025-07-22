@@ -145,7 +145,7 @@ export const FramesTab = ({ selectedTemplate, onSelectTemplate, searchQuery }: F
             <TabsTrigger value="generate" className="text-white">Generate</TabsTrigger>
           </TabsList>
 
-          <TabsContent value="templates" className="space-y-4">
+          <TabsContent value="frames" className="space-y-4">
             <div className="grid grid-cols-2 gap-3">
               {filteredFrames.map((frame) => (
                 <div 

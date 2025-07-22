@@ -64,7 +64,7 @@ export const CreateOptionsSection: React.FC = () => {
               <div className="flex items-center gap-3">
                 <CheckCircle className="w-5 h-5 text-crd-green" />
                 <span className="text-crd-white">
-                  Professional templates and layouts
+                  Professional frames and layouts
                 </span>
               </div>
               <div className="flex items-center gap-3">

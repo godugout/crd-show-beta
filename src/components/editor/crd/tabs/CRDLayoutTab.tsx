@@ -32,7 +32,7 @@ export const CRDLayoutTab: React.FC<CRDLayoutTabProps> = ({
     <div className="h-full space-y-4">
       <div>
         <h3 className="text-lg font-semibold text-crd-white mb-3">Select Your Frame</h3>
-        <p className="text-sm text-crd-lightGray mb-4">Choose from professional frame templates</p>
+        <p className="text-sm text-crd-lightGray mb-4">Choose from professional frame designs</p>
         <CRDFrameSelector 
           selectedFrameId={selectedFrame?.id}
           onFrameSelect={(frame) => {

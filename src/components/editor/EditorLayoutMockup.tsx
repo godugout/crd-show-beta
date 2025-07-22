@@ -60,7 +60,7 @@ export const EditorLayoutMockup = () => {
               className="w-full justify-start text-gray-300"
             >
               {leftPanelOpen ? <ChevronLeft className="w-4 h-4" /> : <ChevronRight className="w-4 h-4" />}
-              {leftPanelOpen && <span className="ml-2">Templates & Assets</span>}
+              {leftPanelOpen && <span className="ml-2">Frames & Assets</span>}
             </Button>
           </div>
           
