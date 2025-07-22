@@ -150,8 +150,13 @@ export const GalacticCompass: React.FC<GalacticCompassProps> = ({
                 {/* Rewind to Start Button */}
                 <button
                   onClick={() => {
+                    console.log('🔥 REWIND BUTTON CLICKED - onRewindToStart:', typeof onRewindToStart);
                     console.log('⏪ Rewinding to start position');
-                    onRewindToStart?.();
+                    if (onRewindToStart) {
+                      onRewindToStart();
+                    } else {
+                      console.error('❌ onRewindToStart is not defined!');
+                    }
                   }}
                   className="group text-white/40 hover:text-orange-400 p-2 rounded-full shadow-lg transition-all duration-300 hover:scale-105 flex items-center justify-center border"
                   style={{
