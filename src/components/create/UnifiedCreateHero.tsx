@@ -81,10 +81,10 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
               
               <Typography
                 variant="large-body"
-                className="font-playfair text-xl sm:text-2xl lg:text-3xl text-gray-400 italic leading-relaxed"
+                className="font-playfair text-xl sm:text-2xl lg:text-3xl text-gray-300 italic leading-relaxed font-semibold"
               >
                 "Where imagination meets innovation,{' '}
-                <span className="text-gray-300">every card tells a story</span>"
+                <span className="text-gray-200">every card tells a story</span>"
               </Typography>
             </motion.div>
 
