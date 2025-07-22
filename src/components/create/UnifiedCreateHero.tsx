@@ -129,10 +129,10 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
                   </Link>
                 </div>
                 
-                {/* Subtitle - directly under buttons with minimal spacing */}
+                {/* Inspirational tagline */}
                 <div className="text-center px-6">
                   <p className="text-lg md:text-xl font-caveat text-crd-orange max-w-2xl mx-auto leading-relaxed">
-                    Transform your ideas into interactive 3D collectibles.
+                    From basketball legends to anime heroes, fantasy realms to family memories — craft CRDs that captivate hearts and soon share STRYs that bring your universe to life.
                   </p>
                 </div>
               </div>
@@ -197,10 +197,10 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
                     </Link>
                   </div>
                   
-                  {/* Subtitle - directly under buttons with minimal spacing */}
+                  {/* Inspirational tagline */}
                   <div className="text-center px-6">
                     <p className="text-lg md:text-xl font-caveat text-crd-orange max-w-2xl mx-auto leading-relaxed">
-                      Transform your ideas into interactive 3D collectibles.
+                      From basketball legends to anime heroes, fantasy realms to family memories — craft CRDs that captivate hearts and soon share STRYs that bring your universe to life.
                     </p>
                   </div>
                 </div>
