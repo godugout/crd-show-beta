@@ -95,12 +95,15 @@
   
   /* Card theming */
   .card-themed {
-    @apply bg-crd-darkGray border border-crd-mediumGray/30 rounded-lg;
+    background-color: hsl(var(--crd-darkGray));
+    border: 1px solid hsl(var(--crd-mediumGray) / 0.3);
+    border-radius: 0.5rem;
   }
   
   /* Focus theming */
-  .focus-themed {
-    @apply focus:outline-none focus:ring-2 focus:ring-crd-blue/50 focus:ring-offset-2 focus:ring-offset-crd-darkest;
+  .focus-themed:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px hsl(var(--crd-blue) / 0.5), 0 0 0 4px hsl(var(--crd-darkest));
   }
 }
 
