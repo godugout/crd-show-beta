@@ -592,12 +592,6 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
     };
   }, []);
 
-  // Debug logging
-  console.log('🔍 DEBUG: CRDViewer render check', { 
-    showPauseButton, 
-    spaceEnvironment, 
-    onSpaceEnvironmentChange: !!onSpaceEnvironmentChange 
-  });
 
   // Force case to be 'none' for the create page
   const forcedCaseStyle = 'none';
