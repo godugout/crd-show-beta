@@ -217,7 +217,7 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
                 </div>
                 
                 {/* Animated Tagline */}
-                <p className="text-sm text-gray-400 animate-pulse mb-4">
+                <p className="text-base text-gray-400 animate-pulse mb-4">
                   ✨ Where imagination meets technology. <span className="font-caveat text-xl text-crd-orange">What will you make?</span>
                 </p>
                 
