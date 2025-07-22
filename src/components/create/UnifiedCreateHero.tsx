@@ -40,10 +40,10 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
                     </span>
                   </div>
                   <div className="flex justify-center items-center text-4xl md:text-5xl">
-                    <span className="font-bold">
+                    <span>
                       <PixelDigital className="inline">CRD</PixelDigital>
                       <span className="text-white"> art</span>
-                      <span className="text-white font-bold"> that comes alive!</span>
+                      <span className="text-white"> that comes alive!</span>
                     </span>
                   </div>
                 </h1>
@@ -119,10 +119,10 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
                   </span>
                 </div>
                 <div className="flex justify-center items-center text-5xl md:text-6xl lg:text-7xl">
-                  <span className="font-bold">
+                  <span>
                     <PixelDigital className="inline">CRD</PixelDigital>
                     <span className="text-white"> art</span>
-                    <span className="text-white font-bold"> that comes alive!</span>
+                    <span className="text-white"> that comes alive!</span>
                   </span>
                 </div>
               </h1>
