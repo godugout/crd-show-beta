@@ -44,7 +44,7 @@ export const FloatingCard3D: React.FC<FloatingCard3DProps> = ({
   const deviceConfig = getDeviceConfig();
 
   return (
-    <div className="absolute inset-0 flex items-start justify-center pt-20">
+    <div className="absolute inset-0 flex items-center justify-center">
       <CRDViewer
         mode="alignment"
         intensity={deviceConfig.intensity}
