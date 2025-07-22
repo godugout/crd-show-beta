@@ -324,9 +324,11 @@ export default {
         'comic': ['Comic Sans MS', 'cursive'],
         'caveat': ['Caveat', 'cursive'],
         'chewy': ['Chewy', 'cursive'],
+        'kalam': ['Kalam', 'cursive'], // Handwritten font
         'bouncy': ['Fredoka One', 'cursive'], // alias for fredoka
         'playful': ['Caveat', 'cursive'], // alias for caveat
         'fun': ['Chewy', 'cursive'], // alias for chewy
+        'handwritten': ['Kalam', 'Caveat', 'cursive'], // Primary handwritten font
       },
       fontSize: {
         'display': ['3rem', { lineHeight: '1.1', fontWeight: '800' }], // 48px

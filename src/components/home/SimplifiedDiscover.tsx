@@ -188,7 +188,7 @@ export const SimplifiedDiscover = () => {
 
         <div className="text-center">
           <div className="bg-themed-secondary/5 rounded-xl p-4 sm:p-6 mb-4 sm:mb-6">
-            <h3 className="text-lg sm:text-xl font-bold text-themed-primary mb-2 sm:mb-3">
+            <h3 className="text-lg sm:text-xl font-bold text-themed-primary mb-2 sm:mb-3 font-handwritten">
               Want to explore more?
             </h3>
             <div className="flex justify-center">
