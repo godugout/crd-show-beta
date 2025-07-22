@@ -5,6 +5,7 @@ import { StudioPauseButton } from '@/components/studio/StudioPauseButton';
 import { RefreshCw } from 'lucide-react';
 import { AlignmentTutorial } from './AlignmentTutorial';
 import { type SpaceEnvironment } from '@/components/studio/EnvironmentSwitcher';
+import { ErrorBoundary } from '@/components/common/ErrorBoundary';
 
 interface ResponsiveCreate3DLayoutProps {
   isPaused: boolean;
@@ -30,91 +31,110 @@ export const ResponsiveCreate3DLayout: React.FC<ResponsiveCreate3DLayoutProps> =
   };
 
   return (
-    <div 
-      className={`fixed inset-0 z-0 ${className}`}
-      style={{ cursor: 'grab' }}
-      onMouseDown={(e) => {
-        // Don't capture events in the bottom scroll zone (starting from scroll indicator)
-        const bottomZone = window.innerHeight - 180; // 180px from bottom to include scroll indicator
-        if (e.clientY > bottomZone) return;
-        
-        e.currentTarget.style.cursor = 'grabbing';
-      }}
-      onMouseUp={(e) => {
-        e.currentTarget.style.cursor = 'grab';
-      }}
-      onMouseLeave={(e) => {
-        e.currentTarget.style.cursor = 'grab';
-      }}
-    >
-      {/* Full Screen Starry Background with 3D Animation */}
-      <div className="absolute inset-0">
-        <StarsBackground>
-          <FloatingCard3D 
-            isPaused={isPaused}
-            onTogglePause={onTogglePause}
-            showPauseButton={false}
-            onShowTutorial={() => setShowTutorial(true)}
-            spaceEnvironment={spaceEnvironment}
-            onSpaceEnvironmentChange={setSpaceEnvironment}
-            onAnimationComplete={handleAnimationComplete}
-          />
-        </StarsBackground>
-      </div>
-
-      {/* SCROLL PRIORITY ZONE - Complete bottom area for page scrolling only */}
+    <ErrorBoundary>
       <div 
-        id="scroll-priority-zone"
-        className="absolute right-0 w-full z-50 pointer-events-auto"
-        style={{ 
-          bottom: 0,
-          left: '200px', // Leave space for buttons on the left
-          height: '180px', // Cover from scroll indicator to bottom
-          background: 'transparent',
-          cursor: 'default'
-        }}
-        onMouseEnter={() => {
-          document.body.style.cursor = 'default';
-        }}
-        onMouseLeave={() => {
-          document.body.style.cursor = '';
-        }}
-        onWheel={(e) => {
-          // Simply allow native scrolling - no interference at all
-          e.stopPropagation();
-          // Don't preventDefault - let browser handle scroll naturally
-        }}
+        className={`fixed inset-0 z-0 ${className}`}
+        style={{ cursor: 'grab' }}
         onMouseDown={(e) => {
-          // Block 3D controls but don't prevent default scroll behavior
-          e.stopPropagation();
-        }}
-        onMouseMove={(e) => {
-          // Block 3D controls but don't prevent scroll
-          e.stopPropagation();
+          // Don't capture events in the bottom scroll zone (starting from scroll indicator)
+          const bottomZone = window.innerHeight - 180; // 180px from bottom to include scroll indicator
+          if (e.clientY > bottomZone) return;
+          
+          e.currentTarget.style.cursor = 'grabbing';
         }}
         onMouseUp={(e) => {
-          // Block 3D controls
-          e.stopPropagation();
+          e.currentTarget.style.cursor = 'grab';
         }}
-        onClick={(e) => {
-          // Block clicks to 3D
-          e.stopPropagation();
+        onMouseLeave={(e) => {
+          e.currentTarget.style.cursor = 'grab';
         }}
-        onTouchStart={(e) => {
-          // Block touch controls for 3D
-          e.stopPropagation();
-        }}
-        onTouchMove={(e) => {
-          // Allow touch scrolling
-          e.stopPropagation();
-        }}
-      />
+      >
+        {/* Full Screen Starry Background with 3D Animation */}
+        <div className="absolute inset-0">
+          <StarsBackground>
+            <ErrorBoundary 
+              fallbackComponent={({ error, retry }) => (
+                <div className="absolute inset-0 flex items-center justify-center bg-space-odyssey">
+                  <div className="text-white text-center">
+                    <p className="text-xl mb-2">3D Animation Error</p>
+                    <p className="text-sm opacity-75 mb-4">Failed to load Three.js scene</p>
+                    <button 
+                      onClick={retry}
+                      className="px-4 py-2 bg-crd-primary text-white rounded hover:bg-crd-primary/80"
+                    >
+                      Retry
+                    </button>
+                  </div>
+                </div>
+              )}
+            >
+              <FloatingCard3D 
+                isPaused={isPaused}
+                onTogglePause={onTogglePause}
+                showPauseButton={false}
+                onShowTutorial={() => setShowTutorial(true)}
+                spaceEnvironment={spaceEnvironment}
+                onSpaceEnvironmentChange={setSpaceEnvironment}
+                onAnimationComplete={handleAnimationComplete}
+              />
+            </ErrorBoundary>
+          </StarsBackground>
+        </div>
 
-      {/* Alignment Tutorial Overlay */}
-      <AlignmentTutorial 
-        isVisible={showTutorial}
-        onClose={() => setShowTutorial(false)}
-      />
-    </div>
+        {/* SCROLL PRIORITY ZONE - Complete bottom area for page scrolling only */}
+        <div 
+          id="scroll-priority-zone"
+          className="absolute right-0 w-full z-50 pointer-events-auto"
+          style={{ 
+            bottom: 0,
+            left: '200px', // Leave space for buttons on the left
+            height: '180px', // Cover from scroll indicator to bottom
+            background: 'transparent',
+            cursor: 'default'
+          }}
+          onMouseEnter={() => {
+            document.body.style.cursor = 'default';
+          }}
+          onMouseLeave={() => {
+            document.body.style.cursor = '';
+          }}
+          onWheel={(e) => {
+            // Simply allow native scrolling - no interference at all
+            e.stopPropagation();
+            // Don't preventDefault - let browser handle scroll naturally
+          }}
+          onMouseDown={(e) => {
+            // Block 3D controls but don't prevent default scroll behavior
+            e.stopPropagation();
+          }}
+          onMouseMove={(e) => {
+            // Block 3D controls but don't prevent scroll
+            e.stopPropagation();
+          }}
+          onMouseUp={(e) => {
+            // Block 3D controls
+            e.stopPropagation();
+          }}
+          onClick={(e) => {
+            // Block clicks to 3D
+            e.stopPropagation();
+          }}
+          onTouchStart={(e) => {
+            // Block touch controls for 3D
+            e.stopPropagation();
+          }}
+          onTouchMove={(e) => {
+            // Allow touch scrolling
+            e.stopPropagation();
+          }}
+        />
+
+        {/* Alignment Tutorial Overlay */}
+        <AlignmentTutorial 
+          isVisible={showTutorial}
+          onClose={() => setShowTutorial(false)}
+        />
+      </div>
+    </ErrorBoundary>
   );
 };

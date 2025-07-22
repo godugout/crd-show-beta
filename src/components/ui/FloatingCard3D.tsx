@@ -45,37 +45,43 @@ export const FloatingCard3D: React.FC<FloatingCard3DProps> = ({
 
   return (
     <div className="absolute inset-0 flex items-center justify-center">
-      <CRDViewer
-        mode="alignment"
-        intensity={deviceConfig.intensity}
-        lightingPreset="studio"
-        pathTheme="neutral"
-        autoRotate={deviceConfig.autoRotate}
-        enableControls={deviceConfig.enableControls}
-        enableGlassCase={true}
-        showModeText={false}
-        hideAlignmentControls={true}
-        className="w-full h-full min-h-screen"
-        isPaused={isPaused}
-        onTogglePause={onTogglePause}
-        onAlignmentReset={onReset}
-        showPauseButton={showPauseButton}
-        onShowTutorial={onShowTutorial}
-        spaceEnvironment={spaceEnvironment}
-        onSpaceEnvironmentChange={onSpaceEnvironmentChange}
-        onAlignmentStateChange={(state) => {
-          console.log('🔄 FloatingCard3D: Animation state change', {
-            progress: state.animationProgress,
-            isPlaying: state.isPlaying
-          });
-          
-          // Trigger completion when animation reaches the end and stops playing
-          if (state.animationProgress >= 1 && !state.isPlaying && onAnimationComplete) {
-            console.log('🎯 FloatingCard3D: Animation completed, triggering callback');
-            onAnimationComplete();
-          }
-        }}
-      />
+      <React.Suspense fallback={
+        <div className="absolute inset-0 flex items-center justify-center bg-space-odyssey">
+          <div className="text-white animate-pulse">Loading 3D Animation...</div>
+        </div>
+      }>
+        <CRDViewer
+          mode="alignment"
+          intensity={deviceConfig.intensity}
+          lightingPreset="studio"
+          pathTheme="neutral"
+          autoRotate={deviceConfig.autoRotate}
+          enableControls={deviceConfig.enableControls}
+          enableGlassCase={true}
+          showModeText={false}
+          hideAlignmentControls={true}
+          className="w-full h-full min-h-screen"
+          isPaused={isPaused}
+          onTogglePause={onTogglePause}
+          onAlignmentReset={onReset}
+          showPauseButton={showPauseButton}
+          onShowTutorial={onShowTutorial}
+          spaceEnvironment={spaceEnvironment}
+          onSpaceEnvironmentChange={onSpaceEnvironmentChange}
+          onAlignmentStateChange={(state) => {
+            console.log('🔄 FloatingCard3D: Animation state change', {
+              progress: state.animationProgress,
+              isPlaying: state.isPlaying
+            });
+            
+            // Trigger completion when animation reaches the end and stops playing
+            if (state.animationProgress >= 1 && !state.isPlaying && onAnimationComplete) {
+              console.log('🎯 FloatingCard3D: Animation completed, triggering callback');
+              onAnimationComplete();
+            }
+          }}
+        />
+      </React.Suspense>
     </div>
   );
 };
