@@ -2,8 +2,7 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { Typography } from '@/components/ui/design-system/Typography';
-import { CRDButton } from '@/components/ui/design-system/CRDButton';
-import { ResponsiveModelViewer } from '@/components/3d/ResponsiveModelViewer';
+import { CRDButton } from '@/components/ui/design-system/Button';
 import { useResponsiveBreakpoints } from '@/hooks/useResponsiveBreakpoints';
 
 interface UnifiedCreateHeroProps {
@@ -30,7 +29,7 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
     visible: {
       opacity: 1,
       y: 0,
-      transition: { duration: 0.6, ease: "easeOut" }
+      transition: { duration: 0.6 }
     }
   };
 
@@ -41,7 +40,6 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
       scale: 1,
       transition: { 
         duration: 1.2, 
-        ease: "easeOut",
         delay: 0.4
       }
     }
@@ -100,7 +98,7 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
               <div className={`flex ${isMobile ? 'flex-col' : 'flex-row'} gap-4 ${isMobile ? 'items-center' : 'items-start'}`}>
                 <CRDButton
                   variant="primary"
-                  size="large"
+                  size="lg"
                   className="w-full sm:w-auto bg-gradient-to-r from-crd-green to-crd-blue hover:from-crd-blue hover:to-crd-green transform hover:scale-105 transition-all duration-300"
                 >
                   Start Creating
@@ -108,7 +106,7 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
                 
                 <CRDButton
                   variant="outline"
-                  size="large"
+                  size="lg"
                   className="w-full sm:w-auto border-crd-mediumGray text-crd-white hover:bg-crd-mediumGray/20"
                 >
                   View Gallery
@@ -132,25 +130,21 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
             </motion.div>
           </div>
 
-          {/* Right Column - 3D Model Viewer */}
+          {/* Right Column - 3D Model Viewer Placeholder */}
           {!isMobile && (
             <motion.div
               variants={modelVariants}
               className="relative h-[600px] lg:h-[700px]"
             >
               <div className="absolute inset-0 bg-gradient-to-b from-transparent via-crd-green/5 to-transparent rounded-3xl"></div>
-              <ResponsiveModelViewer
-                className="w-full h-full"
-                autoRotate={true}
-                showControls={false}
-                cardData={{
-                  frontImage: "/placeholder.svg",
-                  playerName: "Demo Card",
-                  teamName: "CARDSHOW",
-                  position: "Creator",
-                  stats: { overall: 99 }
-                }}
-              />
+              <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-crd-green/10 to-crd-blue/10 rounded-3xl border border-crd-green/20">
+                <div className="text-center space-y-4">
+                  <div className="w-32 h-40 bg-gradient-to-b from-crd-green/30 to-crd-blue/30 rounded-lg mx-auto animate-pulse"></div>
+                  <Typography variant="body" className="text-crd-lightGray">
+                    3D Card Preview
+                  </Typography>
+                </div>
+              </div>
             </motion.div>
           )}
         </motion.div>
@@ -162,18 +156,14 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
           variants={modelVariants}
           className="relative mt-12 h-[400px] w-full max-w-md mx-auto"
         >
-          <ResponsiveModelViewer
-            className="w-full h-full"
-            autoRotate={true}
-            showControls={false}
-            cardData={{
-              frontImage: "/placeholder.svg",
-              playerName: "Demo Card",
-              teamName: "CARDSHOW",
-              position: "Creator",
-              stats: { overall: 99 }
-            }}
-          />
+          <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-crd-green/10 to-crd-blue/10 rounded-3xl border border-crd-green/20">
+            <div className="text-center space-y-4">
+              <div className="w-24 h-32 bg-gradient-to-b from-crd-green/30 to-crd-blue/30 rounded-lg mx-auto animate-pulse"></div>
+              <Typography variant="body" className="text-crd-lightGray text-sm">
+                3D Card Preview
+              </Typography>
+            </div>
+          </div>
         </motion.div>
       )}
     </section>
