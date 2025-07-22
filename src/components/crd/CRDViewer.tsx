@@ -13,7 +13,6 @@ import { useCardAngle } from './hooks/useCardAngle';
 import { MonolithAlignment } from './alignment/MonolithAlignment';
 import { GalacticCompass } from './alignment/GalacticCompass';
 import { ViewingConditionsIndicator } from './alignment/ViewingConditionsIndicator';
-import { EngravedDropZone } from './surface/EngravedDropZone';
 
 import { useMonolithViewingDetector } from '@/hooks/useMonolithViewingDetector';
 import { type Transform3D } from '@/utils/monolithViewingCalculations';
@@ -84,9 +83,6 @@ interface CRDViewerProps {
   // Space environment
   spaceEnvironment?: SpaceEnvironment;
   onSpaceEnvironmentChange?: (environment: SpaceEnvironment) => void;
-  
-  // Dropzone integration
-  onFileUpload?: (files: File[]) => void;
 }
 
 export const CRDViewer: React.FC<CRDViewerProps> = ({
@@ -133,10 +129,7 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
   
   // Space environment
   spaceEnvironment = 'starfield',
-  onSpaceEnvironmentChange,
-  
-  // File upload
-  onFileUpload
+  onSpaceEnvironmentChange
 }) => {
   // Responsive card positioning based on screen height
   const [cardPosition, setCardPosition] = useState<[number, number, number]>([0, -2, 0]);
@@ -173,12 +166,6 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
   const { cardAngle, cameraDistance, isOptimalZoom, isOptimalPosition, cardRef: angleCardRef, controlsRef, resetCardAngle } = useCardAngle();
   const [animationProgress, setAnimationProgress] = useState(0);
   const [isPlaying, setIsPlaying] = useState(false);
-  
-  // Dropzone visibility state
-  const [showDropZone, setShowDropZone] = useState(false);
-  const [stillnessTimer, setStillnessTimer] = useState<NodeJS.Timeout | null>(null);
-  const [cardIsStill, setCardIsStill] = useState(false);
-  const [cardIsFacingUser, setCardIsFacingUser] = useState(false);
   const [playbackSpeed, setPlaybackSpeed] = useState(1);
   const [isResettingCard, setIsResettingCard] = useState(false);
   const [cardRotationForCompass, setCardRotationForCompass] = useState({ x: 0, y: 0, z: 0 });
@@ -453,51 +440,6 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
     }
   }, [animationProgress, isPlaying, playbackSpeed, cardAngle, cameraDistance, isOptimalZoom, isOptimalPosition, onAlignmentStateChange]);
 
-  // Handle dropzone visibility logic
-  useEffect(() => {
-    // Check if card is facing user (roughly front-facing)
-    const isFacing = Math.abs(cardAngle) < 30; // Within 30 degrees of front
-    setCardIsFacingUser(isFacing);
-    
-    // Check if animation is still (not playing and progress complete)
-    const isStill = !isPlaying && animationProgress >= 1;
-    
-    if (isStill && isFacing) {
-      // Start stillness timer if not already started
-      if (!stillnessTimer && !cardIsStill) {
-        const timer = setTimeout(() => {
-          setCardIsStill(true);
-          setShowDropZone(true);
-        }, 3000); // 3 seconds
-        setStillnessTimer(timer);
-      }
-    } else {
-      // Reset stillness state
-      if (stillnessTimer) {
-        clearTimeout(stillnessTimer);
-        setStillnessTimer(null);
-      }
-      setCardIsStill(false);
-      setShowDropZone(false);
-    }
-    
-    // Cleanup timer on unmount
-    return () => {
-      if (stillnessTimer) {
-        clearTimeout(stillnessTimer);
-      }
-    };
-  }, [isPlaying, animationProgress, cardAngle, stillnessTimer, cardIsStill]);
-
-  // Handle file upload from dropzone
-  const handleFileUpload = useCallback((files: File[]) => {
-    if (onFileUpload) {
-      onFileUpload(files);
-    }
-    // Hide dropzone after upload
-    setShowDropZone(false);
-  }, [onFileUpload]);
-
   const resetTemplateState = useCallback(() => {
     console.log('🔄 Starting smooth reset animation...');
     console.log('🎯 Current state:', { animationProgress, isPlaying });
@@ -651,10 +593,7 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
   }, []);
 
 
-  console.log('🎬 CRDViewer: Component rendering with props:', { 
-    initialMode, initialIntensity, initialLightingPreset, enableControls 
-  });
-
+  // Force case to be 'none' for the create page
   const forcedCaseStyle = 'none';
 
   return (
@@ -672,16 +611,6 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
             toneMappingExposure: 1.2
           }}
           scene={{ background: null }}
-          onCreated={({ gl, scene, camera }) => {
-            console.log('🎨 CRDViewer: Three.js Canvas created successfully', {
-              renderer: gl.info.render,
-              scene: scene.uuid,
-              camera: camera.uuid
-            });
-          }}
-          onError={(error) => {
-            console.error('❌ CRDViewer: Three.js Canvas error:', error);
-          }}
         >
           {/* Removed all drag gestures and alignment triggering - was causing card freezing */}
           
@@ -717,18 +646,6 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
               onPauseToggle={handleCardPauseToggle}
               onHover={handleCardHover}
               onTransformUpdate={handleTransformUpdate}
-            />
-            
-            {/* Engraved dropzone on both sides of card - permanent */}
-            <EngravedDropZone 
-              visible={true}
-              onFileSelect={handleFileUpload}
-              position={[0, 0, 0.051]}
-            />
-            <EngravedDropZone 
-              visible={true}
-              onFileSelect={handleFileUpload}
-              position={[0, 0, -0.051]}
             />
           </group>
 
