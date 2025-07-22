@@ -128,9 +128,14 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
                     </CRDButton>
                   </Link>
                 </div>
-                
+              </div>
+            </div>
+
+            {/* Bottom Section - Combined Tagline and Scroll Indicator */}
+            <div className="flex-shrink-0 pb-2 pointer-events-none relative z-[100]">
+              <div className="text-center px-6">
                 {/* Inspirational tagline */}
-                <div className="text-center px-6">
+                <div className="mb-6">
                   <Typography 
                     variant="large-body" 
                     className="text-crd-lightGray max-w-3xl mx-auto mobile-body animate-fade-in"
@@ -138,12 +143,7 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
                     From basketball legends to anime heroes, fantasy realms to family memories — craft CRDs that captivate hearts and soon share STRYs that bring your universe to life.
                   </Typography>
                 </div>
-              </div>
-            </div>
-
-            {/* Bottom Section - Combined Tagline and Scroll Indicator */}
-            <div className="flex-shrink-0 pb-2 pointer-events-none relative z-[100]">
-              <div className="text-center px-6">
+                
                 {/* Animated Tagline */}
                 <p className="text-xs text-gray-400 animate-pulse mb-4">
                   ✨ Where imagination meets technology. <span className="font-caveat text-base text-crd-orange">What will you make?</span>
@@ -199,16 +199,6 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
                       </CRDButton>
                     </Link>
                   </div>
-                  
-                  {/* Inspirational tagline */}
-                  <div className="text-center px-6">
-                    <Typography 
-                      variant="large-body" 
-                      className="text-crd-lightGray max-w-3xl mx-auto mobile-body animate-fade-in"
-                    >
-                      From basketball legends to anime heroes, fantasy realms to family memories — craft CRDs that captivate hearts and soon share STRYs that bring your universe to life.
-                    </Typography>
-                  </div>
                 </div>
               </div>
             </div>
@@ -216,6 +206,16 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
             {/* Bottom Section - Combined Tagline and Scroll Indicator */}
             <div className="flex-shrink-0 pb-2 pointer-events-none relative z-[100]">
               <div className="text-center px-6">
+                {/* Inspirational tagline */}
+                <div className="mb-6">
+                  <Typography 
+                    variant="large-body" 
+                    className="text-crd-lightGray max-w-3xl mx-auto mobile-body animate-fade-in"
+                  >
+                    From basketball legends to anime heroes, fantasy realms to family memories — craft CRDs that captivate hearts and soon share STRYs that bring your universe to life.
+                  </Typography>
+                </div>
+                
                 {/* Animated Tagline */}
                 <p className="text-sm text-gray-400 animate-pulse mb-4">
                   ✨ Where imagination meets technology. <span className="font-caveat text-xl text-crd-orange">What will you make?</span>
