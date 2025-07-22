@@ -218,7 +218,7 @@ export const UnifiedCreateHero: React.FC<UnifiedCreateHeroProps> = ({ onAnimatio
                 
                 {/* Animated Tagline */}
                 <p className="text-base text-gray-400 animate-pulse mb-4">
-                  ✨ Where imagination meets technology. <span className="font-caveat text-xl text-crd-orange">What will you make?</span>
+                  ✨ Where imagination meets technology. <span className="font-caveat text-2xl text-crd-orange">What will you make?</span>
                 </p>
                 
                 {/* Scroll Indicator */}
