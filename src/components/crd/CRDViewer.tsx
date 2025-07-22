@@ -8,6 +8,7 @@ import { OrbitalMaterialSystem } from './orbital/OrbitalMaterialSystem';
 import { AlignmentControls } from './alignment/AlignmentControls';
 import { loadTemplate, TemplateConfig, TemplateEngine } from '@/templates/engine';
 import { ensureMaterialPersistence, getMaterialForTemplate } from '@/utils/materialFallback';
+import { COMPONENT_Z_INDEX, getZIndexClass } from '@/lib/constants/z-index';
 import { PerformanceMonitor } from './performance/PerformanceMonitor';
 import { useCardAngle } from './hooks/useCardAngle';
 import { MonolithAlignment } from './alignment/MonolithAlignment';
@@ -602,7 +603,7 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
       <div className="relative w-full h-full">
         {/* 3D Scene - Responsive sizing */}
         <Canvas
-          className="relative z-20 w-full h-full"
+          className={`relative ${getZIndexClass(COMPONENT_Z_INDEX.THREE_JS_CANVAS)} w-full h-full`}
           camera={{ position: [0, 1, 15], fov: 60 }}
           gl={{ 
             antialias: true, 
@@ -775,7 +776,7 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
       )}
       
       {showPauseButton && (
-        <div className="fixed bottom-6 right-6 z-[999] flex gap-3">
+        <div className={`fixed bottom-6 right-6 ${getZIndexClass(COMPONENT_Z_INDEX.PAUSE_BUTTON)} flex gap-3`}>
           <EnvironmentSwitcher
             currentEnvironment={spaceEnvironment}
             onEnvironmentChange={onSpaceEnvironmentChange || (() => {})}

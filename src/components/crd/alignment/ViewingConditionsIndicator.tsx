@@ -1,5 +1,6 @@
 import React from 'react';
 import { getViewingFeedback, type ViewingConditions } from '@/utils/monolithViewingCalculations';
+import { COMPONENT_Z_INDEX, getZIndexClass } from '@/lib/constants/z-index';
 
 interface ViewingConditionsIndicatorProps {
   conditions: ViewingConditions;
@@ -24,7 +25,7 @@ export const ViewingConditionsIndicator: React.FC<ViewingConditionsIndicatorProp
       ? "fixed bottom-32 right-6 transform transition-all duration-500 translate-y-full" 
       : "fixed top-24 left-1/2 transform -translate-x-1/2 transition-all duration-300";
     
-    const baseStyle = `${basePosition} z-[9999]`;
+    const baseStyle = `${basePosition} ${getZIndexClass(COMPONENT_Z_INDEX.VIEWING_CONDITIONS)}`;
     
     switch (urgency) {
       case 'critical':
