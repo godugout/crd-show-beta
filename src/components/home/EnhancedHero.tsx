@@ -263,7 +263,7 @@ export const EnhancedHero: React.FC = () => {
   // Make cards clickable, no immersive preview
   const handleCardStudioOpen = (card: DbCard) => {
     if (!card?.id) return;
-    navigate(`/studio/${card.id}`);
+    navigate(`/studio/demo/${card.id}`);
   };
 
   // Hero configurations
