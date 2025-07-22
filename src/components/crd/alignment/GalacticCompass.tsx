@@ -275,7 +275,7 @@ export const GalacticCompass: React.FC<GalacticCompassProps> = ({
                       <div className="w-2 h-0.5 bg-gradient-to-r from-orange-600 to-orange-300"></div>
                     </div>
                     <div className="flex items-center justify-end gap-1">
-                      <span>{cameraDistance ? `${cameraDistance.toFixed(1)}x` : 'N/A'}</span>
+                      <span>{cameraDistance ? `${(20 / cameraDistance).toFixed(1)}x` : 'N/A'}</span>
                       <span>Z</span>
                       <div className="w-2 h-0.5 bg-gradient-to-r from-green-600 to-green-300"></div>
                     </div>
