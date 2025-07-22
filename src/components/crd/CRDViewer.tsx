@@ -651,7 +651,10 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
   }, []);
 
 
-  // Force case to be 'none' for the create page
+  console.log('🎬 CRDViewer: Component rendering with props:', { 
+    initialMode, initialIntensity, initialLightingPreset, enableControls 
+  });
+
   const forcedCaseStyle = 'none';
 
   return (
@@ -669,6 +672,16 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
             toneMappingExposure: 1.2
           }}
           scene={{ background: null }}
+          onCreated={({ gl, scene, camera }) => {
+            console.log('🎨 CRDViewer: Three.js Canvas created successfully', {
+              renderer: gl.info.render,
+              scene: scene.uuid,
+              camera: camera.uuid
+            });
+          }}
+          onError={(error) => {
+            console.error('❌ CRDViewer: Three.js Canvas error:', error);
+          }}
         >
           {/* Removed all drag gestures and alignment triggering - was causing card freezing */}
           
