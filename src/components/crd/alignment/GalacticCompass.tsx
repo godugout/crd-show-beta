@@ -149,10 +149,16 @@ export const GalacticCompass: React.FC<GalacticCompassProps> = ({
               <div className="flex flex-col items-end gap-2">
                 {/* Rewind to Start Button */}
                 <button
-                  onClick={() => {
-                    console.log('🔥 REWIND BUTTON CLICKED - onRewindToStart:', typeof onRewindToStart);
-                    console.log('⏪ Rewinding to start position');
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    console.log('🔥 REWIND BUTTON CLICKED!');
+                    console.log('🔍 onRewindToStart type:', typeof onRewindToStart);
+                    console.log('🔍 canRewind:', canRewind);
+                    console.log('🔍 totalMovements:', totalMovements);
+                    
                     if (onRewindToStart) {
+                      console.log('✅ Calling onRewindToStart...');
                       onRewindToStart();
                     } else {
                       console.error('❌ onRewindToStart is not defined!');

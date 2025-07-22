@@ -560,8 +560,12 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
       
       recordInitialState(initialPosition, initialTarget);
       console.log('📹 Initial camera state recorded for movement history');
+      
+      // Log initial movement history stats
+      const stats = getHistoryStats();
+      console.log('📊 Initial movement history stats:', stats);
     }
-  }, [controlsRef, recordInitialState]);
+  }, [controlsRef, recordInitialState, getHistoryStats]);
 
   // Handle rewind to start
   const handleRewindToStart = useCallback(() => {
@@ -861,6 +865,10 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
                       newTransform.rotation.z * Math.PI / 180
                     )
                   );
+                  
+                  // Debug movement history
+                  const stats = getHistoryStats();
+                  console.log('📹 Movement recorded, stats:', stats);
                   
                   // Debug logging for development
                   if (process.env.NODE_ENV === 'development' && Math.random() < 0.02) { // Log ~2% of frames
