@@ -42,26 +42,12 @@ export const useStepNavigation = ({ state, updateState }: UseStepNavigationProps
   }, [state.mode, state.currentStep, getConfigById, updateState]);
 
   const previousStep = useCallback(() => {
-    console.log('🔙 Back button clicked - previousStep called');
-    console.log('Current state:', { mode: state.mode, currentStep: state.currentStep, canGoBack: state.canGoBack });
-    
     const currentConfig = getConfigById(state.mode);
-    if (!currentConfig) {
-      console.log('❌ No config found for mode:', state.mode);
-      return;
-    }
+    if (!currentConfig) return;
     
     const currentIndex = currentConfig.steps.indexOf(state.currentStep);
     const prevIndex = Math.max(currentIndex - 1, 0);
     const prevStep = currentConfig.steps[prevIndex];
-    
-    console.log('Navigation calculation:', { 
-      currentIndex, 
-      prevIndex, 
-      currentStep: state.currentStep, 
-      prevStep,
-      steps: currentConfig.steps 
-    });
     
     updateState({
       currentStep: prevStep,
@@ -69,8 +55,6 @@ export const useStepNavigation = ({ state, updateState }: UseStepNavigationProps
       canGoBack: prevIndex > 0,
       canAdvance: true
     });
-    
-    console.log('✅ State updated to previous step:', prevStep);
   }, [state.mode, state.currentStep, getConfigById, updateState]);
 
   return { setMode, nextStep, previousStep };

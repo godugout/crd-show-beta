@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { RotateCcw, HelpCircle, Play, Pause, RefreshCw, Package, PackageOpen, Globe, SkipBack, Rewind } from 'lucide-react';
+import { RotateCcw, HelpCircle, Play, Pause, RefreshCw, Package, PackageOpen, Globe } from 'lucide-react';
 import { EnvironmentSwitcher, type SpaceEnvironment } from '../../studio/EnvironmentSwitcher';
 
 interface GalacticCompassProps {
@@ -13,12 +13,6 @@ interface GalacticCompassProps {
   onToggleGlassCase?: () => void;
   spaceEnvironment?: SpaceEnvironment;
   onSpaceEnvironmentChange?: (environment: SpaceEnvironment) => void;
-  
-  // Movement history props
-  onRewindToStart?: () => void;
-  onRewindToProgress?: (progress: number) => void;
-  canRewind?: boolean;
-  totalMovements?: number;
 }
 
 export const GalacticCompass: React.FC<GalacticCompassProps> = ({
@@ -31,17 +25,10 @@ export const GalacticCompass: React.FC<GalacticCompassProps> = ({
   enableGlassCase = true,
   onToggleGlassCase,
   spaceEnvironment = 'starfield',
-  onSpaceEnvironmentChange,
-  
-  // Movement history props
-  onRewindToStart,
-  onRewindToProgress,
-  canRewind = false,
-  totalMovements = 0
+  onSpaceEnvironmentChange
 }) => {
   const [compassAngle, setCompassAngle] = useState(0); // 0 = pointing up
   const [isTracking, setIsTracking] = useState(true);
-  const [showRewindControls, setShowRewindControls] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout>();
 
   // Update compass needles based on real card rotation
@@ -74,7 +61,7 @@ export const GalacticCompass: React.FC<GalacticCompassProps> = ({
   return (
     <>
       {/* Left Side - Creating Tools Bar */}
-      <div className="fixed bottom-6 left-6 z-[9999]">
+      <div className="fixed bottom-6 left-6 z-50">
         <div className="flex flex-col items-start gap-2">
           {/* Future creating tools will go here */}
           <div className="flex flex-col items-start gap-2">
@@ -139,65 +126,30 @@ export const GalacticCompass: React.FC<GalacticCompassProps> = ({
       </div>
 
       {/* Right Side - Playing Controls Bar */}
-      <div className="fixed bottom-6 right-6 z-[9999]">
+      <div className="fixed bottom-6 right-6 z-50">
         <div className="flex flex-col items-end gap-3">
-          {/* Rewind Controls - Positioned above compass with proper spacing */}
-          {canRewind && totalMovements > 1 && (
-            <div className="flex flex-col items-end gap-2 mb-4">
-              {/* Rewind to Start Button */}
+          {/* Control Buttons - Pause/Play and Refresh above compass */}
+          <div className="flex flex-col items-end gap-3">
+            {/* Pause/Play Button */}
+            {onTogglePause && (
               <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  console.log('🔥 REWIND BUTTON CLICKED!');
-                  console.log('🔍 onRewindToStart type:', typeof onRewindToStart);
-                  console.log('🔍 canRewind:', canRewind);
-                  console.log('🔍 totalMovements:', totalMovements);
-                  
-                  if (onRewindToStart) {
-                    console.log('✅ Calling onRewindToStart...');
-                    onRewindToStart();
-                  } else {
-                    console.error('❌ onRewindToStart is not defined!');
-                  }
-                }}
-                className="group text-white/40 hover:text-orange-400 p-2 rounded-full shadow-lg transition-all duration-300 hover:scale-105 flex items-center justify-center border"
+                onClick={onTogglePause}
+            className="group text-white/40 hover:text-[#3772FF] p-2 rounded-full shadow-lg transition-all duration-300 hover:scale-105 flex items-center justify-center border"
                 style={{
-                  background: 'linear-gradient(135deg, rgba(255, 165, 0, 0.08) 0%, rgba(255, 165, 0, 0.05) 50%, rgba(255, 165, 0, 0.12) 100%)',
-                  borderColor: 'rgba(255, 165, 0, 0.15)',
+                  background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.12) 100%)',
+                  borderColor: 'rgba(255, 255, 255, 0.15)',
                   backdropFilter: 'blur(12px) saturate(180%)'
                 }}
-                title="Rewind to Start"
+                title={isPaused ? "Resume" : "Pause"}
               >
-                <SkipBack className="w-4 h-4 transition-transform group-hover:scale-110" />
+                {isPaused ? (
+                  <Play className="w-4 h-4 transition-transform group-hover:scale-110" />
+                ) : (
+                  <Pause className="w-4 h-4 transition-transform group-hover:scale-110" />
+                )}
               </button>
-
-              {/* Movement History Indicator */}
-              <div className="text-xs text-orange-400/70 font-mono text-right">
-                <span>{totalMovements} moves</span>
-              </div>
-            </div>
-          )}
-
-          {/* Pause/Play Button */}
-          {onTogglePause && (
-            <button
-              onClick={onTogglePause}
-              className="group text-white/40 hover:text-[#3772FF] p-2 rounded-full shadow-lg transition-all duration-300 hover:scale-105 flex items-center justify-center border"
-              style={{
-                background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.12) 100%)',
-                borderColor: 'rgba(255, 255, 255, 0.15)',
-                backdropFilter: 'blur(12px) saturate(180%)'
-              }}
-              title={isPaused ? "Resume" : "Pause"}
-            >
-              {isPaused ? (
-                <Play className="w-4 h-4 transition-transform group-hover:scale-110" />
-              ) : (
-                <Pause className="w-4 h-4 transition-transform group-hover:scale-110" />
-              )}
-            </button>
-          )}
+            )}
+          </div>
           
           {/* Compass and data below buttons */}
           <div className="flex flex-col items-end gap-3">
