@@ -1,6 +1,6 @@
 
 import React, { Suspense, lazy } from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Toaster } from 'sonner';
 import '@/styles/studio.css';
 import { AuthProvider } from '@/features/auth/providers/AuthProvider';
@@ -10,6 +10,7 @@ import { DevLoginFloatingButton } from '@/components/auth/DevLoginFloatingButton
 import { Navbar } from '@/components/layout/Navbar';
 import { FlightAnimationProvider } from '@/contexts/FlightAnimationContext';
 import { RouteErrorBoundary } from '@/components/routing/RouteErrorBoundary';
+import { StudioRedirect } from '@/components/routing/StudioRedirect';
 import { LoadingState } from '@/components/common/LoadingState';
 import { GlobalSecretEffectsProvider } from '@/contexts/GlobalSecretEffectsContext';
 import { GlobalSecretMenu } from '@/components/global/GlobalSecretMenu';
@@ -175,7 +176,16 @@ const App = () => {
                       </RouteErrorBoundary>
                     } 
                   />
+                  {/* Redirect old studio routes to new structure */}
                   <Route 
+                    path="/studio/:cardId" 
+                    element={<StudioRedirect />}
+                  />
+                  <Route 
+                    path="/studio" 
+                    element={<Navigate to="/studio/demo" replace />}
+                  />
+                  <Route
                     path="/upload-test" 
                     element={
                       <RouteErrorBoundary>
