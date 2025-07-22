@@ -60,13 +60,7 @@
   
   /* Interactive theming */
   .hover-themed {
-    transition: all 0.2s ease;
-    color: hsl(var(--crd-lightGray));
-  }
-  
-  .hover-themed:hover {
-    background-color: hsl(var(--crd-mediumGray) / 0.2);
-    color: hsl(var(--crd-white));
+    @apply transition-all duration-200 hover:bg-crd-mediumGray/20 hover:text-white;
   }
   
   /* Button theming */
@@ -81,29 +75,17 @@
   }
   
   .btn-themed-ghost {
-    background: transparent;
-    color: hsl(var(--crd-lightGray));
-    border: 1px solid hsl(var(--crd-mediumGray) / 0.3);
-    border-radius: 0.5rem;
-    transition: all 0.2s ease;
-  }
-  
-  .btn-themed-ghost:hover {
-    background-color: hsl(var(--crd-mediumGray) / 0.2);
-    color: hsl(var(--crd-white));
+    @apply bg-transparent text-crd-lightGray hover:bg-crd-mediumGray/20 hover:text-white border border-crd-mediumGray/30 rounded-lg;
   }
   
   /* Card theming */
   .card-themed {
-    background-color: hsl(var(--crd-darkGray));
-    border: 1px solid hsl(var(--crd-mediumGray) / 0.3);
-    border-radius: 0.5rem;
+    @apply bg-crd-darkGray border border-crd-mediumGray/30 rounded-lg;
   }
   
   /* Focus theming */
-  .focus-themed:focus {
-    outline: none;
-    box-shadow: 0 0 0 2px hsl(var(--crd-blue) / 0.5), 0 0 0 4px hsl(var(--crd-darkest));
+  .focus-themed {
+    @apply focus:outline-none focus:ring-2 focus:ring-crd-blue/50 focus:ring-offset-2 focus:ring-offset-crd-darkest;
   }
 }
 
