@@ -8,6 +8,7 @@ interface GalacticCompassProps {
   isResetting?: boolean;
   onShowTutorial?: () => void;
   cardRotation?: { x: number; y: number; z: number };
+  cameraDistance?: number;
   isPaused?: boolean;
   onTogglePause?: () => void;
   enableGlassCase?: boolean;
@@ -21,6 +22,7 @@ export const GalacticCompass: React.FC<GalacticCompassProps> = ({
   isResetting = false,
   onShowTutorial,
   cardRotation,
+  cameraDistance,
   isPaused = false,
   onTogglePause,
   enableGlassCase = true,
@@ -273,7 +275,7 @@ export const GalacticCompass: React.FC<GalacticCompassProps> = ({
                       <div className="w-2 h-0.5 bg-gradient-to-r from-orange-600 to-orange-300"></div>
                     </div>
                     <div className="flex items-center justify-end gap-1">
-                      <span>{cardRotation.z.toFixed(1)}°</span>
+                      <span>{cameraDistance ? `${cameraDistance.toFixed(1)}x` : 'N/A'}</span>
                       <span>Z</span>
                       <div className="w-2 h-0.5 bg-gradient-to-r from-green-600 to-green-300"></div>
                     </div>
