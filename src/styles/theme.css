@@ -60,7 +60,13 @@
   
   /* Interactive theming */
   .hover-themed {
-    @apply transition-all duration-200 hover:bg-crd-mediumGray/20 hover:text-white;
+    transition: all 0.2s ease;
+    color: hsl(var(--crd-lightGray));
+  }
+  
+  .hover-themed:hover {
+    background-color: hsl(var(--crd-mediumGray) / 0.2);
+    color: hsl(var(--crd-white));
   }
   
   /* Button theming */
@@ -75,7 +81,16 @@
   }
   
   .btn-themed-ghost {
-    @apply bg-transparent text-crd-lightGray hover:bg-crd-mediumGray/20 hover:text-white border border-crd-mediumGray/30 rounded-lg;
+    background: transparent;
+    color: hsl(var(--crd-lightGray));
+    border: 1px solid hsl(var(--crd-mediumGray) / 0.3);
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+  }
+  
+  .btn-themed-ghost:hover {
+    background-color: hsl(var(--crd-mediumGray) / 0.2);
+    color: hsl(var(--crd-white));
   }
   
   /* Card theming */
