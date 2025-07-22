@@ -172,6 +172,7 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
   const [playbackSpeed, setPlaybackSpeed] = useState(1);
   const [isResettingCard, setIsResettingCard] = useState(false);
   const [cardRotationForCompass, setCardRotationForCompass] = useState({ x: 0, y: 0, z: 0 });
+  const [shouldGlowGlassCase, setShouldGlowGlassCase] = useState(false);
 
   // Performance monitoring
   const [performanceEnabled, setPerformanceEnabled] = useState(false);
@@ -311,6 +312,12 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
   const handleStyleChange = (styleId: string) => {
     console.log('🎨 CRD Viewer: Style changing from', selectedStyleId, 'to:', styleId);
     setSelectedStyleId(styleId);
+    
+    // Trigger glass case glow for 3 seconds when style changes
+    setShouldGlowGlassCase(true);
+    setTimeout(() => {
+      setShouldGlowGlassCase(false);
+    }, 3000);
   };
 
   const handleCardPauseToggle = (paused: boolean) => {
@@ -823,6 +830,7 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
         onToggleGlassCase={() => setCurrentEnableGlassCase(!currentEnableGlassCase)}
         spaceEnvironment={spaceEnvironment}
         onSpaceEnvironmentChange={onSpaceEnvironmentChange}
+        shouldGlowGlassCase={shouldGlowGlassCase}
       />
     </div>
   );
