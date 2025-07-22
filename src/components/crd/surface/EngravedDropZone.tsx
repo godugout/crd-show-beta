@@ -25,60 +25,68 @@ export const EngravedDropZone: React.FC<EngravedDropZoneProps> = ({
 
   return (
     <group position={position}>
-      {/* Engraved border */}
+      {/* Engraved border - more visible */}
       <mesh>
-        <ringGeometry args={[0.8, 0.85, 32]} />
+        <ringGeometry args={[0.8, 0.95, 32]} />
         <meshStandardMaterial 
-          color="#2a2a2a" 
-          metalness={0.8}
-          roughness={0.3}
+          color="#1a1a1a" 
+          metalness={0.9}
+          roughness={0.1}
           transparent
-          opacity={0.9}
+          opacity={1.0}
         />
       </mesh>
       
-      {/* Inner dropzone surface */}
+      {/* Inner dropzone surface - more visible */}
       <mesh>
         <circleGeometry args={[0.8, 32]} />
         <meshStandardMaterial 
-          color="#1a1a1a" 
-          metalness={0.6}
-          roughness={0.5}
-          transparent
-          opacity={0.8}
-        />
-      </mesh>
-      
-      {/* Upload icon (engraved) */}
-      <mesh position={[0, 0.2, 0.001]}>
-        <circleGeometry args={[0.15, 16]} />
-        <meshStandardMaterial 
-          color="#333" 
-          metalness={0.9}
+          color="#0a0a0a" 
+          metalness={0.8}
           roughness={0.2}
+          transparent
+          opacity={0.95}
         />
       </mesh>
       
-      {/* Upload arrow lines (simplified engraved effect) */}
+      {/* Upload icon (engraved) - more visible */}
+      <mesh position={[0, 0.2, 0.001]}>
+        <circleGeometry args={[0.18, 16]} />
+        <meshStandardMaterial 
+          color="#2a2a2a" 
+          metalness={1.0}
+          roughness={0.1}
+        />
+      </mesh>
+      
+      {/* Upload arrow lines (simplified engraved effect) - more visible */}
       <group position={[0, 0.2, 0.002]}>
         {/* Vertical line */}
         <mesh>
-          <boxGeometry args={[0.02, 0.2, 0.005]} />
-          <meshStandardMaterial color="#555" />
+          <boxGeometry args={[0.03, 0.24, 0.008]} />
+          <meshStandardMaterial 
+            color="#666" 
+            metalness={0.9}
+            roughness={0.1}
+          />
         </mesh>
         
         {/* Arrow head */}
-        <mesh position={[0, 0.08, 0]}>
-          <coneGeometry args={[0.04, 0.06, 4]} />
-          <meshStandardMaterial color="#555" />
+        <mesh position={[0, 0.1, 0]}>
+          <coneGeometry args={[0.05, 0.08, 4]} />
+          <meshStandardMaterial 
+            color="#666"
+            metalness={0.9}
+            roughness={0.1}
+          />
         </mesh>
       </group>
       
-      {/* Text */}
+      {/* Text - more visible */}
       <Text
         position={[0, -0.2, 0.002]}
-        fontSize={0.08}
-        color="#666"
+        fontSize={0.1}
+        color="#888"
         anchorX="center"
         anchorY="middle"
         font="/fonts/roboto-mono-regular.woff"
@@ -88,8 +96,8 @@ export const EngravedDropZone: React.FC<EngravedDropZoneProps> = ({
       
       <Text
         position={[0, -0.35, 0.002]}
-        fontSize={0.05}
-        color="#555"
+        fontSize={0.06}
+        color="#777"
         anchorX="center"
         anchorY="middle"
         font="/fonts/roboto-mono-regular.woff"

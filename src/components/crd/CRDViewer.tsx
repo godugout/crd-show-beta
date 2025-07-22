@@ -706,11 +706,16 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
               onTransformUpdate={handleTransformUpdate}
             />
             
-            {/* Engraved dropzone on card surface */}
+            {/* Engraved dropzone on both sides of card - permanent */}
             <EngravedDropZone 
-              visible={showDropZone}
+              visible={true}
               onFileSelect={handleFileUpload}
-              position={[0, 0, 0]}
+              position={[0, 0, 0.051]}
+            />
+            <EngravedDropZone 
+              visible={true}
+              onFileSelect={handleFileUpload}
+              position={[0, 0, -0.051]}
             />
           </group>
 
