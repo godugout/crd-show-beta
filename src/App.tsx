@@ -1,6 +1,6 @@
 
 import React, { Suspense, lazy } from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { Toaster } from 'sonner';
 import '@/styles/studio.css';
 import { AuthProvider } from '@/features/auth/providers/AuthProvider';
@@ -10,7 +10,6 @@ import { DevLoginFloatingButton } from '@/components/auth/DevLoginFloatingButton
 import { Navbar } from '@/components/layout/Navbar';
 import { FlightAnimationProvider } from '@/contexts/FlightAnimationContext';
 import { RouteErrorBoundary } from '@/components/routing/RouteErrorBoundary';
-import { StudioRedirect } from '@/components/routing/StudioRedirect';
 import { LoadingState } from '@/components/common/LoadingState';
 import { GlobalSecretEffectsProvider } from '@/contexts/GlobalSecretEffectsContext';
 import { GlobalSecretMenu } from '@/components/global/GlobalSecretMenu';
@@ -157,7 +156,7 @@ const App = () => {
                     } 
                   />
                   <Route 
-                    path="/studio" 
+                    path="/studio/demo" 
                     element={
                       <RouteErrorBoundary>
                         <Suspense fallback={<StudioLoading />}>
@@ -166,26 +165,17 @@ const App = () => {
                       </RouteErrorBoundary>
                     } 
                   />
-                  <Route 
-                    path="/studio/:cardId" 
-                    element={
-                      <RouteErrorBoundary>
-                        <Suspense fallback={<StudioLoading />}>
-                          <Studio />
-                        </Suspense>
-                      </RouteErrorBoundary>
-                    } 
-                  />
-                  {/* Redirect old demo routes to new structure */}
                   <Route 
                     path="/studio/demo/:cardId" 
-                    element={<StudioRedirect />}
+                    element={
+                      <RouteErrorBoundary>
+                        <Suspense fallback={<StudioLoading />}>
+                          <Studio />
+                        </Suspense>
+                      </RouteErrorBoundary>
+                    } 
                   />
                   <Route 
-                    path="/studio/demo" 
-                    element={<Navigate to="/studio" replace />}
-                  />
-                  <Route
                     path="/upload-test" 
                     element={
                       <RouteErrorBoundary>

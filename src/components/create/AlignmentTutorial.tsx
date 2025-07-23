@@ -93,50 +93,19 @@ export const AlignmentTutorial: React.FC<AlignmentTutorialProps> = ({
       <div className="relative w-full h-full flex items-center justify-center">
         {/* Animated Card Representation */}
         <div className="relative">
-          {/* CRD Slab Wireframe */}
+          {/* Card Mock */}
           <div className={`
-            relative w-64 h-96 bg-crd-darkest border-2 border-crd-accent/30 
+            relative w-64 h-96 bg-gradient-to-br from-crd-purple via-crd-accent to-crd-primary 
             rounded-2xl shadow-2xl transition-transform duration-1000 
             ${currentStep === 0 ? 'animate-zoom-in scale-110' : ''}
             ${currentStep === 1 ? 'animate-tilt-forward transform rotate-x-45' : ''}
             ${currentStep === 2 ? 'animate-drag-up-prep' : ''}
           `}>
-            {/* Outer Frame */}
-            <div className="absolute inset-2 border border-crd-accent/40 rounded-xl">
-              {/* Layer Structure */}
-              <div className="absolute inset-4 space-y-2">
-                {/* Top Layer - Card Surface */}
-                <div className="h-8 border border-crd-primary/50 rounded bg-crd-primary/10 flex items-center justify-center">
-                  <div className="text-crd-primary text-xs font-mono">SURFACE</div>
-                </div>
-                
-                {/* Middle Layers - Content Layers */}
-                <div className="flex-1 border border-crd-accent/50 rounded bg-crd-accent/5 p-2">
-                  <div className="grid grid-cols-2 gap-1 h-full">
-                    <div className="border border-crd-accent/30 rounded bg-crd-accent/10"></div>
-                    <div className="border border-crd-accent/30 rounded bg-crd-accent/10"></div>
-                    <div className="border border-crd-accent/30 rounded bg-crd-accent/10"></div>
-                    <div className="border border-crd-accent/30 rounded bg-crd-accent/10"></div>
-                  </div>
-                  <div className="text-crd-accent text-xs font-mono text-center mt-1">LAYERS</div>
-                </div>
-                
-                {/* Bottom Layer - Base Structure */}
-                <div className="h-6 border border-crd-lightGray/50 rounded bg-crd-lightGray/10 flex items-center justify-center">
-                  <div className="text-crd-lightGray text-xs font-mono">BASE</div>
-                </div>
+            <div className="absolute inset-4 bg-black/20 rounded-xl flex items-center justify-center">
+              <div className="text-white text-center">
+                <div className="text-6xl mb-4">🌟</div>
+                <div className="text-sm font-medium">Sample Card</div>
               </div>
-              
-              {/* Corner Markers */}
-              <div className="absolute top-1 left-1 w-2 h-2 border-l-2 border-t-2 border-crd-accent"></div>
-              <div className="absolute top-1 right-1 w-2 h-2 border-r-2 border-t-2 border-crd-accent"></div>
-              <div className="absolute bottom-1 left-1 w-2 h-2 border-l-2 border-b-2 border-crd-accent"></div>
-              <div className="absolute bottom-1 right-1 w-2 h-2 border-r-2 border-b-2 border-crd-accent"></div>
-            </div>
-            
-            {/* Technical Label */}
-            <div className="absolute -bottom-6 left-0 right-0 text-center">
-              <div className="text-crd-lightGray text-xs font-mono">CRD SLAB v2.1</div>
             </div>
           </div>
 

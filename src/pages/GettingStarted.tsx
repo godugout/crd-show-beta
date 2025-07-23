@@ -23,7 +23,7 @@ const GettingStarted = () => {
       title: "3. Customize & Edit",
       description: "Use our powerful editor to add effects, text, and styling",
       action: "Open Studio",
-      link: "/studio/demo"
+      link: "/studio"
     },
     {
       title: "4. Share Your Creation",

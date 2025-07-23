@@ -243,7 +243,6 @@ const Studio = () => {
           >
             {use3DMode ? (
               <StudioCardManager
-                key="studio-3d-manager"
                 cards={mockCards}
                 selectedCardIndex={currentCardIndex}
                 onCardSelect={handleCardChange}
@@ -253,7 +252,6 @@ const Studio = () => {
               />
             ) : (
               <ImmersiveCardViewer
-                key="immersive-viewer"
                 card={viewerCard}
                 cards={viewerCards}
                 currentCardIndex={currentCardIndex}

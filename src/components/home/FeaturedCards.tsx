@@ -99,7 +99,7 @@ export const FeaturedCards: React.FC = () => {
               onView={() => {
                 if (card.card) {
                   // Navigate to card detail
-                  window.location.href = `/studio/demo/${card.card.id}`;
+                  window.location.href = `/studio/${card.card.id}`;
                 }
               }}
               onEdit={() => {
@@ -113,7 +113,7 @@ export const FeaturedCards: React.FC = () => {
                   navigator.share({
                     title: card.title,
                     text: `Check out this card: ${card.title}`,
-                    url: `${window.location.origin}/studio/demo/${card.card.id}`
+                    url: `${window.location.origin}/studio/${card.card.id}`
                   });
                 }
               }}

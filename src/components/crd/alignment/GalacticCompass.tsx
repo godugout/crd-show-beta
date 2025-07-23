@@ -15,7 +15,6 @@ interface GalacticCompassProps {
   onToggleGlassCase?: () => void;
   spaceEnvironment?: SpaceEnvironment;
   onSpaceEnvironmentChange?: (environment: SpaceEnvironment) => void;
-  shouldGlowGlassCase?: boolean;
 }
 
 export const GalacticCompass: React.FC<GalacticCompassProps> = ({
@@ -29,8 +28,7 @@ export const GalacticCompass: React.FC<GalacticCompassProps> = ({
   enableGlassCase = true,
   onToggleGlassCase,
   spaceEnvironment = 'starfield',
-  onSpaceEnvironmentChange,
-  shouldGlowGlassCase = false
+  onSpaceEnvironmentChange
 }) => {
   const [compassAngle, setCompassAngle] = useState(0); // 0 = pointing up
   const [isTracking, setIsTracking] = useState(true);
@@ -75,27 +73,18 @@ export const GalacticCompass: React.FC<GalacticCompassProps> = ({
             {onToggleGlassCase && (
               <button
                 onClick={onToggleGlassCase}
-                className={`group text-white/40 hover:text-[#3772FF] p-2 rounded-full shadow-lg transition-all duration-300 hover:scale-105 flex items-center justify-center border relative ${
-                  shouldGlowGlassCase ? 'animate-pulse' : ''
-                }`}
+                className="group text-white/40 hover:text-[#3772FF] p-2 rounded-full shadow-lg transition-all duration-300 hover:scale-105 flex items-center justify-center border"
                 style={{
                   background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.12) 100%)',
                   borderColor: 'rgba(255, 255, 255, 0.15)',
-                  backdropFilter: 'blur(12px) saturate(180%)',
-                  ...(shouldGlowGlassCase && {
-                    boxShadow: '0 0 20px rgba(55, 114, 255, 0.6), 0 0 40px rgba(55, 114, 255, 0.4)',
-                    borderColor: 'rgba(55, 114, 255, 0.6)'
-                  })
+                  backdropFilter: 'blur(12px) saturate(180%)'
                 }}
                 title={enableGlassCase ? 'Remove Case' : 'Add Case'}
               >
-                {shouldGlowGlassCase && (
-                  <div className="absolute inset-0 rounded-full bg-[#3772FF]/20 animate-ping" />
-                )}
                 {enableGlassCase ? (
-                  <PackageOpen className="w-4 h-4 transition-transform group-hover:scale-110 relative z-10" />
+                  <PackageOpen className="w-4 h-4 transition-transform group-hover:scale-110" />
                 ) : (
-                  <Package className="w-4 h-4 transition-transform group-hover:scale-110 relative z-10" />
+                  <Package className="w-4 h-4 transition-transform group-hover:scale-110" />
                 )}
               </button>
             )}
