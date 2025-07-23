@@ -54,7 +54,7 @@ export const SpaceEnvironmentRenderer: React.FC<SpaceEnvironmentProps> = ({
               color: '#FF69B4' 
             }
           },
-          background: '#1a0d2e',
+          background: 'transparent',
           useAnimatedBackground: true
         };
 
