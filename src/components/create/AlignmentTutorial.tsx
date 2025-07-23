@@ -84,16 +84,11 @@ export const AlignmentTutorial: React.FC<AlignmentTutorialProps> = ({
   const currentTutorialStep = tutorialSteps[currentStep];
 
   return (
-    <>
-      {/* Content Dimming Overlay */}
-      <div className="fixed inset-0 z-[100] bg-black/60 backdrop-blur-sm pointer-events-none" />
-      
-      {/* Tutorial Modal */}
-      <div className="fixed inset-0 z-[110] bg-black/95 backdrop-blur-lg">
+    <div className="fixed inset-0 z-50 bg-black/95 backdrop-blur-lg">
       {/* Close Button */}
       <button
         onClick={onClose}
-        className="absolute top-6 right-6 z-[120] bg-crd-dark/90 hover:bg-crd-dark text-white p-2 rounded-full transition-colors"
+        className="absolute top-6 right-6 z-60 bg-crd-dark/90 hover:bg-crd-dark text-white p-2 rounded-full transition-colors"
       >
         <X className="w-5 h-5" />
       </button>
@@ -104,7 +99,7 @@ export const AlignmentTutorial: React.FC<AlignmentTutorialProps> = ({
         <div className="relative -mt-20">
           {/* Card Mock with CRD gradient and logo */}
           <div className={`
-            relative w-64 h-96 bg-gradient-to-br from-[hsl(220,100%,50%)] via-[hsl(220,100%,70%)] to-[hsl(280,100%,50%)]
+            relative w-64 h-96 bg-gradient-to-br from-orange-500 via-green-500 to-blue-500 
             rounded-2xl shadow-2xl transition-transform duration-1000 
             ${currentStep === 0 ? 'animate-zoom-in scale-110' : ''}
             ${currentStep === 1 ? 'animate-tilt-forward transform rotate-x-45' : ''}
@@ -201,6 +196,5 @@ export const AlignmentTutorial: React.FC<AlignmentTutorialProps> = ({
         </div>
       </div>
     </div>
-    </>
   );
 };
