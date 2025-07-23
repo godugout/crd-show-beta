@@ -280,13 +280,13 @@ export const GalacticCompass: React.FC<GalacticCompassProps> = ({
                      </div>
                    </>
                  )}
-                 {cameraDistance && (
-                   <div className="flex items-center justify-end gap-1">
-                     <span>{cameraDistance.toFixed(1)}</span>
-                     <span>D</span>
-                     <div className="w-2 h-0.5 bg-gradient-to-r from-purple-600 to-purple-300"></div>
-                   </div>
-                 )}
+                  {cameraDistance && (
+                    <div className="flex items-center justify-end gap-1">
+                      <span>{(10 - cameraDistance).toFixed(1)}</span>
+                      <span>Z</span>
+                      <div className="w-2 h-0.5 bg-gradient-to-r from-purple-600 to-purple-300"></div>
+                    </div>
+                  )}
                </div>
             </div>
           </div>
