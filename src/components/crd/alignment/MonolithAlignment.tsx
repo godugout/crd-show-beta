@@ -29,8 +29,8 @@ export const MonolithAlignment: React.FC<MonolithAlignmentProps> = ({
     
     // Trigger card rotation to final monolith position immediately
     if (onCardRotationTrigger) {
-      // Final position: upright monolith stance (0° Y rotation, slight forward tilt)
-      onCardRotationTrigger({ x: 15, y: 0 });
+      // Final position: both sides past bottom corners, touching screen sides
+      onCardRotationTrigger({ x: 15, y: 175 });
     }
     
     let startTime = Date.now();
@@ -300,9 +300,9 @@ export const MonolithAlignment: React.FC<MonolithAlignmentProps> = ({
         className="relative pointer-events-auto" 
         style={{ 
           zIndex: 10, // Above sun but below moon
-          filter: animationPhase === 'complete' 
+          filter: (animationPhase === 'hyperspace' || animationPhase === 'hyperspeed' || animationPhase === 'positioning' || animationPhase === 'complete') 
             ? 'brightness(0.1) contrast(3) saturate(0) hue-rotate(0deg)' 
-            : 'brightness(1) contrast(1.5) saturate(0.3)',
+            : 'none',
           transition: 'filter 1.5s ease-in-out'
         }}
       >

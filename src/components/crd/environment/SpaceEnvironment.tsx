@@ -152,11 +152,11 @@ export const SpaceEnvironmentRenderer: React.FC<SpaceEnvironmentProps> = ({
   const config = getEnvironmentConfig();
 
   return (
-    <group position={[0, 0, -1000]} renderOrder={-9999}>
-      {/* Background Color - pushed to deepest z */}
+    <>
+      {/* Background Color */}
       <color attach="background" args={[config.background]} />
       
-      {/* Stars - rendered at deepest layer */}
+      {/* Stars */}
       <Stars 
         radius={config.stars.radius}
         depth={config.stars.depth}
@@ -227,6 +227,6 @@ export const SpaceEnvironmentRenderer: React.FC<SpaceEnvironmentProps> = ({
           color={config.lighting.accent.color}
         />
       )}
-    </group>
+    </>
   );
 };
