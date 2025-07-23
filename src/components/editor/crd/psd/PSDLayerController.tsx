@@ -113,7 +113,7 @@ export const PSDLayerController: React.FC<PSDLayerControllerProps> = ({
     return layerList.map((layer) => {
       const isVisible = visibleLayers.has(layer.id);
       const isSelected = selectedLayer === layer.id;
-      const opacity = layerOpacity.get(layer.id) || layer.opacity || 100;
+      const opacity = layerOpacity.get(layer.id) || layer.opacity || layer.styleProperties?.opacity || 100;
       const isGroup = layer.type === 'group';
       const isExpanded = expandedGroups.has(layer.id);
 

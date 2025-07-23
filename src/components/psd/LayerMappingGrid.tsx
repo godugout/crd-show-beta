@@ -42,6 +42,8 @@ const LayerTypeIcon = ({ type }: { type: PSDLayer['type'] }) => {
     case 'shape':
       return <Square className="h-4 w-4" />;
     case 'folder':
+    case 'background':
+    case 'adjustment':
     case 'group':
       return <Folder className="h-4 w-4" />;
     default:
@@ -62,7 +64,7 @@ const LayerCard = ({
   onVisibilityToggle: () => void;
   onOpacityChange: (opacity: number) => void;
 }) => {
-  const [localOpacity, setLocalOpacity] = useState(Math.round((layer.opacity || 1) * 100));
+  const [localOpacity, setLocalOpacity] = useState(Math.round((layer.opacity || layer.styleProperties?.opacity || 1) * 100));
 
   const handleOpacityChange = (value: number[]) => {
     const opacity = value[0];
@@ -88,7 +90,7 @@ const LayerCard = ({
                   {layer.type}
                 </Badge>
                 <span className="text-xs text-muted-foreground">
-                  {layer.width}×{layer.height}
+                  {layer.bounds.width}×{layer.bounds.height}
                 </span>
               </div>
             </div>
@@ -120,7 +122,7 @@ const LayerCard = ({
           {layer.imageUrl ? (
             <div className="relative w-full h-20 bg-muted rounded-md overflow-hidden">
               <img 
-                src={layer.imageUrl} 
+                src={layer.imageUrl || layer.content?.imageData || ''} 
                 alt={layer.name}
                 className="w-full h-full object-contain"
                 style={{ opacity: layer.visible ? 1 : 0.5 }}
@@ -151,21 +153,21 @@ const LayerCard = ({
         </div>
 
         {/* Text Layer Info */}
-        {layer.type === 'text' && layer.textContent && (
+        {layer.type === 'text' && (layer.textContent || layer.content?.text) && (
           <div className="mt-3 pt-3 border-t">
             <p className="text-xs text-muted-foreground truncate">
-              "{layer.textContent}"
+              "{layer.textContent || layer.content?.text}"
             </p>
-            {layer.fontSize && (
+            {(layer.fontSize || layer.content?.fontSize) && (
               <p className="text-xs text-muted-foreground mt-1">
-                {layer.fontFamily} • {layer.fontSize}px
+                {layer.fontFamily || layer.content?.fontFamily} • {layer.fontSize || layer.content?.fontSize}px
               </p>
             )}
           </div>
         )}
 
         {/* Processing Status */}
-        {layer.isProcessed && (
+        {layer.isProcessed !== false && (
           <div className="mt-3">
             <Badge variant="default" className="text-xs">
               Processed
@@ -205,7 +207,7 @@ export const LayerMappingGrid: React.FC<LayerMappingGridProps> = ({
   }, []);
 
   const displayLayers = flattenLayers(layers).filter(layer => 
-    layer.width > 0 && layer.height > 0
+    layer.bounds.width > 0 && layer.bounds.height > 0
   );
 
   const selectedLayerIds = Array.from(selectedLayers);

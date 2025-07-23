@@ -197,11 +197,19 @@ export const PSDWorkflow: React.FC<PSDWorkflowProps> = ({
             </div>
             <PSDUploadZone 
               onPSDParsed={async (fileName, parsedLayers) => {
-                // Create file from data URL
-                const fileData = await fetch(fileName);
-                const blob = await fileData.blob();
-                const uploadFile = new File([blob], 'upload.psd', { type: 'image/vnd.adobe.photoshop' });
-                await handlePSDUpload(uploadFile);
+                // The PSDUploadZone already handles file uploading, just process the layers
+                setPsdFile({
+                  id: crypto.randomUUID(),
+                  name: fileName,
+                  originalUrl: '',
+                  width: 1920,
+                  height: 1080,
+                  layerCount: parsedLayers.length,
+                  fileSize: 0,
+                  uploadedAt: new Date(),
+                });
+                setLayers(parsedLayers);
+                setCurrentStep('mapping');
               }}
               onError={setError}
             />

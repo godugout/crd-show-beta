@@ -76,7 +76,7 @@ export async function processAndUploadLayers(
 ): Promise<PSDLayer[]> {
   const processedLayers: PSDLayer[] = [];
   const visibleLayers = flattenLayers(layers).filter(layer => 
-    layer.visible && layer.type !== 'folder' && layer.width > 0 && layer.height > 0
+    layer.visible && !['folder', 'background', 'adjustment'].includes(layer.type) && layer.bounds.width > 0 && layer.bounds.height > 0
   );
 
   for (let i = 0; i < visibleLayers.length; i++) {
@@ -86,7 +86,7 @@ export async function processAndUploadLayers(
       onProgress?.(i + 1, visibleLayers.length, layer.name);
 
       // Convert layer to blob
-      const blob = await layerToBlob(layer.rawData, layer.width, layer.height, 'png');
+      const blob = await layerToBlob(layer.rawData, layer.bounds.width, layer.bounds.height, 'png');
       
       if (blob) {
         // Upload to storage
