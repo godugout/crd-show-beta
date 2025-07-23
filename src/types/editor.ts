@@ -70,12 +70,7 @@ export interface ImageFilter {
   value: number;
 }
 
-export interface PSDLayer extends LayerData {
-  children?: PSDLayer[];
-  textData?: PSDTextData;
-  imageData?: PSDImageData;
-  shapeData?: PSDShapeData;
-}
+// PSD Layer types moved to @/components/editor/crd/import/CRDPSDProcessor
 
 export interface PSDTextData {
   content: string;

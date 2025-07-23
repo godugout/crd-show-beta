@@ -1,3 +1,4 @@
+// Complete PSD types for Cardshow platform - SINGLE SOURCE OF TRUTH
 
 export interface PSDFile {
   id: string;
@@ -9,17 +10,6 @@ export interface PSDFile {
   fileSize: number;
   uploadedAt: Date;
   metadata?: Record<string, any>;
-}
-
-// Use unified PSDLayer from CRDPSDProcessor
-export type { PSDLayer, PSDProcessingResult } from '@/components/editor/crd/import/CRDPSDProcessor';
-
-
-export interface LayerExportOptions {
-  format: 'png' | 'jpg' | 'webp';
-  quality?: number;
-  transparency?: boolean;
-  scale?: number;
 }
 
 export interface CRDElement {
@@ -86,3 +76,12 @@ export interface CRDFrame {
   updatedAt: Date;
 }
 
+export interface LayerExportOptions {
+  format: 'png' | 'jpg' | 'webp';
+  quality?: number;
+  transparency?: boolean;
+  scale?: number;
+}
+
+// Re-export PSD Layer and processing types from unified source
+export type { PSDLayer, PSDProcessingResult } from '@/components/editor/crd/import/CRDPSDProcessor';

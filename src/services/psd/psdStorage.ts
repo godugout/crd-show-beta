@@ -1,6 +1,6 @@
 import { supabase } from '@/integrations/supabase/client';
 import type { PSDLayer } from '@/components/editor/crd/import/CRDPSDProcessor';
-import { layerToBlob } from './psdParser';
+import { layerToBlob } from '@/components/editor/crd/import/CRDPSDProcessor';
 
 /**
  * Upload original PSD file to storage
