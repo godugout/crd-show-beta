@@ -82,21 +82,19 @@ export default {
         crd: {
           // Base colors
           darkest: 'hsl(var(--crd-darkest))',
+          darker: 'hsl(var(--crd-darker))',
           dark: 'hsl(var(--crd-dark))',
+          darkGray: 'hsl(var(--crd-darkGray))',
           mediumGray: 'hsl(var(--crd-mediumGray))',
           lightGray: 'hsl(var(--crd-lightGray))',
           white: 'hsl(var(--crd-white))',
           
           // Brand colors
-          primary: 'hsl(var(--crd-primary))',
           orange: 'hsl(var(--crd-orange))',
           blue: 'hsl(var(--crd-blue))',
           green: 'hsl(var(--crd-green))',
           purple: 'hsl(var(--crd-purple))',
-          red: 'hsl(var(--crd-red))',
-          yellow: 'hsl(var(--crd-yellow))',
-          pink: 'hsl(var(--crd-pink))',
-          teal: 'hsl(var(--crd-teal))',
+          gold: 'hsl(var(--crd-gold))',
         },
         // Comprehensive theme-aware colors using CSS variables
         themed: {
@@ -141,25 +139,25 @@ export default {
           'price-text': 'hsl(var(--theme-price-text))',
           'success-text': 'hsl(var(--theme-success-text))',
         },
-        // Surface and text colors using existing CSS variables
-        surface: {
-          deep: 'hsl(var(--surface-deep))',
-          dark: 'hsl(var(--surface-dark))',
-          medium: 'hsl(var(--surface-medium))',
-          light: 'hsl(var(--surface-light))',
+        // Cardshow colors to match CSS variables
+        cardshow: {
+          green: 'var(--cardshow-green)',
+          orange: 'var(--cardshow-orange)',
+          purple: 'var(--cardshow-purple)',
+          blue: 'var(--cardshow-blue)',
+          white: 'var(--cardshow-white)',
+          lightGray: 'var(--cardshow-lightGray)',
+          mediumGray: 'var(--cardshow-mediumGray)',
+          darkGray: 'var(--cardshow-darkGray)',
+          darkest: 'var(--cardshow-darkest)',
         },
-        text: {
-          primary: 'hsl(var(--text-primary))',
-          secondary: 'hsl(var(--text-secondary))',
-          muted: 'hsl(var(--text-muted))',
-        },
-        // Editor colors - using hsl for consistency
+        // Editor colors
         editor: {
-          dark: 'hsl(var(--surface-dark))', 
-          darker: 'hsl(var(--surface-deep))',
-          tool: 'hsl(var(--surface-medium))',
-          border: 'hsl(var(--surface-light))',
-          canvas: 'hsl(var(--crd-white))',
+          dark: 'var(--editor-dark)',
+          darker: 'var(--editor-darker)',
+          tool: 'var(--editor-tool)',
+          border: 'var(--editor-border)',
+          canvas: 'var(--editor-canvas)',
         },
       },
       spacing: {
