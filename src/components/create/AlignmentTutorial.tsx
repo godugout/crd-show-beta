@@ -84,7 +84,7 @@ export const AlignmentTutorial: React.FC<AlignmentTutorialProps> = ({
   const currentTutorialStep = tutorialSteps[currentStep];
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md">
+    <div className="fixed inset-0 z-50 bg-black/95 backdrop-blur-lg">
       {/* Close Button */}
       <button
         onClick={onClose}
@@ -185,7 +185,11 @@ export const AlignmentTutorial: React.FC<AlignmentTutorialProps> = ({
           {/* Glass Button */}
           <button
             onClick={onClose}
-            className="w-full mt-4 bg-white/5 backdrop-blur-md hover:bg-white/10 text-white border border-white/10 py-3 px-4 rounded-xl transition-all duration-300 text-base font-medium shadow-lg hover:shadow-xl"
+            className={`w-full mt-4 backdrop-blur-md border py-3 px-4 rounded-xl transition-all duration-300 text-base font-medium shadow-lg hover:shadow-xl ${
+              currentStep >= 2 
+                ? 'bg-green-500/20 hover:bg-green-400/30 text-green-100 border-green-400/30' 
+                : 'bg-white/5 hover:bg-white/10 text-white border-white/10'
+            }`}
           >
             Got it, let me try!
           </button>
