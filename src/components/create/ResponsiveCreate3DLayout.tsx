@@ -20,7 +20,7 @@ export const ResponsiveCreate3DLayout: React.FC<ResponsiveCreate3DLayoutProps> =
   onAnimationComplete
 }) => {
   const [showTutorial, setShowTutorial] = useState(false);
-  const [spaceEnvironment, setSpaceEnvironment] = useState<SpaceEnvironment>('nebula');
+  const [spaceEnvironment, setSpaceEnvironment] = useState<SpaceEnvironment>('starfield');
 
   const handleAnimationComplete = () => {
     console.log('🚀 ResponsiveCreate3DLayout: Animation complete, forwarding to parent');

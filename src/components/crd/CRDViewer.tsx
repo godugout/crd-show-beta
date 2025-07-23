@@ -640,7 +640,7 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
               ref={cardRef}
               mode={currentMode}
               intensity={currentIntensity}
-              materialMode={currentEnableGlassCase ? selectedStyleId as any : (currentMode === 'alignment' ? 'monolith' : 'obsidian')}
+              materialMode={currentEnableGlassCase ? selectedStyleId as any : 'obsidian'}
               enableAnimation={true}
               enableGlassCase={currentEnableGlassCase}
               isLocked={isCardLocked}
