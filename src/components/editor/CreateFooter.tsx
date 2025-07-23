@@ -4,7 +4,7 @@ import { HelpCircle, Book, Users, MessageSquare } from 'lucide-react';
 
 export const CreateFooter = () => {
   return (
-    <footer className="bg-surface-dark border-t border-surface-medium/20 px-6 py-4">
+    <footer className="relative z-[60] bg-surface-dark border-t border-surface-medium/20 px-6 py-4">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         {/* Creator Resources */}
         <div className="flex items-center gap-6">
