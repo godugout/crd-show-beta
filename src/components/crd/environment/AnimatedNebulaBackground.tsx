@@ -26,8 +26,8 @@ export const AnimatedNebulaBackground: React.FC<AnimatedNebulaBackgroundProps> =
       const t = (Math.sin(time * 0.05) + 1) * 0.5; // 0 to 1
       const finalHue = hue1 * (1 - t) + hue2 * t;
       
-      material.color.setHSL(finalHue, 0.8, 0.3 * intensity);
-      material.opacity = 0.6 * intensity;
+      material.color.setHSL(finalHue, 0.8, 0.1 * intensity);
+      material.opacity = 0.15 * intensity;
     }
   });
 
@@ -36,8 +36,8 @@ export const AnimatedNebulaBackground: React.FC<AnimatedNebulaBackgroundProps> =
       <sphereGeometry args={[100, 32, 32]} />
       <meshBasicMaterial 
         transparent 
-        opacity={0.6 * intensity}
-        color={new THREE.Color().setHSL(262/360, 0.83, 0.58)}
+        opacity={0.15 * intensity}
+        color={new THREE.Color().setHSL(262/360, 0.83, 0.1)}
       />
     </mesh>
   );
