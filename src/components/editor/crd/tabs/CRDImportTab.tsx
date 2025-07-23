@@ -3,7 +3,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { CRDButton } from '@/components/ui/design-system/Button';
 import { Upload, FileImage, Layers } from 'lucide-react';
 import { PSDUploadModal } from '../psd/PSDUploadModal';
-import { PSDLayer } from '@/types/psd';
+import { PSDLayer } from '@/components/editor/crd/import/CRDPSDProcessor';
 
 interface CRDImportTabProps {
   onFrameGenerated?: (frameData: any) => void;

@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import { Dialog, DialogContent } from '@/components/ui/dialog';
 import { Button } from '@/components/ui/button';
 import { X, ZoomIn, ZoomOut, RotateCcw, Eye, EyeOff, Edit3 } from 'lucide-react';
-import { PSDLayer } from '@/types/psd';
+import { PSDLayer } from '@/components/editor/crd/import/CRDPSDProcessor';
 
 interface PSDFullScreenPreviewProps {
   isOpen: boolean;

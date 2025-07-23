@@ -1,6 +1,6 @@
 import React from 'react';
 import { PSDLayerController } from '../psd/PSDLayerController';
-import { PSDLayer } from '@/types/psd';
+import { PSDLayer } from '@/components/editor/crd/import/CRDPSDProcessor';
 
 interface PSDModeRightSidebarProps {
   layers: PSDLayer[];

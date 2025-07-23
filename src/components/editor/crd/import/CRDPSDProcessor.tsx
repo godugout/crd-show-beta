@@ -1,4 +1,4 @@
-// Unified PSD layer interface that includes width and height
+// Complete unified PSD layer interface for Cardshow platform
 export interface PSDLayer {
   id: string;
   name: string;
@@ -37,7 +37,6 @@ export interface PSDLayer {
 }
 
 export interface PSDProcessingResult {
-  psdData: any;
   layers: PSDLayer[];
   totalLayers: number;
   processedLayers: number;
@@ -53,3 +52,6 @@ export interface GeneratedFrame {
 
 // Re-export parser functions
 export { parsePSD, layerToImageData, layerToBlob } from '@/services/psd/psdParser';
+
+// Legacy function name for compatibility  
+export { parsePSD as processPSDFile } from '@/services/psd/psdParser';

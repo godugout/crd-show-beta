@@ -1,5 +1,5 @@
 import { readPsd } from 'ag-psd';
-import type { PSDLayer, PSDProcessingResult } from '@/types/psd';
+import type { PSDLayer, PSDProcessingResult } from '@/components/editor/crd/import/CRDPSDProcessor';
 
 /**
  * Parse a PSD file and extract layer information
@@ -24,7 +24,6 @@ export async function parsePSD(file: File): Promise<PSDProcessingResult> {
     const layers = extractLayers(psdData.children || [], psdData.width, psdData.height);
     
     return {
-      psdData,
       layers,
       totalLayers: countTotalLayers(psdData.children || []),
       processedLayers: layers.length,

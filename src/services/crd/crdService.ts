@@ -61,6 +61,7 @@ export async function createCRDElements(
       const { error } = await supabase
         .from('crd_elements')
         .insert({
+          name: element.name,
           element_type: element.elementType,
           config: element.config,
           creator_id: element.creatorId,

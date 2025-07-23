@@ -1,6 +1,6 @@
 import { useState, useEffect, useCallback, useRef } from 'react';
 import { psdCacheService, PSDSessionData, CachedPSDJob } from '@/services/psdCacheService';
-import { PSDLayer } from '@/types/psd';
+import { PSDLayer } from '@/components/editor/crd/import/CRDPSDProcessor';
 import { supabase } from '@/integrations/supabase/client';
 
 export interface UsePSDCacheResult {

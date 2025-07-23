@@ -11,49 +11,9 @@ export interface PSDFile {
   metadata?: Record<string, any>;
 }
 
-export interface PSDLayer {
-  id: string;
-  name: string;
-  type: 'text' | 'image' | 'shape' | 'group' | 'folder' | 'background' | 'adjustment';
-  bounds: {
-    x: number;
-    y: number;
-    width: number;
-    height: number;
-  };
-  width: number;
-  height: number;
-  content?: {
-    text?: string;
-    fontSize?: number;
-    fontFamily?: string;
-    color?: string;
-    imageData?: string;
-  };
-  styleProperties?: {
-    opacity?: number;
-    blendMode?: string;
-    effects?: any[];
-  };
-  visible: boolean;
-  opacity?: number;
-  children?: PSDLayer[];
-  imageUrl?: string; // URL after converting to PNG
-  textContent?: string;
-  fontSize?: number;
-  fontFamily?: string;
-  color?: string;
-  blendMode?: string;
-  rawData?: any; // Original layer data from ag-psd
-  isProcessed?: boolean;
-}
+// Use unified PSDLayer from CRDPSDProcessor
+export type { PSDLayer, PSDProcessingResult } from '@/components/editor/crd/import/CRDPSDProcessor';
 
-export interface PSDProcessingResult {
-  psdData: any;
-  layers: PSDLayer[];
-  totalLayers: number;
-  processedLayers: number;
-}
 
 export interface LayerExportOptions {
   format: 'png' | 'jpg' | 'webp';
@@ -71,7 +31,6 @@ export interface CRDElement {
   width: number;
   height: number;
   config: {
-    originalLayer?: PSDLayer;
     position?: { x: number; y: number };
     scale?: number;
     rotation?: number;
@@ -127,5 +86,3 @@ export interface CRDFrame {
   updatedAt: Date;
 }
 
-// Re-export parser functions for compatibility
-export { parsePSD, layerToImageData, layerToBlob } from '@/services/psd/psdParser';

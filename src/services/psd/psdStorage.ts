@@ -1,5 +1,5 @@
 import { supabase } from '@/integrations/supabase/client';
-import type { PSDLayer } from '@/types/psd';
+import type { PSDLayer } from '@/components/editor/crd/import/CRDPSDProcessor';
 import { layerToBlob } from './psdParser';
 
 /**

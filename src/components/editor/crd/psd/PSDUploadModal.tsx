@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button';
 import { Progress } from '@/components/ui/progress';
 import { Upload, FileImage, X, Check, AlertCircle } from 'lucide-react';
 import { useDropzone } from 'react-dropzone';
-import { PSDLayer } from '@/types/psd';
+import { PSDLayer } from '@/components/editor/crd/import/CRDPSDProcessor';
 import { usePSDCache } from '@/hooks/usePSDCache';
 
 import { toast } from 'sonner';

@@ -14,7 +14,7 @@ import {
   Layers,
   MoreVertical
 } from 'lucide-react';
-import { PSDLayer } from '@/types/psd';
+import { PSDLayer } from '@/components/editor/crd/import/CRDPSDProcessor';
 import {
   DropdownMenu,
   DropdownMenuContent,

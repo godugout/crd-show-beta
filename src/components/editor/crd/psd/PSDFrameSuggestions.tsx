@@ -12,7 +12,7 @@ import {
   Palette,
   Layout
 } from 'lucide-react';
-import { PSDLayer } from '@/types/psd';
+import { PSDLayer } from '@/components/editor/crd/import/CRDPSDProcessor';
 
 interface FrameSuggestion {
   id: string;

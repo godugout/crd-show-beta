@@ -20,7 +20,7 @@ import {
   Trash2,
   Copy
 } from 'lucide-react';
-import type { PSDLayer } from '@/types/psd';
+import type { PSDLayer } from '@/components/editor/crd/import/CRDPSDProcessor';
 
 interface LayerMappingGridProps {
   layers: PSDLayer[];
