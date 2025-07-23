@@ -145,8 +145,8 @@ export const AlignmentTutorial: React.FC<AlignmentTutorialProps> = ({
 
         </div>
 
-        {/* Instructions Panel */}
-        <div className="absolute bottom-72 left-1/2 transform -translate-x-1/2 max-w-md mx-auto">
+        {/* Instructions Panel - Fixed width for consistency */}
+        <div className="absolute bottom-72 left-1/2 transform -translate-x-1/2 w-80 mx-auto">
           <div className="flex items-center gap-3 mb-3">
             <div className="bg-crd-accent/20 p-2 rounded-lg">
               {currentTutorialStep?.icon}
@@ -185,7 +185,7 @@ export const AlignmentTutorial: React.FC<AlignmentTutorialProps> = ({
           {/* Glass Button */}
           <button
             onClick={onClose}
-            className="w-full mt-4 bg-white/10 backdrop-blur-md hover:bg-white/20 text-white border border-white/20 py-3 px-4 rounded-xl transition-all duration-300 text-sm font-medium shadow-lg hover:shadow-xl"
+            className="w-full mt-4 bg-white/5 backdrop-blur-md hover:bg-white/10 text-white border border-white/10 py-3 px-4 rounded-xl transition-all duration-300 text-base font-medium shadow-lg hover:shadow-xl"
           >
             Got it, let me try!
           </button>
