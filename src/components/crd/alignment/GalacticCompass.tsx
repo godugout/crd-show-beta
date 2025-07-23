@@ -77,22 +77,22 @@ export const GalacticCompass: React.FC<GalacticCompassProps> = ({
               <button
                 onClick={onToggleGlassCase}
                 className={`group p-2 rounded-full shadow-lg transition-all duration-300 hover:scale-105 flex items-center justify-center border ${
-                  selectedMaterialColor 
-                    ? 'animate-pulse' 
+                  selectedMaterialColor && !enableGlassCase
+                    ? 'animate-[pulse_1.5s_ease-in-out_infinite]' 
                     : 'text-white/40 hover:text-[#3772FF]'
                 }`}
                 style={{
-                  background: selectedMaterialColor 
+                  background: selectedMaterialColor && !enableGlassCase
                     ? `radial-gradient(circle, ${selectedMaterialColor}40 0%, rgba(255, 255, 255, 0.08) 50%, rgba(255, 255, 255, 0.12) 100%)`
                     : 'linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.12) 100%)',
-                  borderColor: selectedMaterialColor 
+                  borderColor: selectedMaterialColor && !enableGlassCase
                     ? `${selectedMaterialColor}80`
                     : 'rgba(255, 255, 255, 0.15)',
                   backdropFilter: 'blur(12px) saturate(180%)',
-                  boxShadow: selectedMaterialColor 
+                  boxShadow: selectedMaterialColor && !enableGlassCase
                     ? `0 0 20px ${selectedMaterialColor}60`
                     : 'none',
-                  color: selectedMaterialColor || undefined
+                  color: selectedMaterialColor && !enableGlassCase ? selectedMaterialColor : undefined
                 }}
                 title={enableGlassCase ? 'Remove Case' : 'Add Case'}
               >
@@ -116,7 +116,7 @@ export const GalacticCompass: React.FC<GalacticCompassProps> = ({
                 onClick={onShowTutorial}
                 className={`group p-2 rounded-full shadow-lg transition-all duration-300 hover:scale-105 flex items-center justify-center border ${
                   showTutorialGlow 
-                    ? 'text-yellow-400 animate-pulse' 
+                    ? 'text-yellow-400 animate-[pulse_1.5s_ease-in-out_infinite]' 
                     : 'text-white/40 hover:text-[#3772FF]'
                 }`}
                 style={{
