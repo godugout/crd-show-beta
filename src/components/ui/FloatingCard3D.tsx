@@ -25,11 +25,6 @@ export const FloatingCard3D: React.FC<FloatingCard3DProps> = ({
   onSpaceEnvironmentChange,
   onAnimationComplete
 }) => {
-  console.log('🔍 FloatingCard3D: Rendering with props:', { 
-    mode: 'alignment', 
-    spaceEnvironment, 
-    enableGlassCase: false 
-  });
   const { deviceType, isShortScreen } = useResponsiveBreakpoints();
 
   // Adjust intensity, quality, and initial zoom based on device type

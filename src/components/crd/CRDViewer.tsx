@@ -598,13 +598,6 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
 
   // Force case to be 'none' for the create page
   const forcedCaseStyle = 'none';
-  
-  console.log('🔍 CRDViewer: Current state:', {
-    mode: currentMode,
-    materialMode: currentEnableGlassCase ? selectedStyleId : (currentMode === 'alignment' ? 'monolith' : 'obsidian'),
-    spaceEnvironment,
-    enableGlassCase: currentEnableGlassCase
-  });
 
   return (
     <div className={`overflow-hidden relative ${className}`}>

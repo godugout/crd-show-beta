@@ -21,8 +21,6 @@ export const ResponsiveCreate3DLayout: React.FC<ResponsiveCreate3DLayoutProps> =
 }) => {
   const [showTutorial, setShowTutorial] = useState(false);
   const [spaceEnvironment, setSpaceEnvironment] = useState<SpaceEnvironment>('nebula');
-  
-  console.log('🔍 ResponsiveCreate3DLayout: Rendering with space environment:', spaceEnvironment);
 
   const handleAnimationComplete = () => {
     console.log('🚀 ResponsiveCreate3DLayout: Animation complete, forwarding to parent');
