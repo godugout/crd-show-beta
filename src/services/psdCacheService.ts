@@ -1,5 +1,5 @@
 import { supabase } from '@/integrations/supabase/client';
-import { PSDLayer } from '@/types/psd';
+import { PSDLayer } from '@/components/editor/crd/import/CRDPSDProcessor';
 import { readPsd } from 'ag-psd';
 
 export interface CachedPSDJob {
@@ -195,6 +195,8 @@ class PSDCacheService {
       name: layer.name || `Layer ${index + 1}`,
       type,
       bounds,
+      width: bounds.width,
+      height: bounds.height,
       content,
       styleProperties: {
         opacity: layer.opacity !== undefined ? layer.opacity / 255 : 1,
@@ -490,6 +492,8 @@ class PSDCacheService {
         name: dbLayer.layer_name,
         type: dbLayer.layer_type,
         bounds: dbLayer.bounds,
+        width: dbLayer.bounds.width,
+        height: dbLayer.bounds.height,
         content: dbLayer.content,
         styleProperties: dbLayer.style_properties,
         visible: dbLayer.visible,

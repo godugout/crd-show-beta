@@ -16,7 +16,7 @@ import {
 } from 'lucide-react';
 import { PSDUploadZone } from './PSDUploadZone';
 import { LayerMappingGrid } from './LayerMappingGrid';
-import { processPSDFile, type PSDLayer } from '@/components/editor/crd/import/CRDPSDProcessor';
+import { parsePSD, type PSDLayer } from '@/components/editor/crd/import/CRDPSDProcessor';
 import { uploadPSDToStorage, processAndUploadLayers } from '@/services/psd/psdStorage';
 import { createCRDElements, createCRDFrame } from '@/services/crd/crdService';
 import type { PSDFile } from '@/types/psd';
@@ -52,7 +52,8 @@ export const PSDWorkflow: React.FC<PSDWorkflowProps> = ({
     try {
       // Step 1: Parse PSD
       setProgress(20);
-      const parsedLayers = await processPSDFile(file);
+      const result = await parsePSD(file);
+      const parsedLayers = result.layers;
       
       // Step 2: Upload original PSD
       setProgress(40);
@@ -195,11 +196,11 @@ export const PSDWorkflow: React.FC<PSDWorkflowProps> = ({
               </p>
             </div>
             <PSDUploadZone 
-              onPSDParsed={async (file, parsedLayers) => {
-                // Convert to File object for upload
-                const response = await fetch(file.originalUrl);
-                const blob = await response.blob();
-                const uploadFile = new File([blob], file.name + '.psd', { type: 'image/vnd.adobe.photoshop' });
+              onPSDParsed={async (fileName, parsedLayers) => {
+                // Create file from data URL
+                const fileData = await fetch(fileName);
+                const blob = await fileData.blob();
+                const uploadFile = new File([blob], 'upload.psd', { type: 'image/vnd.adobe.photoshop' });
                 await handlePSDUpload(uploadFile);
               }}
               onError={setError}

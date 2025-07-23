@@ -126,3 +126,6 @@ export interface CRDFrame {
   createdAt: Date;
   updatedAt: Date;
 }
+
+// Re-export parser functions for compatibility
+export { parsePSD, layerToImageData, layerToBlob } from '@/services/psd/psdParser';

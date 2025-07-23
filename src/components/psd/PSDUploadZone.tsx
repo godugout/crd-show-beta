@@ -4,7 +4,7 @@ import { Upload, FileImage, Loader2, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Alert, AlertDescription } from '@/components/ui/alert';
 import { Progress } from '@/components/ui/progress';
-import { processPSDFile, type PSDLayer } from '@/components/editor/crd/import/CRDPSDProcessor';
+import { parsePSD, type PSDLayer } from '@/components/editor/crd/import/CRDPSDProcessor';
 import { uploadPSDToStorage } from '@/services/psd/psdStorage';
 
 interface PSDUploadZoneProps {
@@ -46,12 +46,12 @@ export const PSDUploadZone: React.FC<PSDUploadZoneProps> = ({
       setCurrentStep("Parsing PSD file...");
       setUploadProgress(20);
       
-      const layers = await processPSDFile(file);
+      const result = await parsePSD(file);
       
       setCurrentStep("Finalizing...");
       setUploadProgress(100);
       
-      onPSDParsed(file.name.replace('.psd', ''), layers);
+      onPSDParsed(file.name.replace('.psd', ''), result.layers);
       
     } catch (error) {
       console.error('Error processing PSD:', error);

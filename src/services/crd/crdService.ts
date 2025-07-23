@@ -37,7 +37,6 @@ export async function createCRDElements(
         width: layer.bounds.width,
         height: layer.bounds.height,
         config: {
-          originalLayer: layer,
           position: { x: layer.bounds.x, y: layer.bounds.y },
           scale: 1,
           rotation: 0,
@@ -62,7 +61,6 @@ export async function createCRDElements(
       const { error } = await supabase
         .from('crd_elements')
         .insert({
-          name: element.name,
           element_type: element.elementType,
           config: element.config,
           creator_id: element.creatorId,

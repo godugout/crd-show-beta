@@ -17,7 +17,7 @@ import { LeftSidebarContent, LeftSidebarCollapsedContent } from './sidebar/LeftS
 import { RightSidebarCollapsedContent } from './sidebar/RightSidebarCollapsed';
 import { PSDModeRightSidebar } from './sidebar/PSDModeRightSidebar';
 import { PSDFabricCanvas } from './canvas/PSDFabricCanvas';
-import { PSDLayer } from '@/types/psd';
+import { PSDLayer } from '@/components/editor/crd/import/CRDPSDProcessor';
 interface CRDCardCreatorProps {
   initialCard?: Partial<InteractiveCardData>;
   onSave: (card: InteractiveCardData) => void;
