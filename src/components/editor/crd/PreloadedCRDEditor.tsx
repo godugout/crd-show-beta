@@ -63,7 +63,7 @@ export const PreloadedCRDEditor: React.FC<PreloadedCRDEditorProps> = ({
       ref={editorRef}
       className={`${
         isVisible 
-          ? 'absolute inset-0 z-40 bg-crd-darkest' 
+          ? 'absolute inset-x-0 top-0 bottom-0 z-40 bg-crd-darkest' 
           : 'fixed -top-[200vh] -left-[200vw] w-screen h-screen pointer-events-none opacity-0'
       }`}
       style={{
