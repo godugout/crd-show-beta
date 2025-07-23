@@ -110,11 +110,15 @@ export const ResponsiveCreate3DLayout: React.FC<ResponsiveCreate3DLayoutProps> =
         }}
       />
 
-      {/* Alignment Tutorial Overlay */}
-      <AlignmentTutorial 
-        isVisible={showTutorial}
-        onClose={() => setShowTutorial(false)}
-      />
+      {/* Alignment Tutorial Overlay - Moved to portal level for proper layering */}
+      {showTutorial && (
+        <div className="fixed inset-0 z-[200]">
+          <AlignmentTutorial 
+            isVisible={showTutorial}
+            onClose={() => setShowTutorial(false)}
+          />
+        </div>
+      )}
     </div>
   );
 };

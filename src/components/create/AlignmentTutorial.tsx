@@ -84,7 +84,7 @@ export const AlignmentTutorial: React.FC<AlignmentTutorialProps> = ({
   const currentTutorialStep = tutorialSteps[currentStep];
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/95 backdrop-blur-lg">
+    <div className="fixed inset-0 z-[210] bg-black/95 backdrop-blur-lg">
       {/* Close Button */}
       <button
         onClick={onClose}
