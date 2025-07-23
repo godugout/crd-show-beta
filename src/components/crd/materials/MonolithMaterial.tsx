@@ -11,12 +11,13 @@ export const MonolithMaterial: React.FC<MonolithMaterialProps> = ({
   intensity = 1,
   animationProgress = 0 
 }) => {
+  console.log('🔍 MonolithMaterial: Rendering with intensity:', intensity, 'animationProgress:', animationProgress);
   const materialRef = useRef<THREE.MeshPhysicalMaterial>(null);
 
   // Enhanced monolith material inspired by 2001: A Space Odyssey
   const material = useMemo(() => {
     return new THREE.MeshPhysicalMaterial({
-      color: new THREE.Color(0x0a0a0a), // Deep black base
+      color: new THREE.Color(0x1a1a1a), // Slightly lighter base for visibility
       metalness: 0.9, // Highly metallic
       roughness: 0.05, // Very smooth for reflections
       clearcoat: 1.0, // Maximum clearcoat for depth
