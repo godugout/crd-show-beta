@@ -1,6 +1,7 @@
 import React from 'react';
 import { Stars } from '@react-three/drei';
 import * as THREE from 'three';
+import { AnimatedNebulaBackground } from './AnimatedNebulaBackground';
 import { type SpaceEnvironment } from '@/components/studio/EnvironmentSwitcher';
 
 interface SpaceEnvironmentProps {
@@ -53,7 +54,8 @@ export const SpaceEnvironmentRenderer: React.FC<SpaceEnvironmentProps> = ({
               color: '#FF69B4' 
             }
           },
-          background: '#1a0d2e'
+          background: '#1a0d2e',
+          useAnimatedBackground: true
         };
 
       case 'deep_space':
@@ -153,6 +155,11 @@ export const SpaceEnvironmentRenderer: React.FC<SpaceEnvironmentProps> = ({
 
   return (
     <>
+      {/* Animated Background for Nebula */}
+      {config.useAnimatedBackground && (
+        <AnimatedNebulaBackground intensity={intensity} />
+      )}
+      
       {/* Background Color */}
       <color attach="background" args={[config.background]} />
       
