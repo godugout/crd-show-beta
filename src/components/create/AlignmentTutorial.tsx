@@ -84,7 +84,7 @@ export const AlignmentTutorial: React.FC<AlignmentTutorialProps> = ({
   const currentTutorialStep = tutorialSteps[currentStep];
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/80 backdrop-blur-sm">
+    <div className="fixed inset-0 z-50 bg-black/90 backdrop-blur-md">
       {/* Close Button */}
       <button
         onClick={onClose}
@@ -99,7 +99,7 @@ export const AlignmentTutorial: React.FC<AlignmentTutorialProps> = ({
         <div className="relative -mt-20">
           {/* Card Mock with CRD gradient and logo */}
           <div className={`
-            relative w-64 h-96 bg-gradient-to-br from-crd-green via-crd-blue to-crd-purple 
+            relative w-64 h-96 bg-gradient-to-br from-orange-500 via-green-500 to-blue-500 
             rounded-2xl shadow-2xl transition-transform duration-1000 
             ${currentStep === 0 ? 'animate-zoom-in scale-110' : ''}
             ${currentStep === 1 ? 'animate-tilt-forward transform rotate-x-45' : ''}
@@ -107,10 +107,12 @@ export const AlignmentTutorial: React.FC<AlignmentTutorialProps> = ({
           `}>
             <div className="absolute inset-4 bg-black/20 rounded-xl flex items-center justify-center">
               <div className="text-white text-center">
-                {/* Cardshow Logo from nav */}
-                <div className="w-20 h-20 mx-auto mb-4 rounded-xl bg-gradient-to-br from-crd-green to-crd-blue flex items-center justify-center shadow-lg">
-                  <span className="text-white font-bold text-lg tracking-wider">CRD</span>
-                </div>
+                {/* Logo from uploaded image */}
+                <img 
+                  src="/lovable-uploads/6d3d517b-e7c2-447a-a3ea-55093de203bb.png" 
+                  alt="Logo"
+                  className="w-20 h-auto mx-auto mb-4"
+                />
               </div>
             </div>
           </div>
