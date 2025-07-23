@@ -300,9 +300,9 @@ export const MonolithAlignment: React.FC<MonolithAlignmentProps> = ({
         className="relative pointer-events-auto" 
         style={{ 
           zIndex: 10, // Above sun but below moon
-          filter: (animationPhase === 'hyperspace' || animationPhase === 'hyperspeed' || animationPhase === 'positioning' || animationPhase === 'complete') 
+          filter: animationPhase === 'complete' 
             ? 'brightness(0.1) contrast(3) saturate(0) hue-rotate(0deg)' 
-            : 'none',
+            : 'brightness(1) contrast(1.5) saturate(0.3)',
           transition: 'filter 1.5s ease-in-out'
         }}
       >
