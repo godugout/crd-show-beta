@@ -173,19 +173,19 @@ export const AlignmentTutorial: React.FC<AlignmentTutorialProps> = ({
                 key={index}
                 className={`h-2 flex-1 rounded-full transition-colors ${
                   index === currentStep
-                    ? 'bg-crd-accent animate-pulse'
+                    ? 'bg-orange-400 animate-pulse'
                     : index < currentStep
-                    ? 'bg-crd-primary'
-                    : 'bg-crd-lightGray/30'
+                    ? 'bg-green-400'
+                    : 'bg-white/20'
                 }`}
               />
             ))}
           </div>
 
-          {/* Skip Button */}
+          {/* Glass Button */}
           <button
             onClick={onClose}
-            className="w-full mt-4 bg-crd-accent/20 hover:bg-crd-accent/30 text-crd-accent border border-crd-accent/30 py-2 px-4 rounded-lg transition-colors text-sm"
+            className="w-full mt-4 bg-white/10 backdrop-blur-md hover:bg-white/20 text-white border border-white/20 py-3 px-4 rounded-xl transition-all duration-300 text-sm font-medium shadow-lg hover:shadow-xl"
           >
             Got it, let me try!
           </button>
