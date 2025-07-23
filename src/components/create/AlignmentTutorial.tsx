@@ -93,9 +93,9 @@ export const AlignmentTutorial: React.FC<AlignmentTutorialProps> = ({
       <div className="relative w-full h-full flex items-center justify-center">
         {/* Animated Card Representation */}
         <div className="relative">
-          {/* Card Mock */}
+          {/* Card Mock with CRD gradient and logo */}
           <div className={`
-            relative w-64 h-96 bg-gradient-to-br from-crd-purple via-crd-accent to-crd-primary 
+            relative w-64 h-96 bg-gradient-to-br from-crd-green via-crd-blue to-crd-purple 
             rounded-2xl shadow-2xl transition-transform duration-1000 
             ${currentStep === 0 ? 'animate-zoom-in scale-110' : ''}
             ${currentStep === 1 ? 'animate-tilt-forward transform rotate-x-45' : ''}
@@ -103,8 +103,10 @@ export const AlignmentTutorial: React.FC<AlignmentTutorialProps> = ({
           `}>
             <div className="absolute inset-4 bg-black/20 rounded-xl flex items-center justify-center">
               <div className="text-white text-center">
-                <div className="text-6xl mb-4">🌟</div>
-                <div className="text-sm font-medium">Sample Card</div>
+                {/* Cardshow Logo from nav */}
+                <div className="w-20 h-20 mx-auto mb-4 rounded-xl bg-gradient-to-br from-crd-green to-crd-blue flex items-center justify-center shadow-lg">
+                  <span className="text-white font-bold text-lg tracking-wider">CRD</span>
+                </div>
               </div>
             </div>
           </div>
@@ -117,13 +119,13 @@ export const AlignmentTutorial: React.FC<AlignmentTutorialProps> = ({
             ${currentStep === 2 ? 'animate-drag-up-gesture bottom-10 left-1/2 transform -translate-x-1/2' : ''}
           `}>
             {currentStep === 0 && (
-              <div className="bg-white rounded-full p-3 shadow-lg animate-pulse">
-                <MousePointer2 className="w-6 h-6 text-crd-dark" />
+              <div className="bg-white/10 backdrop-blur-md rounded-full p-3 shadow-lg animate-pulse border border-white/20">
+                <MousePointer2 className="w-6 h-6 text-white" />
               </div>
             )}
             {(currentStep === 1 || currentStep === 2) && (
-              <div className="bg-white rounded-full p-3 shadow-lg">
-                <Hand className="w-6 h-6 text-crd-dark" />
+              <div className="bg-white/10 backdrop-blur-md rounded-full p-3 shadow-lg border border-white/20">
+                <Hand className="w-6 h-6 text-white" />
               </div>
             )}
           </div>
