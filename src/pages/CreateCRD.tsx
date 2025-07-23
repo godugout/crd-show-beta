@@ -3,6 +3,7 @@ import { PreloadedCRDEditor } from '@/components/editor/crd/PreloadedCRDEditor';
 import { CRDEditorProvider } from '@/contexts/CRDEditorContext';
 import { useNavigate } from 'react-router-dom';
 import { ErrorBoundary } from '@/components/common/ErrorBoundary';
+import { CreateFooter } from '@/components/create/CreateFooter';
 import type { CardData } from '@/hooks/useCardEditor';
 
 const CreateCRD = () => {
@@ -22,9 +23,9 @@ const CreateCRD = () => {
 
   return (
     <CRDEditorProvider>
-      <div className="fixed inset-0 bg-crd-darkest overflow-hidden">
-        {/* Main Content - Full height */}
-        <div className="h-full">
+      <div className="flex flex-col min-h-screen bg-crd-darkest">
+        {/* Main Content - Takes remaining space */}
+        <div className="flex-1 relative">
           <ErrorBoundary>
             <PreloadedCRDEditor 
               onComplete={handleComplete}
@@ -33,6 +34,9 @@ const CreateCRD = () => {
             />
           </ErrorBoundary>
         </div>
+        
+        {/* Footer */}
+        <CreateFooter />
       </div>
     </CRDEditorProvider>
   );
