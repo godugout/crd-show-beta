@@ -90,9 +90,9 @@ export const AlignmentTutorial: React.FC<AlignmentTutorialProps> = ({
       </button>
 
       {/* Tutorial Content */}
-      <div className="relative w-full h-full flex items-center justify-center">
-        {/* Animated Card Representation */}
-        <div className="relative">
+      <div className="relative w-full h-full flex items-center justify-center pt-20">
+        {/* Animated Card Representation - moved higher */}
+        <div className="relative -mt-20">
           {/* Card Mock with CRD gradient and logo */}
           <div className={`
             relative w-64 h-96 bg-gradient-to-br from-crd-green via-crd-blue to-crd-purple 
@@ -153,7 +153,7 @@ export const AlignmentTutorial: React.FC<AlignmentTutorialProps> = ({
         </div>
 
         {/* Instructions Panel */}
-        <div className="absolute bottom-40 left-1/2 transform -translate-x-1/2 backdrop-blur-md rounded-2xl p-6 max-w-md mx-auto border border-white/20 bg-black/20">
+        <div className="absolute bottom-40 left-1/2 transform -translate-x-1/2 max-w-md mx-auto">
           <div className="flex items-center gap-3 mb-3">
             <div className="bg-crd-accent/20 p-2 rounded-lg">
               {currentTutorialStep?.icon}
