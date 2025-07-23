@@ -41,16 +41,16 @@ export const SpaceEnvironmentRenderer: React.FC<SpaceEnvironmentProps> = ({
           stars: {
             radius: 400,
             depth: 80,
-            count: 4000,
+            count: 1500,
             factor: 5,
             saturation: 0.3,
             fade: true
           },
           lighting: {
-            ambient: { intensity: 0.2 * intensity, color: '#8A2BE2' },
+            ambient: { intensity: 0.05 * intensity, color: '#8A2BE2' },
             point: { 
               position: [0, 0, 10] as [number, number, number], 
-              intensity: 0.5 * intensity, 
+              intensity: 0.1 * intensity, 
               color: '#FF69B4' 
             }
           },
