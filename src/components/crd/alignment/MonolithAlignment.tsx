@@ -29,8 +29,8 @@ export const MonolithAlignment: React.FC<MonolithAlignmentProps> = ({
     
     // Trigger card rotation to final monolith position immediately
     if (onCardRotationTrigger) {
-      // Final position: both sides past bottom corners, touching screen sides
-      onCardRotationTrigger({ x: 15, y: 175 });
+      // Final position: upright monolith stance (0° Y rotation, slight forward tilt)
+      onCardRotationTrigger({ x: 15, y: 0 });
     }
     
     let startTime = Date.now();
