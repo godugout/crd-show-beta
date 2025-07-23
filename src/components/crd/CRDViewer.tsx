@@ -8,7 +8,6 @@ import { OrbitalMaterialSystem } from './orbital/OrbitalMaterialSystem';
 import { AlignmentControls } from './alignment/AlignmentControls';
 import { loadTemplate, TemplateConfig, TemplateEngine } from '@/templates/engine';
 import { ensureMaterialPersistence, getMaterialForTemplate } from '@/utils/materialFallback';
-import { COMPONENT_Z_INDEX, getZIndexClass } from '@/lib/constants/z-index';
 import { PerformanceMonitor } from './performance/PerformanceMonitor';
 import { useCardAngle } from './hooks/useCardAngle';
 import { MonolithAlignment } from './alignment/MonolithAlignment';
@@ -38,7 +37,6 @@ interface CRDViewerProps {
   enableControls?: boolean;
   enableGlassCase?: boolean;
   showModeText?: boolean;
-  initialCameraDistance?: number;
   
   // Orbital controls
   orbitalAutoRotate?: boolean;
@@ -98,7 +96,6 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
   enableControls = true,
   enableGlassCase = true,
   showModeText = true,
-  initialCameraDistance = 15,
   
   // Orbital controls
   orbitalAutoRotate = true,
@@ -484,7 +481,7 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
     if (controlsRef.current) {
       // Smooth animation to reset position
       const controls = controlsRef.current;
-      const targetPosition = [0, 0, initialCameraDistance];
+      const targetPosition = [0, 0, 15];
       const targetTarget = [0, 0, 0];
       
       // Animate camera back to initial position
@@ -605,8 +602,8 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
       <div className="relative w-full h-full">
         {/* 3D Scene - Responsive sizing */}
         <Canvas
-          className={`relative ${getZIndexClass(COMPONENT_Z_INDEX.THREE_JS_CANVAS)} w-full h-full`}
-          camera={{ position: [0, 1, initialCameraDistance], fov: 60 }}
+          className="relative z-20 w-full h-full"
+          camera={{ position: [0, 1, 15], fov: 60 }}
           gl={{ 
             antialias: true, 
             alpha: true,
@@ -778,7 +775,7 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
       )}
       
       {showPauseButton && (
-        <div className={`fixed bottom-6 right-6 ${getZIndexClass(COMPONENT_Z_INDEX.PAUSE_BUTTON)} flex gap-3`}>
+        <div className="fixed bottom-6 right-6 z-[999] flex gap-3">
           <EnvironmentSwitcher
             currentEnvironment={spaceEnvironment}
             onEnvironmentChange={onSpaceEnvironmentChange || (() => {})}
@@ -818,7 +815,6 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
         isResetting={isResettingCard}
         onShowTutorial={onShowTutorial}
         cardRotation={cardRotationForCompass}
-        cameraDistance={cameraDistance}
         enableGlassCase={currentEnableGlassCase}
         onToggleGlassCase={() => setCurrentEnableGlassCase(!currentEnableGlassCase)}
         spaceEnvironment={spaceEnvironment}

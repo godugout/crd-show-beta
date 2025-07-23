@@ -1,14 +1,12 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { RotateCcw, HelpCircle, Play, Pause, RefreshCw, Package, PackageOpen, Globe } from 'lucide-react';
 import { EnvironmentSwitcher, type SpaceEnvironment } from '../../studio/EnvironmentSwitcher';
-import { COMPONENT_Z_INDEX, getZIndexClass } from '@/lib/constants/z-index';
 
 interface GalacticCompassProps {
   onReset: () => void;
   isResetting?: boolean;
   onShowTutorial?: () => void;
   cardRotation?: { x: number; y: number; z: number };
-  cameraDistance?: number;
   isPaused?: boolean;
   onTogglePause?: () => void;
   enableGlassCase?: boolean;
@@ -22,7 +20,6 @@ export const GalacticCompass: React.FC<GalacticCompassProps> = ({
   isResetting = false,
   onShowTutorial,
   cardRotation,
-  cameraDistance,
   isPaused = false,
   onTogglePause,
   enableGlassCase = true,
@@ -64,7 +61,7 @@ export const GalacticCompass: React.FC<GalacticCompassProps> = ({
   return (
     <>
       {/* Left Side - Creating Tools Bar */}
-      <div className={`fixed bottom-6 left-6 ${getZIndexClass(COMPONENT_Z_INDEX.GALACTIC_COMPASS)}`}>
+      <div className="fixed bottom-6 left-6 z-50">
         <div className="flex flex-col items-start gap-2">
           {/* Future creating tools will go here */}
           <div className="flex flex-col items-start gap-2">
@@ -129,7 +126,7 @@ export const GalacticCompass: React.FC<GalacticCompassProps> = ({
       </div>
 
       {/* Right Side - Playing Controls Bar */}
-      <div className={`fixed bottom-6 right-6 ${getZIndexClass(COMPONENT_Z_INDEX.GALACTIC_COMPASS)}`}>
+      <div className="fixed bottom-6 right-6 z-50">
         <div className="flex flex-col items-end gap-3">
           {/* Control Buttons - Pause/Play and Refresh above compass */}
           <div className="flex flex-col items-end gap-3">
@@ -275,7 +272,7 @@ export const GalacticCompass: React.FC<GalacticCompassProps> = ({
                       <div className="w-2 h-0.5 bg-gradient-to-r from-orange-600 to-orange-300"></div>
                     </div>
                     <div className="flex items-center justify-end gap-1">
-                      <span>{cameraDistance ? `${(20 / cameraDistance).toFixed(1)}x` : 'N/A'}</span>
+                      <span>{cardRotation.z.toFixed(1)}°</span>
                       <span>Z</span>
                       <div className="w-2 h-0.5 bg-gradient-to-r from-green-600 to-green-300"></div>
                     </div>

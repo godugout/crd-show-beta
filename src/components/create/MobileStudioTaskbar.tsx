@@ -3,7 +3,6 @@ import React, { useState, useEffect } from 'react';
 import { Play, Pause, RotateCcw, Settings, Share2, Download } from 'lucide-react';
 import { CRDButton } from '@/components/ui/design-system/Button';
 import { useMobileFeatures } from '@/hooks/useMobileFeatures';
-import { COMPONENT_Z_INDEX, getZIndexClass } from '@/lib/constants/z-index';
 
 interface MobileStudioTaskbarProps {
   isPaused: boolean;
@@ -56,7 +55,7 @@ export const MobileStudioTaskbar: React.FC<MobileStudioTaskbarProps> = ({
   };
 
   return (
-    <div className={`fixed bottom-0 left-0 right-0 bg-crd-darker/95 backdrop-blur-sm border-t border-crd-mediumGray/20 transition-transform duration-300 ${getZIndexClass(COMPONENT_Z_INDEX.STUDIO_CONTROLS)} safe-area-bottom ${
+    <div className={`fixed bottom-0 left-0 right-0 bg-crd-darker/95 backdrop-blur-sm border-t border-crd-mediumGray/20 transition-transform duration-300 z-50 safe-area-bottom ${
       isVisible ? 'translate-y-0' : 'translate-y-full'
     }`}>
       {/* Main Controls Row */}

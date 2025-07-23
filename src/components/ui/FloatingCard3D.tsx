@@ -27,17 +27,17 @@ export const FloatingCard3D: React.FC<FloatingCard3DProps> = ({
 }) => {
   const { deviceType, isShortScreen } = useResponsiveBreakpoints();
 
-  // Adjust intensity, quality, and initial zoom based on device type
+  // Adjust intensity and quality based on device type - Enable controls for all devices
   const getDeviceConfig = () => {
     switch (deviceType) {
       case 'mobile':
-        return { intensity: 0.7, autoRotate: false, enableControls: true, initialCameraDistance: 15 };
+        return { intensity: 0.7, autoRotate: false, enableControls: true };
       case 'tablet':
-        return { intensity: 0.8, autoRotate: false, enableControls: true, initialCameraDistance: 13 };
+        return { intensity: 0.8, autoRotate: false, enableControls: true };
       case 'large-desktop':
-        return { intensity: 1.2, autoRotate: false, enableControls: true, initialCameraDistance: 8 };
-      default: // desktop
-        return { intensity: 1, autoRotate: false, enableControls: true, initialCameraDistance: 10 };
+        return { intensity: 1.2, autoRotate: false, enableControls: true };
+      default:
+        return { intensity: 1, autoRotate: false, enableControls: true };
     }
   };
 
@@ -55,7 +55,6 @@ export const FloatingCard3D: React.FC<FloatingCard3DProps> = ({
         enableGlassCase={true}
         showModeText={false}
         hideAlignmentControls={true}
-        initialCameraDistance={deviceConfig.initialCameraDistance}
         className="w-full h-full"
         isPaused={isPaused}
         onTogglePause={onTogglePause}

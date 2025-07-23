@@ -6,7 +6,6 @@ import { PixelDigital } from '@/components/ui/PixelDigital';
 import { FloatingCard3D } from '@/components/ui/FloatingCard3D';
 import { StudioPauseButton } from '@/components/studio/StudioPauseButton';
 import { StarsBackground } from '@/components/ui/stars';
-import { COMPONENT_Z_INDEX, getZIndexClass } from '@/lib/constants/z-index';
 
 const DesktopAnimatedTagline: React.FC = () => {
   return (
@@ -40,7 +39,7 @@ export const DesktopCreateHero: React.FC = () => {
       </div>
 
       {/* Control Button - Lower Right */}
-      <div className={`fixed bottom-6 right-6 ${getZIndexClass(COMPONENT_Z_INDEX.PAUSE_BUTTON)} flex gap-3`}>
+      <div className="fixed bottom-6 right-6 z-50 flex gap-3">
         <StudioPauseButton 
           isPaused={isPaused} 
           onTogglePause={handleTogglePause} 

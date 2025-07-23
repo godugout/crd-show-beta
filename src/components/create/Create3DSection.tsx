@@ -4,7 +4,6 @@ import { FloatingCard3D } from '@/components/ui/FloatingCard3D';
 import { StarsBackground } from '@/components/ui/stars';
 import { StudioPauseButton } from '@/components/studio/StudioPauseButton';
 import { useResponsiveBreakpoints } from '@/hooks/useResponsiveBreakpoints';
-import { COMPONENT_Z_INDEX, getZIndexClass } from '@/lib/constants/z-index';
 
 export const Create3DSection: React.FC = () => {
   const [isPaused, setIsPaused] = useState(false);
@@ -18,7 +17,7 @@ export const Create3DSection: React.FC = () => {
   return (
     <div className="relative w-full h-screen bg-crd-darkest overflow-hidden">
       {/* Full-Screen 3D Background */}
-      <div className={`absolute inset-0 ${getZIndexClass(COMPONENT_Z_INDEX.STARS_BACKGROUND)}`}>
+      <div className="absolute inset-0 z-0">
         <StarsBackground>
           <FloatingCard3D 
             isPaused={isPaused}
@@ -28,10 +27,17 @@ export const Create3DSection: React.FC = () => {
         </StarsBackground>
       </div>
 
+      {/* Control Button */}
+      <div className="absolute bottom-6 right-6 z-50 flex gap-3">
+        <StudioPauseButton 
+          isPaused={isPaused} 
+          onTogglePause={handleTogglePause} 
+        />
+      </div>
 
       {/* Device-specific UI hints */}
       {deviceType === 'desktop' && (
-        <div className={`absolute bottom-6 left-6 ${getZIndexClass(COMPONENT_Z_INDEX.STATUS_MESSAGE)} text-crd-lightGray text-sm`}>
+        <div className="absolute bottom-6 left-6 z-50 text-crd-lightGray text-sm">
           <p>Interactive 3D Experience</p>
           <p className="text-xs">Drag to rotate • Scroll to zoom</p>
         </div>
