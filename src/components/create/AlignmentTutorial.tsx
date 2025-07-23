@@ -13,6 +13,7 @@ interface TutorialStep {
   icon: React.ReactNode;
   animation: string;
   duration: number;
+  requirement?: string;
 }
 
 const tutorialSteps: TutorialStep[] = [
@@ -22,7 +23,8 @@ const tutorialSteps: TutorialStep[] = [
     description: "Scroll to zoom the card to 160% or larger",
     icon: <MousePointer2 className="w-6 h-6" />,
     animation: "zoom-gesture",
-    duration: 3000
+    duration: 3000,
+    requirement: "160%+"
   },
   {
     id: 2,
@@ -30,7 +32,8 @@ const tutorialSteps: TutorialStep[] = [
     description: "Drag to tilt the card forward at least 45°",
     icon: <Hand className="w-6 h-6" />,
     animation: "tilt-gesture",
-    duration: 3000
+    duration: 3000,
+    requirement: "45°+"
   },
   {
     id: 3,
@@ -38,7 +41,8 @@ const tutorialSteps: TutorialStep[] = [
     description: "Perform an upward drag gesture to trigger alignment",
     icon: <Zap className="w-6 h-6" />,
     animation: "drag-up-gesture",
-    duration: 2000
+    duration: 2000,
+    requirement: ""
   }
 ];
 
@@ -137,19 +141,6 @@ export const AlignmentTutorial: React.FC<AlignmentTutorialProps> = ({
             </div>
           )}
 
-          {/* Zoom Indicators for Step 1 */}
-          {currentStep === 0 && (
-            <div className="absolute -top-8 left-1/2 transform -translate-x-1/2 text-white text-sm font-medium animate-fade-in">
-              160%+ Zoom
-            </div>
-          )}
-
-          {/* Angle Indicator for Step 2 */}
-          {currentStep === 1 && (
-            <div className="absolute -left-16 top-1/2 transform -translate-y-1/2 text-white text-sm font-medium animate-fade-in">
-              45°+ Tilt
-            </div>
-          )}
         </div>
 
         {/* Instructions Panel */}
@@ -161,6 +152,11 @@ export const AlignmentTutorial: React.FC<AlignmentTutorialProps> = ({
             <div>
               <h3 className="text-white font-semibold text-lg">
                 Step {currentStep + 1}: {currentTutorialStep?.title}
+                {currentTutorialStep?.requirement && (
+                  <span className="text-crd-green ml-2 text-base">
+                    {currentTutorialStep.requirement}
+                  </span>
+                )}
               </h3>
               <p className="text-crd-lightGray text-sm">
                 {currentTutorialStep?.description}
