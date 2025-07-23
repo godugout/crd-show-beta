@@ -157,7 +157,7 @@ const App = () => {
                     } 
                   />
                   <Route 
-                    path="/studio/demo" 
+                    path="/studio" 
                     element={
                       <RouteErrorBoundary>
                         <Suspense fallback={<StudioLoading />}>
@@ -166,24 +166,24 @@ const App = () => {
                       </RouteErrorBoundary>
                     } 
                   />
-                  <Route 
-                    path="/studio/demo/:cardId" 
-                    element={
-                      <RouteErrorBoundary>
-                        <Suspense fallback={<StudioLoading />}>
-                          <Studio />
-                        </Suspense>
-                      </RouteErrorBoundary>
-                    } 
-                  />
-                  {/* Redirect old studio routes to new structure */}
                   <Route 
                     path="/studio/:cardId" 
+                    element={
+                      <RouteErrorBoundary>
+                        <Suspense fallback={<StudioLoading />}>
+                          <Studio />
+                        </Suspense>
+                      </RouteErrorBoundary>
+                    } 
+                  />
+                  {/* Redirect old demo routes to new structure */}
+                  <Route 
+                    path="/studio/demo/:cardId" 
                     element={<StudioRedirect />}
                   />
                   <Route 
-                    path="/studio" 
-                    element={<Navigate to="/studio/demo" replace />}
+                    path="/studio/demo" 
+                    element={<Navigate to="/studio" replace />}
                   />
                   <Route
                     path="/upload-test" 

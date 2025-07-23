@@ -5,8 +5,8 @@ export const StudioRedirect: React.FC = () => {
   const { cardId } = useParams<{ cardId?: string }>();
   
   if (cardId) {
-    return <Navigate to={`/studio/demo/${cardId}`} replace />;
+    return <Navigate to={`/studio/${cardId}`} replace />;
   }
   
-  return <Navigate to="/studio/demo" replace />;
+  return <Navigate to="/studio" replace />;
 };
