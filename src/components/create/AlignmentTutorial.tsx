@@ -153,7 +153,7 @@ export const AlignmentTutorial: React.FC<AlignmentTutorialProps> = ({
         </div>
 
         {/* Instructions Panel */}
-        <div className="absolute bottom-40 left-1/2 transform -translate-x-1/2 max-w-md mx-auto">
+        <div className="absolute bottom-72 left-1/2 transform -translate-x-1/2 max-w-md mx-auto">
           <div className="flex items-center gap-3 mb-3">
             <div className="bg-crd-accent/20 p-2 rounded-lg">
               {currentTutorialStep?.icon}
