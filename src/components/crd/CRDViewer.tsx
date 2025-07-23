@@ -820,6 +820,8 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
         onToggleGlassCase={() => setCurrentEnableGlassCase(!currentEnableGlassCase)}
         spaceEnvironment={spaceEnvironment}
         onSpaceEnvironmentChange={onSpaceEnvironmentChange}
+        showTutorialGlow={viewingConditions.overallProgress >= 0.3 && viewingConditions.overallProgress < 0.6}
+        selectedMaterialColor={showOrbitalRing ? '#ffd700' : undefined}
       />
     </div>
   );
