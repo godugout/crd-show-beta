@@ -1,5 +1,7 @@
 
-import React from 'react';
+import React, { useRef } from 'react';
+import { useFrame } from '@react-three/fiber';
+import * as THREE from 'three';
 
 interface AnimatedNebulaBackgroundProps {
   intensity?: number;
@@ -8,49 +10,35 @@ interface AnimatedNebulaBackgroundProps {
 export const AnimatedNebulaBackground: React.FC<AnimatedNebulaBackgroundProps> = ({ 
   intensity = 1.0 
 }) => {
+  const meshRef = useRef<THREE.Mesh>(null);
+  
+  // Animate the material colors over time
+  useFrame((state) => {
+    if (meshRef.current && meshRef.current.material) {
+      const material = meshRef.current.material as THREE.MeshBasicMaterial;
+      const time = state.clock.getElapsedTime();
+      
+      // Create animated color based on time
+      const hue1 = (262 + Math.sin(time * 0.1) * 30) / 360; // Purple to blue range
+      const hue2 = (25 + Math.sin(time * 0.08) * 15) / 360;  // Orange to red range
+      
+      // Interpolate between the two colors based on a sine wave
+      const t = (Math.sin(time * 0.05) + 1) * 0.5; // 0 to 1
+      const finalHue = hue1 * (1 - t) + hue2 * t;
+      
+      material.color.setHSL(finalHue, 0.8, 0.3 * intensity);
+      material.opacity = 0.6 * intensity;
+    }
+  });
+
   return (
-    <div 
-      className="fixed inset-0 pointer-events-none"
-      style={{
-        background: `
-          radial-gradient(circle at 20% 80%, rgba(138, 43, 226, ${0.4 * intensity}) 0%, transparent 50%),
-          radial-gradient(circle at 80% 20%, rgba(255, 105, 180, ${0.3 * intensity}) 0%, transparent 50%),
-          radial-gradient(circle at 40% 40%, rgba(255, 140, 0, ${0.2 * intensity}) 0%, transparent 50%)
-        `,
-        animation: 'nebula-gradient-cycle 12s ease-in-out infinite',
-        opacity: intensity,
-      }}
-    >
-      {/* Animated gradient overlay */}
-      <div 
-        className="absolute inset-0"
-        style={{
-          background: `
-            linear-gradient(45deg, 
-              hsl(262 83% 58% / ${0.1 * intensity}), 
-              hsl(25 95% 53% / ${0.1 * intensity})
-            )
-          `,
-          animation: 'nebula-color-shift 10s ease-in-out infinite alternate',
-        }}
+    <mesh ref={meshRef} position={[0, 0, -50]}>
+      <sphereGeometry args={[100, 32, 32]} />
+      <meshBasicMaterial 
+        transparent 
+        opacity={0.6 * intensity}
+        color={new THREE.Color().setHSL(262/360, 0.83, 0.58)}
       />
-      
-      {/* Pulsing accent spots */}
-      <div 
-        className="absolute top-1/4 left-1/3 w-32 h-32 rounded-full blur-xl"
-        style={{
-          background: `radial-gradient(circle, hsl(262 83% 58% / ${0.2 * intensity}) 0%, transparent 70%)`,
-          animation: 'nebula-pulse 8s ease-in-out infinite',
-        }}
-      />
-      
-      <div 
-        className="absolute bottom-1/3 right-1/4 w-24 h-24 rounded-full blur-xl"
-        style={{
-          background: `radial-gradient(circle, hsl(25 95% 53% / ${0.15 * intensity}) 0%, transparent 70%)`,
-          animation: 'nebula-pulse 6s ease-in-out infinite reverse',
-        }}
-      />
-    </div>
+    </mesh>
   );
 };
