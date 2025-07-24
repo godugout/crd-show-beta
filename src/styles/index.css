@@ -2,6 +2,7 @@
 /* Main entry point for all CSS files */
 @import './reset.css';
 @import './variables.css';
+@import './z-index-system.css';  /* Standardized z-index hierarchy */
 @import './animations.css';  /* All keyframes here */
 @import './utilities.css';
 @import './components.css';

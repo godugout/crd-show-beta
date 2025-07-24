@@ -84,11 +84,11 @@ export const AlignmentTutorial: React.FC<AlignmentTutorialProps> = ({
   const currentTutorialStep = tutorialSteps[currentStep];
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/95 backdrop-blur-lg">
+    <div className="fixed inset-0 tutorial-overlay bg-black/95 backdrop-blur-lg">
       {/* Close Button */}
       <button
         onClick={onClose}
-        className="absolute top-6 right-6 z-60 bg-crd-dark/90 hover:bg-crd-dark text-white p-2 rounded-full transition-colors"
+        className="absolute top-6 right-6 z-overlay-controls bg-crd-dark/90 hover:bg-crd-dark text-white p-2 rounded-full transition-colors"
       >
         <X className="w-5 h-5" />
       </button>

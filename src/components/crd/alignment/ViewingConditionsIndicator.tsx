@@ -24,7 +24,7 @@ export const ViewingConditionsIndicator: React.FC<ViewingConditionsIndicatorProp
       ? "fixed bottom-32 right-6 transform transition-all duration-500 translate-y-full" 
       : "fixed top-24 left-1/2 transform -translate-x-1/2 transition-all duration-300";
     
-    const baseStyle = `${basePosition} z-[9999]`;
+    const baseStyle = `${basePosition} viewing-conditions-indicator`;
     
     switch (urgency) {
       case 'critical':

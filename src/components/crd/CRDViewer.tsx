@@ -602,7 +602,7 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
       <div className="relative w-full h-full">
         {/* 3D Scene - Responsive sizing */}
         <Canvas
-          className="relative z-20 w-full h-full"
+          className="relative canvas-3d w-full h-full"
           camera={{ position: [0, 1, 15], fov: 60 }}
           gl={{ 
             antialias: true, 
@@ -775,7 +775,7 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
       )}
       
       {showPauseButton && (
-        <div className="fixed bottom-6 right-6 z-[999] flex gap-3">
+        <div className="fixed bottom-6 right-6 z-nav-controls flex gap-3">
           <EnvironmentSwitcher
             currentEnvironment={spaceEnvironment}
             onEnvironmentChange={onSpaceEnvironmentChange || (() => {})}
