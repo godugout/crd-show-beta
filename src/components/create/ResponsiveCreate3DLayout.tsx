@@ -4,6 +4,7 @@ import { StarsBackground } from '@/components/ui/stars';
 import { StudioPauseButton } from '@/components/studio/StudioPauseButton';
 import { RefreshCw } from 'lucide-react';
 import { AlignmentTutorial } from './AlignmentTutorial';
+import { AlignmentTutorialButton } from './AlignmentTutorialButton';
 import { type SpaceEnvironment } from '@/components/studio/EnvironmentSwitcher';
 
 interface ResponsiveCreate3DLayoutProps {

@@ -3,6 +3,8 @@ import { Play, Pause, RotateCw, Palette, ChevronUp, X, Orbit, Lightbulb, Package
 import { CRDVisualStyles } from '../styles/StyleRegistry';
 import { type AnimationMode, type LightingPreset } from '../types/CRDTypes';
 import { UserTracker } from '../tracking/UserTracker';
+import { useFirstMaterialSelection } from '@/hooks/useFirstMaterialSelection';
+import { useGlowState } from '@/hooks/useGlowState';
 
 interface CRDStickyFooterProps {
   // Animation controls
@@ -47,6 +49,9 @@ interface CRDStickyFooterProps {
   cardAngle?: number;
   cameraDistance?: number;
   animationProgress?: number;
+
+  // Engagement tracking
+  onMaterialSelectionTracked?: (styleId: string) => void;
 }
 
 type TabId = 'animation' | 'materials' | 'rotation' | 'lighting' | 'tracking';
@@ -80,10 +85,25 @@ export const CRDStickyFooter: React.FC<CRDStickyFooterProps> = ({
   onEnableUserTrackingChange,
   cardAngle = 0,
   cameraDistance = 10,
-  animationProgress = 0
+  animationProgress = 0,
+  onMaterialSelectionTracked
 }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<TabId>('animation');
+
+  // Engagement tracking for box icon glow
+  const { shouldShowBoxGlow, onMaterialSelect } = useFirstMaterialSelection();
+  const { isGlowing: isBoxGlowing } = useGlowState({ 
+    duration: 4000,
+    pulseSpeed: 900
+  });
+
+  // Handle material selection with tracking
+  const handleStyleChange = (styleId: string) => {
+    onStyleChange(styleId);
+    onMaterialSelect(styleId);
+    onMaterialSelectionTracked?.(styleId);
+  };
 
   const animationModes: { id: AnimationMode; name: string; icon: React.ComponentType<any> }[] = [
     { id: 'monolith', name: 'Monolith', icon: Zap },
@@ -150,14 +170,14 @@ export const CRDStickyFooter: React.FC<CRDStickyFooterProps> = ({
               <Orbit className="w-5 h-5" />
             </button>
 
-            {/* Case Toggle */}
+            {/* Case Toggle with Glow Effect */}
             <button
               onClick={() => onEnableGlassCaseChange?.(!enableGlassCase)}
               className={`flex items-center justify-center w-10 h-10 rounded-lg border transition-all ${
                 enableGlassCase
                   ? 'border-primary bg-primary/20 text-primary'
                   : 'border-white/20 hover:border-white/40 text-foreground/70'
-              }`}
+              } ${shouldShowBoxGlow ? 'glow-primary glow-pulse' : ''}`}
               title={enableGlassCase ? 'Remove Case' : 'Add Case'}
             >
               <Package className="w-5 h-5" />
@@ -286,15 +306,15 @@ export const CRDStickyFooter: React.FC<CRDStickyFooterProps> = ({
               <div className="h-full flex flex-col">
                 <h3 className="text-lg font-semibold mb-4">Visual Materials</h3>
                 <div className="grid grid-cols-6 gap-3">
-                  {CRDVisualStyles.map((style) => (
-                    <button
-                      key={style.id}
-                      onClick={() => onStyleChange(style.id)}
-                      className={`aspect-square rounded-lg border-2 transition-all relative overflow-hidden ${
-                        selectedStyleId === style.id
-                          ? 'border-primary ring-2 ring-primary/30'
-                          : 'border-white/20 hover:border-white/40'
-                      }`}
+                   {CRDVisualStyles.map((style) => (
+                     <button
+                       key={style.id}
+                       onClick={() => handleStyleChange(style.id)}
+                       className={`aspect-square rounded-lg border-2 transition-all relative overflow-hidden ${
+                         selectedStyleId === style.id
+                           ? 'border-primary ring-2 ring-primary/30'
+                           : 'border-white/20 hover:border-white/40'
+                       }`}
                       style={{
                         background: style.uiPreviewGradient || '#333',
                       }}

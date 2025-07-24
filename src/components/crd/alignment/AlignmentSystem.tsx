@@ -1,4 +1,6 @@
 import React, { useState, useEffect, useCallback } from 'react';
+import { EnhancedAlignmentAnimation } from './EnhancedAlignmentAnimation';
+import * as THREE from 'three';
 
 
 interface AlignmentSystemProps {
@@ -9,7 +11,16 @@ interface AlignmentSystemProps {
   isOptimalZoom: boolean;
   isOptimalPosition: boolean;
   onTriggerReached?: () => void;
-  onCardControlUpdate?: (params: { positionY: number; lean: number; controlTaken: boolean }) => void;
+  onCardControlUpdate?: (params: { 
+    position?: THREE.Vector3;
+    rotation?: THREE.Euler;
+    positionY?: number; 
+    lean?: number; 
+    controlTaken: boolean 
+  }) => void;
+  currentCardPosition?: THREE.Vector3;
+  currentCardRotation?: THREE.Euler;
+  onAnimationComplete?: () => void;
 }
 
 export const AlignmentSystem: React.FC<AlignmentSystemProps> = React.memo(({
@@ -20,7 +31,10 @@ export const AlignmentSystem: React.FC<AlignmentSystemProps> = React.memo(({
   isOptimalZoom,
   isOptimalPosition,
   onTriggerReached,
-  onCardControlUpdate
+  onCardControlUpdate,
+  currentCardPosition = new THREE.Vector3(0, 0, 0),
+  currentCardRotation = new THREE.Euler(0, 0, 0),
+  onAnimationComplete
 }) => {
   const [hasTriggered, setHasTriggered] = useState(false);
   const [isAligned, setIsAligned] = useState(false);
@@ -120,47 +134,58 @@ export const AlignmentSystem: React.FC<AlignmentSystemProps> = React.memo(({
   }, [animationProgress, isPlaying, onCardControlUpdate]);
   
   return (
-    <div className="fixed inset-0 pointer-events-none z-40">
-      {/* Animation placeholder - ready for new concept */}
-      
-      {/* Progressive Alignment Indicator */}
-      {isCloseToAlignment && !hasTriggered && (
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50">
-          <div className="bg-black/80 backdrop-blur-sm border border-white/30 rounded-lg px-6 py-4 shadow-lg">
-            <div className="text-center text-white">
-              <div className="text-sm font-medium mb-2">
-                {isPerfectAlignment ? 'PERFECT ALIGNMENT' : 'APPROACHING ALIGNMENT'}
+    <>
+      {/* Enhanced Alignment Animation Component */}
+      <EnhancedAlignmentAnimation
+        isTriggered={hasTriggered}
+        isPlaying={isPlaying}
+        animationProgress={animationProgress}
+        onCardControlUpdate={onCardControlUpdate}
+        currentCardPosition={currentCardPosition}
+        currentCardRotation={currentCardRotation}
+        onAnimationComplete={onAnimationComplete}
+      />
+
+      <div className="fixed inset-0 pointer-events-none z-40">
+        {/* Progressive Alignment Indicator */}
+        {isCloseToAlignment && !hasTriggered && (
+          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50">
+            <div className="bg-black/80 backdrop-blur-sm border border-white/30 rounded-lg px-6 py-4 shadow-lg">
+              <div className="text-center text-white">
+                <div className="text-sm font-medium mb-2">
+                  {isPerfectAlignment ? 'PERFECT ALIGNMENT' : 'APPROACHING ALIGNMENT'}
+                </div>
+                {isPerfectAlignment && (
+                  <div className="w-32 h-2 bg-white/20 rounded-full overflow-hidden">
+                    <div 
+                      className="h-full bg-gradient-to-r from-blue-400 to-white transition-all duration-100"
+                      style={{ width: `${holdProgress * 100}%` }}
+                    />
+                  </div>
+                )}
+                {!isPerfectAlignment && (
+                  <div className="text-xs opacity-80">
+                    Overall: {Math.round(overallProgress * 100)}%
+                  </div>
+                )}
               </div>
-              {isPerfectAlignment && (
-                <div className="w-32 h-2 bg-white/20 rounded-full overflow-hidden">
-                  <div 
-                    className="h-full bg-gradient-to-r from-blue-400 to-white transition-all duration-100"
-                    style={{ width: `${holdProgress * 100}%` }}
-                  />
-                </div>
-              )}
-              {!isPerfectAlignment && (
-                <div className="text-xs opacity-80">
-                  Overall: {Math.round(overallProgress * 100)}%
-                </div>
-              )}
             </div>
           </div>
-        </div>
-      )}
-      
-      {/* Debug Status (development only) */}
-      {process.env.NODE_ENV === 'development' && (
-        <div className="absolute top-4 left-4 bg-black/50 text-white p-2 rounded text-sm">
-          <div>Zoom 400%+: {is400PercentZoom ? '✓' : '✗'} ({Math.round(zoomProgress * 100)}%)</div>
-          <div>Tilt 45°+: {isTilted45Plus ? '✓' : '✗'} ({Math.round(cardAngle)}°)</div>
-          <div>Edges Span: {edgesSpanScreen ? '✓' : '✗'}</div>
-          <div>Perfect: {isPerfectAlignment ? '✓' : '✗'}</div>
-          <div>Hold: {Math.round(holdProgress * 100)}%</div>
-          <div>Overall: {Math.round(overallProgress * 100)}%</div>
-        </div>
-      )}
-    </div>
+        )}
+        
+        {/* Debug Status (development only) */}
+        {process.env.NODE_ENV === 'development' && (
+          <div className="absolute top-4 left-4 bg-black/50 text-white p-2 rounded text-sm">
+            <div>Zoom 400%+: {is400PercentZoom ? '✓' : '✗'} ({Math.round(zoomProgress * 100)}%)</div>
+            <div>Tilt 45°+: {isTilted45Plus ? '✓' : '✗'} ({Math.round(cardAngle)}°)</div>
+            <div>Edges Span: {edgesSpanScreen ? '✓' : '✗'}</div>
+            <div>Perfect: {isPerfectAlignment ? '✓' : '✗'}</div>
+            <div>Hold: {Math.round(holdProgress * 100)}%</div>
+            <div>Overall: {Math.round(overallProgress * 100)}%</div>
+          </div>
+        )}
+      </div>
+    </>
   );
 });
 

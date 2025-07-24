@@ -11,6 +11,8 @@ interface ActivityState {
   currentStep: 'template' | 'design' | 'content' | 'export';
   timeOnStep: number;
   isIdle: boolean;
+  shouldShowTutorialGlow: boolean;
+  alignmentProgress: number;
 }
 
 interface UseActivityMonitorProps {
@@ -20,6 +22,9 @@ interface UseActivityMonitorProps {
   colorPalette: string;
   effects: string[];
   previewMode: 'edit' | 'preview' | 'print';
+  cardAngle?: number;
+  cameraDistance?: number;
+  isOptimalPosition?: boolean;
 }
 
 export const useActivityMonitor = (props: UseActivityMonitorProps): ActivityState => {
@@ -70,6 +75,29 @@ export const useActivityMonitor = (props: UseActivityMonitorProps): ActivityStat
     return Date.now() - stepStartTime.getTime();
   }, [stepStartTime]);
 
+  // Calculate tutorial glow trigger conditions
+  const shouldShowTutorialGlow = useMemo(() => {
+    // Show glow when user reaches alignment trigger conditions
+    const is400PercentZoom = (props.cameraDistance || 10) <= 2.5;
+    const isTilted35Plus = (props.cardAngle || 0) >= 35;
+    const hasOptimalPosition = props.isOptimalPosition || false;
+    
+    // Trigger when approaching alignment (80% of the way there)
+    const zoomProgress = Math.max(0, Math.min(1, (5 - (props.cameraDistance || 10)) / 3));
+    const tiltProgress = Math.max(0, Math.min(1, (props.cardAngle || 0) / 45));
+    const positionProgress = hasOptimalPosition ? 1 : 0;
+    const overallProgress = (zoomProgress + tiltProgress + positionProgress) / 3;
+    
+    return overallProgress >= 0.6; // Show glow when 60% towards alignment
+  }, [props.cardAngle, props.cameraDistance, props.isOptimalPosition]);
+
+  const alignmentProgress = useMemo(() => {
+    const zoomProgress = Math.max(0, Math.min(1, (5 - (props.cameraDistance || 10)) / 3));
+    const tiltProgress = Math.max(0, Math.min(1, (props.cardAngle || 0) / 45));
+    const positionProgress = props.isOptimalPosition ? 1 : 0;
+    return (zoomProgress + tiltProgress + positionProgress) / 3;
+  }, [props.cardAngle, props.cameraDistance, props.isOptimalPosition]);
+
   // Return stable activity state
   return useMemo((): ActivityState => ({
     cardTitle: props.cardTitle,
@@ -81,7 +109,9 @@ export const useActivityMonitor = (props: UseActivityMonitorProps): ActivityStat
     lastActivity,
     currentStep,
     timeOnStep,
-    isIdle
+    isIdle,
+    shouldShowTutorialGlow,
+    alignmentProgress
   }), [
     props.cardTitle,
     props.playerImage, 
@@ -92,6 +122,8 @@ export const useActivityMonitor = (props: UseActivityMonitorProps): ActivityStat
     lastActivity,
     currentStep,
     timeOnStep,
-    isIdle
+    isIdle,
+    shouldShowTutorialGlow,
+    alignmentProgress
   ]);
 };

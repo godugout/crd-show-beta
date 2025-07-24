@@ -101,8 +101,47 @@
   .bg-space-to-purple {
     background: var(--gradient-space-to-purple);
   }
+
+  /* Engagement Glow Classes */
+  .glow-primary {
+    box-shadow: var(--glow-primary);
+    transition: var(--glow-animation-fast);
+  }
+  
+  .glow-secondary {
+    box-shadow: var(--glow-secondary);
+    transition: var(--glow-animation-fast);
+  }
+  
+  .glow-tutorial {
+    box-shadow: var(--glow-tutorial);
+    transition: var(--glow-animation-fast);
+  }
+  
+  .glow-pulse {
+    animation: var(--glow-animation-pulse);
+  }
+  
+  .glow-pulse.glow-primary {
+    animation: glow-pulse-primary 1s ease-in-out infinite alternate;
+  }
+  
+  .glow-pulse.glow-tutorial {
+    animation: glow-pulse-tutorial 1s ease-in-out infinite alternate;
+  }
 }
   
+/* Glow Pulse Keyframes */
+@keyframes glow-pulse-primary {
+  0% { box-shadow: 0 0 5px hsl(var(--crd-green) / 0.4); }
+  100% { box-shadow: var(--glow-primary); }
+}
+
+@keyframes glow-pulse-tutorial {
+  0% { box-shadow: 0 0 8px hsl(var(--crd-accent-cards) / 0.3); }
+  100% { box-shadow: var(--glow-tutorial); }
+}
+
   /* Animated tagline fonts */
   .font-comic {
     font-family: 'Comic Sans MS', cursive;
@@ -119,3 +158,42 @@
   .font-fun {
     font-family: 'Chewy', cursive;
   }
+
+/* Engagement Glow Classes */
+.glow-primary {
+  box-shadow: 0 0 20px hsl(var(--crd-green) / 0.8);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glow-secondary {
+  box-shadow: 0 0 30px hsl(var(--crd-accent-cards) / 0.6);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glow-tutorial {
+  box-shadow: 0 0 25px hsl(var(--crd-accent-cards) / 0.7);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.glow-pulse {
+  animation: all 1s ease-in-out infinite alternate;
+}
+
+.glow-pulse.glow-primary {
+  animation: glow-pulse-primary 1s ease-in-out infinite alternate;
+}
+
+.glow-pulse.glow-tutorial {
+  animation: glow-pulse-tutorial 1s ease-in-out infinite alternate;
+}
+
+/* Glow Pulse Keyframes */
+@keyframes glow-pulse-primary {
+  0% { box-shadow: 0 0 5px hsl(var(--crd-green) / 0.4); }
+  100% { box-shadow: 0 0 20px hsl(var(--crd-green) / 0.8); }
+}
+
+@keyframes glow-pulse-tutorial {
+  0% { box-shadow: 0 0 8px hsl(var(--crd-accent-cards) / 0.3); }
+  100% { box-shadow: 0 0 25px hsl(var(--crd-accent-cards) / 0.7); }
+}
