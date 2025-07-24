@@ -247,9 +247,6 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
   const [lightingPreset, setLightingPreset] = useState<LightingPreset>(initialLightingPreset);
   const [lightingIntensity, setLightingIntensity] = useState(initialLightingIntensity);
 
-  // Material selection tracking state
-  const [hasMaterialBeenClicked, setHasMaterialBeenClicked] = useState(false);
-
   // Monolith viewing detection state
   const [currentTransform, setCurrentTransform] = useState<Transform3D>({
     rotation: { x: 0, y: 0, z: 0 },
@@ -311,7 +308,6 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
   const handleStyleChange = (styleId: string) => {
     console.log('🎨 CRD Viewer: Style changing from', selectedStyleId, 'to:', styleId);
     setSelectedStyleId(styleId);
-    setHasMaterialBeenClicked(true); // Mark that a material has been clicked
   };
 
   const handleCardPauseToggle = (paused: boolean) => {
@@ -824,8 +820,6 @@ export const CRDViewer: React.FC<CRDViewerProps> = ({
         onToggleGlassCase={() => setCurrentEnableGlassCase(!currentEnableGlassCase)}
         spaceEnvironment={spaceEnvironment}
         onSpaceEnvironmentChange={onSpaceEnvironmentChange}
-        showTutorialGlow={viewingConditions.overallProgress >= 0.3 && viewingConditions.overallProgress < 0.6}
-        selectedMaterialColor={hasMaterialBeenClicked && showOrbitalRing ? '#ffd700' : undefined}
       />
     </div>
   );

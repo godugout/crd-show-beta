@@ -14,8 +14,6 @@ interface GalacticCompassProps {
   onToggleGlassCase?: () => void;
   spaceEnvironment?: SpaceEnvironment;
   onSpaceEnvironmentChange?: (environment: SpaceEnvironment) => void;
-  showTutorialGlow?: boolean; // New prop for tutorial button glow
-  selectedMaterialColor?: string; // New prop for material glow color
 }
 
 export const GalacticCompass: React.FC<GalacticCompassProps> = ({
@@ -29,9 +27,7 @@ export const GalacticCompass: React.FC<GalacticCompassProps> = ({
   enableGlassCase = true,
   onToggleGlassCase,
   spaceEnvironment = 'starfield',
-  onSpaceEnvironmentChange,
-  showTutorialGlow = false,
-  selectedMaterialColor
+  onSpaceEnvironmentChange
 }) => {
   const [compassAngle, setCompassAngle] = useState(0); // 0 = pointing up
   const [isTracking, setIsTracking] = useState(true);
@@ -67,7 +63,7 @@ export const GalacticCompass: React.FC<GalacticCompassProps> = ({
   return (
     <>
       {/* Left Side - Creating Tools Bar */}
-      <div className="fixed bottom-6 left-6 z-30">
+      <div className="fixed bottom-6 left-6 z-50">
         <div className="flex flex-col items-start gap-2">
           {/* Future creating tools will go here */}
           <div className="flex flex-col items-start gap-2">
@@ -76,23 +72,11 @@ export const GalacticCompass: React.FC<GalacticCompassProps> = ({
             {onToggleGlassCase && (
               <button
                 onClick={onToggleGlassCase}
-                className={`group p-2 rounded-full shadow-lg transition-all duration-300 hover:scale-105 flex items-center justify-center border ${
-                  selectedMaterialColor && !enableGlassCase
-                    ? 'animate-[pulse_1.5s_ease-in-out_infinite]' 
-                    : 'text-white/40 hover:text-[#3772FF]'
-                }`}
+                className="group text-white/40 hover:text-[#3772FF] p-2 rounded-full shadow-lg transition-all duration-300 hover:scale-105 flex items-center justify-center border"
                 style={{
-                  background: selectedMaterialColor && !enableGlassCase
-                    ? `radial-gradient(circle, ${selectedMaterialColor}40 0%, rgba(255, 255, 255, 0.08) 50%, rgba(255, 255, 255, 0.12) 100%)`
-                    : 'linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.12) 100%)',
-                  borderColor: selectedMaterialColor && !enableGlassCase
-                    ? `${selectedMaterialColor}80`
-                    : 'rgba(255, 255, 255, 0.15)',
-                  backdropFilter: 'blur(12px) saturate(180%)',
-                  boxShadow: selectedMaterialColor && !enableGlassCase
-                    ? `0 0 20px ${selectedMaterialColor}60`
-                    : 'none',
-                  color: selectedMaterialColor && !enableGlassCase ? selectedMaterialColor : undefined
+                  background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.12) 100%)',
+                  borderColor: 'rgba(255, 255, 255, 0.15)',
+                  backdropFilter: 'blur(12px) saturate(180%)'
                 }}
                 title={enableGlassCase ? 'Remove Case' : 'Add Case'}
               >
@@ -114,22 +98,11 @@ export const GalacticCompass: React.FC<GalacticCompassProps> = ({
             {onShowTutorial && (
               <button
                 onClick={onShowTutorial}
-                className={`group p-2 rounded-full shadow-lg transition-all duration-300 hover:scale-105 flex items-center justify-center border ${
-                  showTutorialGlow 
-                    ? 'text-yellow-400 animate-[pulse_1.5s_ease-in-out_infinite]' 
-                    : 'text-white/40 hover:text-[#3772FF]'
-                }`}
+                className="group text-white/40 hover:text-[#3772FF] p-2 rounded-full shadow-lg transition-all duration-300 hover:scale-105 flex items-center justify-center border"
                 style={{
-                  background: showTutorialGlow 
-                    ? 'radial-gradient(circle, rgba(234, 179, 8, 0.4) 0%, rgba(255, 255, 255, 0.08) 50%, rgba(255, 255, 255, 0.12) 100%)'
-                    : 'linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.12) 100%)',
-                  borderColor: showTutorialGlow 
-                    ? 'rgba(234, 179, 8, 0.8)'
-                    : 'rgba(255, 255, 255, 0.15)',
-                  backdropFilter: 'blur(12px) saturate(180%)',
-                  boxShadow: showTutorialGlow 
-                    ? '0 0 20px rgba(234, 179, 8, 0.6)'
-                    : 'none'
+                  background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.05) 50%, rgba(255, 255, 255, 0.12) 100%)',
+                  borderColor: 'rgba(255, 255, 255, 0.15)',
+                  backdropFilter: 'blur(12px) saturate(180%)'
                 }}
                 title="Tutorial"
               >
@@ -155,7 +128,7 @@ export const GalacticCompass: React.FC<GalacticCompassProps> = ({
       </div>
 
       {/* Right Side - Playing Controls Bar */}
-      <div className="fixed bottom-6 right-6 z-30">
+      <div className="fixed bottom-6 right-6 z-50">
         <div className="flex flex-col items-end gap-3">
           {/* Control Buttons - Pause/Play and Refresh above compass */}
           <div className="flex flex-col items-end gap-3">
