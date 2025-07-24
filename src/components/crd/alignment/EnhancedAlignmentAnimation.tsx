@@ -6,8 +6,10 @@ interface EnhancedAlignmentAnimationProps {
   isPlaying: boolean;
   animationProgress: number;
   onCardControlUpdate?: (params: { 
-    position: THREE.Vector3; 
-    rotation: THREE.Euler; 
+    positionY?: number;
+    lean?: number;
+    position?: THREE.Vector3; 
+    rotation?: THREE.Euler; 
     controlTaken: boolean 
   }) => void;
   currentCardPosition?: THREE.Vector3;
@@ -92,43 +94,51 @@ export const EnhancedAlignmentAnimation: React.FC<EnhancedAlignmentAnimationProp
       setAnimationState(prev => ({ ...prev, phase, phaseProgress }));
     }
 
-    // Calculate position and rotation based on current phase
-    let targetPosition = animationState.startPosition.clone();
-    let targetRotation = animationState.startRotation.clone();
-
+    // Use the original card control system instead of absolute positioning
     switch (phase) {
       case 'capture':
-        // Keep starting position
+        // Don't override position during capture
         break;
 
       case 'rotation': {
-        // Complete 360° rotation from starting rotation
-        const rotationProgress = phaseProgress;
-        targetRotation.y = animationState.startRotation.y + (Math.PI * 2 * rotationProgress);
+        // Keep existing position, just ensure control is taken
+        onCardControlUpdate({
+          positionY: 0, // Relative to starting position
+          lean: 0, // No tilt during rotation
+          controlTaken: true
+        });
         break;
       }
 
       case 'descent': {
-        // Move down by 2 units
-        targetPosition.y = animationState.startPosition.y - (2 * phaseProgress);
-        // Keep final rotation from previous phase
-        targetRotation.y = animationState.startRotation.y + (Math.PI * 2);
+        // Move down relative to original position
+        const descentAmount = -2 * phaseProgress; // Negative Y = down
+        onCardControlUpdate({
+          positionY: descentAmount,
+          lean: 0,
+          controlTaken: true
+        });
         break;
       }
 
       case 'tilt': {
-        // Tilt forward 45 degrees
-        targetPosition.y = animationState.startPosition.y - 2; // Final descent position
-        targetRotation.y = animationState.startRotation.y + (Math.PI * 2); // Final rotation
-        targetRotation.x = THREE.MathUtils.degToRad(45 * phaseProgress); // Tilt forward
+        // Final descent + forward tilt
+        const finalTilt = 45 * phaseProgress;
+        onCardControlUpdate({
+          positionY: -2, // Final descent position
+          lean: finalTilt,
+          controlTaken: true
+        });
         break;
       }
 
       case 'complete': {
         // Hold final position
-        targetPosition.y = animationState.startPosition.y - 2;
-        targetRotation.y = animationState.startRotation.y + (Math.PI * 2);
-        targetRotation.x = THREE.MathUtils.degToRad(45);
+        onCardControlUpdate({
+          positionY: -2,
+          lean: 45,
+          controlTaken: true
+        });
         
         // Trigger completion callback
         if (phaseProgress >= 1 && onAnimationComplete) {
@@ -136,22 +146,6 @@ export const EnhancedAlignmentAnimation: React.FC<EnhancedAlignmentAnimationProp
         }
         break;
       }
-    }
-
-    // Apply smooth easing
-    const easeInOutCubic = (t: number): number => {
-      return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
-    };
-
-    const easedProgress = easeInOutCubic(phaseProgress);
-    
-    // Interpolate to target values
-    if (phase !== 'capture') {
-      onCardControlUpdate({
-        position: targetPosition,
-        rotation: targetRotation,
-        controlTaken: true
-      });
     }
 
   }, [
